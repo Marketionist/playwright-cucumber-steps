@@ -1,0 +1,50 @@
+{
+  "name": "playwright-cucumber-steps",
+  "version": "0.0.0",
+  "description": "Cucumber steps (step definitions) written with Playwright for end-to-end (e2e) tests",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.x.x"
+  },
+  "scripts": {
+    "install-all": "npm install && npm install cucumber@6.0.5 playwright --no-save",
+    "test": "",
+    "patch": "npm version patch -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",
+    "minor": "npm version minor -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",
+    "major": "npm version major -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Marketionist/playwright-cucumber-steps"
+  },
+  "keywords": [
+    "playwright cucumber",
+    "playwright-cucumber",
+    "playwright cucumber steps",
+    "playwright-cucumber-steps",
+    "cucumber steps",
+    "cucumber step definitions",
+    "playwright plugin",
+    "automated tests",
+    "e2e tests",
+    "end-to-end testing",
+    "acceptance testing",
+    "browser testing",
+    "playwright",
+    "cucumber",
+    "cucumberjs",
+    "cucumber-js",
+    "gherkin",
+    "bdd"
+  ],
+  "author": "Dmytro Shpakovskyi",
+  "license": "MIT",
+  "dependencies": {
+    "js-automation-tools": "^1.0.5"
+  },
+  "peerDependencies": {
+    "cucumber": ">=5.1.0",
+    "playwright": ">=1.8.0"
+  },
+  "devDependencies": {}
+}
