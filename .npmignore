@@ -1,0 +1,22 @@
+# Logs
+logs
+*.log
+
+# Dependency directory
+node_modules
+
+# Screenshots directory
+tests/screenshots
+
+*.DS_Store
+.*
+!.travis.yml
+!.editorconfig
+!.eslintrc.json
+*.xml
+.settings
+downloads
+*~
+.idea
+.vscode
+client_secret.json
