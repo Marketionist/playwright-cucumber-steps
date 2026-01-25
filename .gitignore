@@ -67,4 +67,13 @@ typings
 # Next.js build output
 .next
 
-.DS_Store
+*.DS_Store
+.vscode
+.idea
+dist
+.features-gen
+.cache
+test-results
+playwright-report
+cucumber-report
+blob-report
