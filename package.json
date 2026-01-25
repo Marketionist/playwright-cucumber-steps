@@ -6,12 +6,12 @@
   "engines": {
     "node": ">=22.3.x"
   },
+  "type": "module",
   "scripts": {
-    "install:test-dependencies-old": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install firefox",
-    "install:test-dependencies": "npm install && npx playwright install",
-    "test": "PO_FOLDER_PATH='tests/page-objects' node ./node_modules/.bin/cucumber-js --require cucumber.js --require index.js -f json:logs/cucumber_report.json --publish-quiet",
-    "test2": "PO_FOLDER_PATH='tests/page-objects' node ./node_modules/.bin/cucumber-js --require tests/setup/hooks.js --require index.js tests/features/**/*.feature -f json:logs/cucumber_report.json --publish-quiet",
-    "report": "node tests/reporters/reporter.js",
+    "install:test-dependencies-firefox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install firefox",
+    "install:test-dependencies-chrome": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install chrome",
+    "install:test-dependencies-all": "npm install && npx playwright install",
+    "test": "npx bddgen && npx playwright test",
     "patch": "npm version patch -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",
     "minor": "npm version minor -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",
     "major": "npm version major -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish"
@@ -52,7 +52,7 @@
   "devDependencies": {
     "@playwright/test": "^1.58.0",
     "playwright-bdd": "^8.4.2",
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.0.10",
     "node-testing-server": "^1.6.1"
   }
 }
