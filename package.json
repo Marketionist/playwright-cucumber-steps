@@ -8,9 +8,11 @@
   },
   "type": "module",
   "scripts": {
-    "install:test-dependencies-firefox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install firefox",
-    "install:test-dependencies-chrome": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install chrome",
-    "install:test-dependencies-all": "npm install && npx playwright install",
+    "install:test-dependencies:firefox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install firefox",
+    "install:test-dependencies:chrome": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install chrome",
+    "install:test-dependencies:all": "npm install && npx playwright install",
+    "lint": "node ./node_modules/.bin/eslint *.ts --ext .ts,.tsx .",
+    "prepare": "husky",
     "test": "npx bddgen && npx playwright test",
     "patch": "npm version patch -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",
     "minor": "npm version minor -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",
@@ -53,6 +55,10 @@
     "@playwright/test": "^1.58.0",
     "playwright-bdd": "^8.4.2",
     "@types/node": "^25.0.10",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "eslint": "^8.57.1",
+    "husky": "^9.1.7",
     "node-testing-server": "^1.6.1"
   }
 }
