@@ -1,1 +1,7 @@
-*.ts *.js *.json *.yml *.feature *.md *.txt text eol=lf
+*.ts text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.feature text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
