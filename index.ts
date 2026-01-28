@@ -13,11 +13,11 @@ Given('I/user go(es) to URL {string}', async ({ page, }, url: string) => {
 
 // #### Then steps #############################################################
 
-Then('the title should be {string}', async ({ page, }, text: string) => {
+Then('title should be {string}', async ({ page, }, text: string) => {
     await expect(page).toHaveTitle(text);
 });
 
-Then('the title should contain {string}', async ({ page, }, text: string) => {
+Then('title should contain {string}', async ({ page, }, text: string) => {
     const regularExpression = new RegExp(`^.*${text}.*$`, 'g');
 
     await expect(page).toHaveTitle(regularExpression);
