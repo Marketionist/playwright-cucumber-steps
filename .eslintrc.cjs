@@ -73,14 +73,6 @@ module.exports = {
         "no-unexpected-multiline": "error",
         "no-unreachable": "error",
         "use-isnan": "error",
-        "valid-jsdoc": ["error", {
-            "requireReturn": false,
-            "requireParamDescription": true,
-            "requireReturnDescription": true,
-            "prefer": {
-                "return": "returns"
-            }
-        }],
         "valid-typeof": "error",
 
         // Best Practices
@@ -214,7 +206,6 @@ module.exports = {
         "padded-blocks": "off",
         "quote-props": ["error", "consistent-as-needed"],
         "quotes": ["error", "single", "avoid-escape"],
-        "require-jsdoc": "error",
         "semi-spacing": ["error", { "before": false, "after": true }],
         "semi": ["error", "always"],
         "sort-vars": "off",
