@@ -9,7 +9,7 @@ Cucumber steps (step definitions) written with Playwright for end-to-end (e2e) t
 <table>
     <thead>
         <tr>
-            <th><a href="http://nodejs.org/" rel="nofollow" target="_blank">Node.js</a></th>
+            <th><a href="https://nodejs.org/" rel="nofollow" target="_blank">Node.js</a></th>
             <th><a href="https://github.com/microsoft/playwright" rel="nofollow" target="_blank">Playwright</a></th>
             <th><a href="https://github.com/vitalets/playwright-bdd" rel="nofollow" target="_blank">Playwright-BDD</a></th>
         </tr>
@@ -22,6 +22,12 @@ Cucumber steps (step definitions) written with Playwright for end-to-end (e2e) t
         </tr>
     </tbody>
 </table>
+
+## List of predefined steps
+### Given steps
+1. `I/user go(es) to URL "..."` - open a site (by its URL provided in "" as a
+string - for example: `"https://github.com/Marketionist"`) in the current
+browser window/tab.
 
 ## Contributing
 You are welcome to contribute to this repository - please see
