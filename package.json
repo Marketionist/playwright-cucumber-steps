@@ -13,6 +13,7 @@
     "install:test-dependencies:all": "npm install && npx playwright install",
     "lint": "node ./node_modules/.bin/eslint *.ts --ext .ts,.tsx .",
     "prepare": "husky",
+    "start:test-server": "node tests/testing-server.ts",
     "test": "npx bddgen && npx playwright test",
     "patch": "npm version patch -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",
     "minor": "npm version minor -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",

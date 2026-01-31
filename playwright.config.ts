@@ -33,4 +33,11 @@ export default defineConfig({
         screenshot: 'on',
         video: 'on-first-retry',
     },
+    // Run local server with test pages before starting the tests
+    webServer: {
+        command: 'npm run start:test-server',
+        url: 'http://localhost:8001',
+        stdout: 'pipe',
+        stderr: 'pipe',
+    },
 });
