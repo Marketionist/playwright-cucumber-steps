@@ -12,6 +12,14 @@ Given('I/user go(es) to URL {string}', async ({ page, }, url: string) => {
     await page.goto(url);
 });
 
+Given('I/user go(es) to {string}.{string}', async ({ page, }, pageObject: string, element: string) => {
+    await page.goto(pageObjects[pageObject][element]);
+});
+
+Given('I/user go(es) to {word} from {word}( page)', async ({ page, }, element: string, pageObject: string) => {
+    await page.goto(pageObjects[pageObject][element]);
+});
+
 // #### Then steps #############################################################
 
 Then('page title should be {string}', async ({ page, }, text: string) => {
