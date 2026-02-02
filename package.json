@@ -1,6 +1,6 @@
 {
   "name": "playwright-cucumber-steps",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Cucumber steps (step definitions) written with Playwright for end-to-end (e2e) tests",
   "main": "index.js",
   "engines": {
