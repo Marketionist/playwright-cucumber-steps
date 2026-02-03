@@ -17,3 +17,13 @@ Feature: Test "user ..." steps - part 1
   Scenario: 'user goes to page' should open corresponding page (text style step)
     Given user goes to pageTest1 from test1-page
     Then page title should be "Test1 Page"
+
+  Scenario: 'user clicks' Page1 test page link should lead to Page2 test page
+    Given user goes to URL "http://localhost:8001/test1.html"
+    When user clicks "test1-page"."linkTest2Page"
+    Then page title should be "Test2 Page"
+
+  Scenario: 'user clicks' Page1 test page link should lead to Page2 test page (text style step, XPath)
+    Given user goes to URL "http://localhost:8001/test1.html"
+    When user clicks linkTest2PageXPath from test1-page
+    Then page title should be "Test2 Page"
