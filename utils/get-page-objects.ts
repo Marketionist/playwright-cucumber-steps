@@ -97,4 +97,4 @@ async function requirePageObjects () {
 
 await requirePageObjects();
 
-export { pageObjects };
+export default pageObjects;
