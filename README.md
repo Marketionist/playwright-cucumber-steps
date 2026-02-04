@@ -33,10 +33,16 @@ browser window/tab.
 - `I/user go(es) to ... from ...` - open a site (by its URL provided in
 **element** from **page**) in the current browser window/tab.
 
+### When steps
+3. `I/user click(s) "..."."..."` - click on any element (provided in
+**"page"."element"** as CSS or XPath selector).
+- `I/user click(s) ... from ...` - click on any element (provided in **element**
+from **page** as CSS or XPath selector).
+
 ### Then steps
-3. `page title should be "..."` - verify that title of the current browser
+4. `page title should be "..."` - verify that title of the current browser
 window/tab equals to the text (provided in "" as a string).
-4. `page title should contain "..."` - verify that title of the current browser
+5. `page title should contain "..."` - verify that title of the current browser
 window/tab contains the text (provided in "" as a string).
 
 ## Contributing
