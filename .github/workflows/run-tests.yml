@@ -29,7 +29,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest]
+        os: [macos-latest, windows-latest]
         node-version: [24.x, 25.x]
     defaults:
       run:
@@ -45,7 +45,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm run install:test-dependencies:chrome
+        run: npm run install:test-dependencies:all
 
       - name: Lint
         run: npm run lint
