@@ -8,8 +8,8 @@
   },
   "type": "module",
   "scripts": {
-    "install:test-dependencies:firefox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install firefox",
-    "install:test-dependencies:chrome": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install chrome",
+    "install:test-dependencies:firefox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install && npx playwright install firefox",
+    "install:test-dependencies:chrome": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install && npx playwright install chrome",
     "install:test-dependencies:all": "npm install && npx playwright install",
     "lint": "node ./node_modules/.bin/eslint *.ts --ext .ts,.tsx .",
     "prepare": "husky",
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Marketionist/playwright-cucumber-steps"
+    "url": "git+https://github.com/Marketionist/playwright-cucumber-steps.git"
   },
   "keywords": [
     "playwright cucumber",
