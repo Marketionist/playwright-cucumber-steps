@@ -48,6 +48,40 @@ When(
     }
 );
 
+When('I/user type(s) {string} into {string}.{string}', async (
+    { page, }, text: string, pageObject: string, element: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).fill(text);
+});
+
+When('I/user type(s) {string} into {word} from {word}( page)', async (
+    { page, }, text: string, element: string, pageObject: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).fill(text);
+});
+
+When('I/user type(s) {string}.{string} into {string}.{string}', async (
+    { page, },
+    pageObject1: string,
+    element1: string,
+    pageObject2: string,
+    element2: string
+) => {
+    await page.locator(pageObjects[pageObject2][element2])
+        .fill(pageObjects[pageObject1][element1]);
+});
+
+When('I/user type(s) {word} from {word}( page) into {word} from {word}( page)', async (
+    { page, },
+    element1: string,
+    pageObject1: string,
+    element2: string,
+    pageObject2: string
+) => {
+    await page.locator(pageObjects[pageObject2][element2])
+        .fill(pageObjects[pageObject1][element1]);
+});
+
 // #### Then steps #############################################################
 
 Then('page title should be {string}', async ({ page, }, text: string) => {
