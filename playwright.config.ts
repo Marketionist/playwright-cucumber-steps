@@ -11,12 +11,12 @@ export default defineConfig({
     testDir,
     // Each test is given 30 seconds to finish
     timeout: 30000,
-
+    workers: 8,
+    fullyParallel: true,
+    // Number of retries for each test
+    retries: 0,
     // Forbid test.only on CI
     forbidOnly: !!process.env.CI,
-
-    // One retry for each test
-    retries: 1,
     reporter: [
         cucumberReporter('html', {
             outputFile: 'cucumber-report/index.html',
