@@ -73,7 +73,7 @@ nodeTestingServer.config = {
                 <input id="input-password" type="password" name="input-password" placeholder="Password" value=""><br>
             </form>
             <button id="login">Sign in</button>
-            <p>Typed in input color is: <span id="block-input-color"></span></p>
+            <p>Color typed into input is: <span id="block-input-color"></span></p>
             <form>
                 Colors:<br>
                 <input id="input-colors" type="text" value=""><br>
