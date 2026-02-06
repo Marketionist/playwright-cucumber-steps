@@ -38,11 +38,22 @@ browser window/tab.
 **"page"."element"** as CSS or XPath selector).
 - `I/user click(s) ... from ...` - click on any element (provided in **element**
 from **page** as CSS or XPath selector).
+4. `I/user type(s) "..." into "..."."..."` - type any text (provided in "" as a
+string) in the input field (provided in **"page"."object"** as a CSS or XPath
+selector).
+- `I/user type(s) "..." into ... from ...` - type any text (provided in "" as a
+string) in the input field (provided in **object** from **page** as a CSS or
+XPath selector).
+- `I/user type(s) "..."."..." into "..."."..."` - type any text (provided in
+**"page1"."element1"** as a string) in the input field (provided in
+**"page2"."element2"** as a CSS or XPath selector).
+- `I/user type(s) ... from ... into ... from ...` - type any text (provided in
+**element1** from **page1** as a string) in the input field (provided in **element2** from **page2** as a CSS or XPath selector).
 
 ### Then steps
-4. `page title should be "..."` - verify that title of the current browser
+5. `page title should be "..."` - verify that title of the current browser
 window/tab equals to the text (provided in "" as a string).
-5. `page title should contain "..."` - verify that title of the current browser
+6. `page title should contain "..."` - verify that title of the current browser
 window/tab contains the text (provided in "" as a string).
 
 ## Contributing
