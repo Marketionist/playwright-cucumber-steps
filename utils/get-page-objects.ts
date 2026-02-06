@@ -66,7 +66,7 @@ const fullPageObjectsFolderPathes = isCalledExternally ?
 type PageObject = Record<string, Record<string, string>>;
 const pageObjects: PageObject = {};
 
-async function requirePageObjects () {
+async function requirePageObjects (): Promise<PageObject> {
     const allPageObjectFiles = await readDirectories(
         fullPageObjectsFolderPathes);
     const allRequiredPageObjects = allPageObjectFiles.filter(
