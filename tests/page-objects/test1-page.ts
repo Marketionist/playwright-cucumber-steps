@@ -1,6 +1,8 @@
 // #############################################################################
 
-const test1Page = {
+import { PageModel } from './PageModelInterface.ts';
+
+const test1Page: PageModel = {
 
     pageTest1: 'http://localhost:8001/test1.html',
     linkTest2Page: '#link-test2-page',
