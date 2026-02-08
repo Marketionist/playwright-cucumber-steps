@@ -94,6 +94,18 @@ Then('page title should contain {string}', async ({ page, }, text: string) => {
     await expect(page).toHaveTitle(regularExpression);
 });
 
+Then('{string}.{string} should be present', async (
+    { page, }, pageObject: string, element: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element])).toBeVisible();
+});
+
+Then('{word} from {word}( page) should be present', async (
+    { page, }, element: string, pageObject: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element])).toBeVisible();
+});
+
 Then('{string}.{string} text should be {string}', async (
     { page, }, pageObject: string, element: string, text: string
 ) => {
