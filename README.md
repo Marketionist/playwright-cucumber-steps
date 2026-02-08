@@ -55,7 +55,11 @@ XPath selector).
 window/tab equals to the text (provided in "" as a string).
 6. `page title should contain "..."` - verify that title of the current browser
 window/tab contains the text (provided in "" as a string).
-7. `"..."."..." text should be "..."` - verify that text of the element
+7. `"..."."..." should be present` - verify that element (provided in
+**"page"."element"** as a CSS or XPath selector) is present on the page.
+- `... from ... should be present` - verify that element (provided in
+**element** from **page** as a CSS or XPath selector) is present on the page.
+8. `"..."."..." text should be "..."` - verify that text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string).
 - `... from ... text should be "..."` - verify that text of the element
