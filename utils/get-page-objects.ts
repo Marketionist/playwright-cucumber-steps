@@ -64,7 +64,7 @@ const fullPageObjectsFolderPathes = isCalledExternally ?
 
 // Require all Page Object files in directory
 type PageObject = Record<string, Record<string, string>>;
-const pageObjects: PageObject = {};
+const allPageObjects: PageObject = {};
 
 async function requirePageObjects (): Promise<PageObject> {
     const allPageObjectFiles = await readDirectories(
@@ -81,20 +81,22 @@ async function requirePageObjects (): Promise<PageObject> {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const fileContent: PageObject = await import(file);
 
-            pageObjects[fileName] = fileContent.default;
+            allPageObjects[fileName] = fileContent.default;
 
             return file;
         })
     );
 
-    console.log(
-        '\nPage Objects from PO_FOLDER_PATH:',
-        `\n${JSON.stringify(pageObjects, null, spacesToIndent)}\n\n`
-    );
+    if (pOFolderPath !== undefined) {
+        console.log(
+            '\nPage Objects from PO_FOLDER_PATH:',
+            `\n${JSON.stringify(allPageObjects, null, spacesToIndent)}\n\n`
+        );
+    }
 
-    return pageObjects;
+    return allPageObjects;
 }
 
 await requirePageObjects();
 
-export default pageObjects;
+export const pageObjects = allPageObjects;
