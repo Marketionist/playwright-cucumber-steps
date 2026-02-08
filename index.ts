@@ -93,3 +93,39 @@ Then('page title should contain {string}', async ({ page, }, text: string) => {
 
     await expect(page).toHaveTitle(regularExpression);
 });
+
+Then('{string}.{string} text should be {string}', async (
+    { page, }, pageObject: string, element: string, text: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element]))
+        .toHaveText(text);
+});
+
+Then('{word} from {word}( page) text should be {string}', async (
+    { page, }, element: string, pageObject: string, text: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element]))
+        .toHaveText(text);
+});
+
+Then('{string}.{string} text should be {string}.{string}', async (
+    { page, },
+    pageObject1: string,
+    element1: string,
+    pageObject2: string,
+    element2: string
+) => {
+    await expect(page.locator(pageObjects[pageObject1][element1]))
+        .toHaveText(pageObjects[pageObject2][element2]);
+});
+
+Then('{word} from {word}( page) text should be {word} from {word}( page)', async (
+    { page, },
+    element1: string,
+    pageObject1: string,
+    element2: string,
+    pageObject2: string
+) => {
+    await expect(page.locator(pageObjects[pageObject1][element1]))
+        .toHaveText(pageObjects[pageObject2][element2]);
+});
