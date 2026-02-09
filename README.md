@@ -49,17 +49,18 @@ XPath selector).
 **"page2"."element2"** as a CSS or XPath selector).
 - `I/user type(s) ... from ... into ... from ...` - type any text (provided in
 **element1** from **page1** as a string) in the input field (provided in **element2** from **page2** as a CSS or XPath selector).
+5. `I/user reload(s) the page` - reload current page.
 
 ### Then steps
-5. `page title should be "..."` - verify that title of the current browser
+6. `page title should be "..."` - verify that title of the current browser
 window/tab equals to the text (provided in "" as a string).
-6. `page title should contain "..."` - verify that title of the current browser
+7. `page title should contain "..."` - verify that title of the current browser
 window/tab contains the text (provided in "" as a string).
-7. `"..."."..." should be present` - verify that element (provided in
+8. `"..."."..." should be present` - verify that element (provided in
 **"page"."element"** as a CSS or XPath selector) is present on the page.
 - `... from ... should be present` - verify that element (provided in
 **element** from **page** as a CSS or XPath selector) is present on the page.
-8. `"..."."..." text should be "..."` - verify that text of the element
+9. `"..."."..." text should be "..."` - verify that text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string).
 - `... from ... text should be "..."` - verify that text of the element
