@@ -82,6 +82,10 @@ When('I/user type(s) {word} from {word}( page) into {word} from {word}( page)', 
         .fill(pageObjects[pageObject1][element1]);
 });
 
+When('I/user reload(s) the page', async ({ page, }) => {
+    await page.reload();
+});
+
 // #### Then steps #############################################################
 
 Then('page title should be {string}', async ({ page, }, text: string) => {
