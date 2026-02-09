@@ -18,6 +18,16 @@ Feature: Test "user ..." steps - part 1
     Given user goes to pageTest1 from test1-page
     Then page title should be "Test1 Page"
 
+  Scenario: 'user reloads the page' should refresh the page, 'should be present' should verify the element
+    Given user goes to "test1-page"."pageTest1"
+    And user reloads the page
+    Then "test1-page"."linkTest2Page" should be present
+
+  Scenario: 'user reloads the page' should refresh the page, 'should be present' should verify the element (text style step)
+    Given user goes to "test1-page"."pageTest1"
+    And user reloads the page
+    Then linkTest2Page from test1-page should be present
+
   Scenario: 'user clicks' Page1 test page link should lead to Page2 test page
     Given user goes to URL "http://localhost:8001/test1.html"
     When user clicks "test1-page"."linkTest2Page"
