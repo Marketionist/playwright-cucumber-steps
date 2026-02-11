@@ -57,3 +57,23 @@ Feature: Test "user ..." steps - part 1
     Given user goes to "test2-page"."pageTest2"
     When user types textGold from test2-page into inputColors from test2-page
     Then blockInputColor from test2-page text should be textGold from test2-page
+
+  Scenario: 'user selects' "Green" (string) option text inside select dropdown should get this option selected, 'text should be' should verify the text
+    Given user goes to "test2-page"."pageTest2"
+    When user selects "Green" in "test2-page"."dropdownColors"
+    Then "test2-page"."blockDropdownColor" text should be "green"
+
+  Scenario: 'user selects' "Green" (string) option text inside select dropdown should get this option selected, 'text should be' should verify the text (text style step)
+    Given user goes to "test2-page"."pageTest2"
+    When user selects "Green" in dropdownColors from test2-page
+    Then blockDropdownColor from test2-page text should be "green"
+
+  Scenario: 'user selects' "Gold" (page object) option text inside select dropdown should get this option selected, 'text should be' should verify the text
+    Given user goes to "test2-page"."pageTest2"
+    When user selects "test2-page"."textGold" in "test2-page"."dropdownColors"
+    Then "test2-page"."blockDropdownColor" text should be "test2-page"."textGold"
+
+  Scenario: 'user selects' "Gold" (page object) option text inside select dropdown should get this option selected, 'text should be' should verify the text (text style step)
+    Given user goes to "test2-page"."pageTest2"
+    When user selects textGold from test2-page in dropdownColors from test2-page
+    Then blockDropdownColor from test2-page text should be textGold from test2-page
