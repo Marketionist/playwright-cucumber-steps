@@ -82,6 +82,43 @@ When('I/user type(s) {word} from {word}( page) into {word} from {word}( page)', 
         .fill(pageObjects[pageObject1][element1]);
 });
 
+When('I/user select(s) {string} in {string}.{string}', async (
+    { page, }, text: string, pageObject: string, element: string
+) => {
+    await page.locator(pageObjects[pageObject][element])
+        .selectOption({ label: text });
+});
+
+When('I/user select(s) {string} in {word} from {word}( page)', async (
+    { page, }, text: string, element: string, pageObject: string
+) => {
+    await page.locator(pageObjects[pageObject][element])
+        .selectOption({ label: text });
+});
+
+When('I/user select(s) {string}.{string} in {string}.{string}', async (
+    { page, },
+    pageObject1: string,
+    element1: string,
+    pageObject2: string,
+    element2: string
+) => {
+    await page.locator(pageObjects[pageObject2][element2])
+        .selectOption({ label: pageObjects[pageObject1][element1] });
+});
+
+When(
+    'I/user select(s) {word} from {word}( page) in {word} from {word}( page)', async (
+    { page, },
+    element1: string,
+    pageObject1: string,
+    element2: string,
+    pageObject2: string
+) => {
+    await page.locator(pageObjects[pageObject2][element2])
+        .selectOption({ label: pageObjects[pageObject1][element1] });
+});
+
 When('I/user reload(s) the page', async ({ page, }) => {
     await page.reload();
 });
