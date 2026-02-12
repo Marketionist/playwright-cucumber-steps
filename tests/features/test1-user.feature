@@ -28,6 +28,14 @@ Feature: Test "user ..." steps - part 1
     And user reloads the page
     Then linkTest2Page from test1-page should be present
 
+  Scenario: 'number should be present' should verify the number of elements
+    Given user goes to "test2-page"."pageTest2"
+    Then 4 "test2-page"."input" should be present
+
+  Scenario: 'number should be present' should verify the number of elements (text style step)
+    Given user goes to "test2-page"."pageTest2"
+    Then 4 input from test2-page should be present
+
   Scenario: 'user clicks' Page1 test page link should lead to Page2 test page
     Given user goes to URL "http://localhost:8001/test1.html"
     When user clicks "test1-page"."linkTest2Page"
