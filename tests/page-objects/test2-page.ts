@@ -11,6 +11,7 @@ const test2Page: PageModel = {
     blockDropdownColor: '#block-dropdown-color',
     inputColors: '#input-colors',
     blockInputColor: '#block-input-color',
+    input: 'input',
 
 };
 
