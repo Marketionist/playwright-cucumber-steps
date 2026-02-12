@@ -174,6 +174,20 @@ Then('{word} from {word}( page) should be present', async (
     await expect(page.locator(pageObjects[pageObject][element])).toBeVisible();
 });
 
+Then('{int} {string}.{string} should be present', async (
+    { page, }, number: number, pageObject: string, element: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element]))
+        .toHaveCount(number);
+});
+
+Then('{int} {word} from {word}( page) should be present', async (
+    { page, }, number: number, element: string, pageObject: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element]))
+        .toHaveCount(number);
+});
+
 Then('{string}.{string} text should be {string}', async (
     { page, }, pageObject: string, element: string, text: string
 ) => {
