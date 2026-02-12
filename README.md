@@ -38,7 +38,11 @@ browser window/tab.
 **"page"."element"** as CSS or XPath selector).
 - `I/user click(s) ... from ...` - click on the element (provided in **element**
 from **page** as CSS or XPath selector).
-4. `I/user type(s) "..." into "..."."..."` - type the text (provided in "" as a
+4. `I/user right click(s) "..."."..."` - right click on the element (provided in
+**"page"."element"** as a CSS or XPath selector).
+- `I/user right click(s) ... from ...` - right click on the element (provided in
+**element** from **page** as a CSS or XPath selector).
+5. `I/user type(s) "..." into "..."."..."` - type the text (provided in "" as a
 string) into the input field (provided in **"page"."object"** as a CSS or XPath
 selector).
 - `I/user type(s) "..." into ... from ...` - type the text (provided in "" as a
@@ -49,7 +53,7 @@ XPath selector).
 **"page2"."element2"** as a CSS or XPath selector).
 - `I/user type(s) ... from ... into ... from ...` - type the text (provided in
 **element1** from **page1** as a string) into the input field (provided in **element2** from **page2** as a CSS or XPath selector).
-5. `I/user select(s) "..." in "..."."..."` - select the option (provided in ""
+6. `I/user select(s) "..." in "..."."..."` - select the option (provided in ""
 as a string) in the dropdown (provided in **"page"."element"** as a CSS or XPath
 selector).
 - `I/user select(s) "..." in ... from ...` - select the option (provided in ""
@@ -61,18 +65,18 @@ XPath selector).
 - `I/user select(s) ... from ... in ... from ...` - select the option
 (provided in **element1** from **page1** as a string) in the dropdown (provided
 in **element2** from **page2** as a CSS or XPath selector).
-6. `I/user reload(s) the page` - reload current page.
+7. `I/user reload(s) the page` - reload current page.
 
 ### Then steps
-7. `page title should be "..."` - verify that the title of the current browser
+8. `page title should be "..."` - verify that the title of the current browser
 window/tab equals to the text (provided in "" as a string).
-8. `page title should contain "..."` - verify that the title of the current
+9. `page title should contain "..."` - verify that the title of the current
 browser window/tab contains the text (provided in "" as a string).
-9. `"..."."..." should be present` - verify that the element (provided in
+10. `"..."."..." should be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is present on the page.
 - `... from ... should be present` - verify that the element (provided in
 **element** from **page** as a CSS or XPath selector) is present on the page.
-10. `"..."."..." text should be "..."` - verify that the text of the element
+11. `"..."."..." text should be "..."` - verify that the text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string).
 - `... from ... text should be "..."` - verify that the text of the element
