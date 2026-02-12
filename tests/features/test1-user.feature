@@ -38,6 +38,16 @@ Feature: Test "user ..." steps - part 1
     When user clicks linkTest2PageXPath from test1-page
     Then page title should be "Test2 Page"
 
+  Scenario: 'user right clicks' on Right click menu button should open a menu
+    Given user goes to URL "http://localhost:8001/test1.html"
+    When user right clicks "test1-page"."buttonMenuRightClick"
+    Then "test1-page"."blockMenu" should be present
+
+  Scenario: 'user right clicks' on Right click menu button should open a menu (text style step, XPath)
+    Given user goes to URL "http://localhost:8001/test1.html"
+    When user right clicks buttonMenuRightClickXPath from test1-page
+    Then blockMenu from test1-page should be present
+
   Scenario: 'user types' "Green" (string) text inside input should get this text typed in, 'text should be' should verify the text
     Given user goes to "test2-page"."pageTest2"
     When user types "Green" into "test2-page"."inputColors"

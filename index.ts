@@ -48,6 +48,34 @@ When(
     }
 );
 
+When(
+    'I/user right click(s) {string}.{string}',
+    async ({ page, }, pageObject: string, element: string) => {
+        try {
+            await page.locator(pageObjects[pageObject][element]).click({
+                button: 'right',
+            });
+        } catch (error) {
+            throw new Error(`${errors.NO_ELEMENT} "${pageObject}"."${element}"
+                ${JSON.stringify(error, null, spacesToIndent)}`);
+        }
+    }
+);
+
+When(
+    'I/user right click(s) {word} from {word}( page)',
+    async ({ page, }, element: string, pageObject: string) => {
+        try {
+            await page.locator(pageObjects[pageObject][element]).click({
+                button: 'right',
+            });
+        } catch (error) {
+            throw new Error(`${errors.NO_ELEMENT} "${pageObject}"."${element}"
+                ${JSON.stringify(error, null, spacesToIndent)}`);
+        }
+    }
+);
+
 When('I/user type(s) {string} into {string}.{string}', async (
     { page, }, text: string, pageObject: string, element: string
 ) => {

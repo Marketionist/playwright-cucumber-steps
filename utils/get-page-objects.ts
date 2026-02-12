@@ -87,7 +87,7 @@ async function requirePageObjects (): Promise<PageObject> {
         })
     );
 
-    if (pOFolderPath !== undefined) {
+    if (process.env.PRINT_PO !== undefined) {
         console.log(
             '\nPage Objects from PO_FOLDER_PATH:',
             `\n${JSON.stringify(allPageObjects, null, spacesToIndent)}\n\n`
