@@ -188,6 +188,20 @@ Then('{int} {word} from {word}( page) should be present', async (
         .toHaveCount(number);
 });
 
+Then('{string}.{string} should not be present', async (
+    { page, }, pageObject: string, element: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element]))
+        .not.toBeVisible();
+});
+
+Then('{word} from {word}( page) should not be present', async (
+    { page, }, element: string, pageObject: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element]))
+        .not.toBeVisible();
+});
+
 Then('{string}.{string} text should be {string}', async (
     { page, }, pageObject: string, element: string, text: string
 ) => {
