@@ -150,6 +150,11 @@ When('I/user reload(s) the page', async ({ page, }) => {
     await page.reload();
 });
 
+When('I/user wait(s) for {int} ms', async ({ page, }, timeToWait: number) => {
+    // Timeout to wait for in milliseconds
+    await page.waitForTimeout(timeToWait);
+});
+
 // #### Then steps #############################################################
 
 Then('page title should be {string}', async ({ page, }, text: string) => {
