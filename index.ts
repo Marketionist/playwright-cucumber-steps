@@ -150,6 +150,11 @@ When('I/user reload(s) the page', async ({ page, }) => {
     await page.reload();
 });
 
+When('I/user wait(s) for {int} ms', async ({ page, }, timeToWait: number) => {
+    // Timeout to wait for in milliseconds
+    await page.waitForTimeout(timeToWait);
+});
+
 // #### Then steps #############################################################
 
 Then('page title should be {string}', async ({ page, }, text: string) => {
@@ -186,6 +191,20 @@ Then('{int} {word} from {word}( page) should be present', async (
 ) => {
     await expect(page.locator(pageObjects[pageObject][element]))
         .toHaveCount(number);
+});
+
+Then('{string}.{string} should not be present', async (
+    { page, }, pageObject: string, element: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element]))
+        .not.toBeVisible();
+});
+
+Then('{word} from {word}( page) should not be present', async (
+    { page, }, element: string, pageObject: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element]))
+        .not.toBeVisible();
 });
 
 Then('{string}.{string} text should be {string}', async (

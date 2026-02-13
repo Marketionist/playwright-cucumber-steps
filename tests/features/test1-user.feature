@@ -36,6 +36,16 @@ Feature: Test "user ..." steps - part 1
     Given user goes to "test2-page"."pageTest2"
     Then 4 input from test2-page should be present
 
+  Scenario: 'should not be present': link on Page1 test page should not be present, 'user waits for' should wait for 200 ms
+    Given user goes to "test1-page"."pageTest1"
+    And user waits for 200 ms
+    Then "test1-page"."linkInvisibleTest2Page" should not be present
+
+  Scenario: 'should not be present': text error on Page1 test page should not be present, 'user waits for' should wait for 200 ms (text style step, XPath)
+    Given user goes to "test1-page"."pageTest1"
+    And user waits for 200 ms
+    Then textErrorXPath from test1-page should not be present
+
   Scenario: 'user clicks' Page1 test page link should lead to Page2 test page
     Given user goes to URL "http://localhost:8001/test1.html"
     When user clicks "test1-page"."linkTest2Page"

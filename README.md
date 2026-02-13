@@ -66,23 +66,30 @@ XPath selector).
 (provided in **element1** from **page1** as a string) in the dropdown (provided
 in **element2** from **page2** as a CSS or XPath selector).
 7. `I/user reload(s) the page` - reload current page.
+8. `I/user wait(s) for ... ms` - wait for a provided amount of time (in
+milliseconds).
 
 ### Then steps
-8. `page title should be "..."` - verify that the title of the current browser
+9. `page title should be "..."` - verify that the title of the current browser
 window/tab equals to the text (provided in "" as a string).
-9. `page title should contain "..."` - verify that the title of the current
+10. `page title should contain "..."` - verify that the title of the current
 browser window/tab contains the text (provided in "" as a string).
-10. `"..."."..." should be present` - verify that the element (provided in
+11. `"..."."..." should be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is present on the page.
 - `... from ... should be present` - verify that the element (provided in
 **element** from **page** as a CSS or XPath selector) is present on the page.
-11. `... "..."."..." should be present` - verify that the number of the elements
+12. `... "..."."..." should be present` - verify that the number of the elements
 (provided in **"page"."element"** as a CSS or XPath selector) are present on the
 page.
 - `... ... from ... should be present` - verify that the number of the elements
 (provided in **element** from **page** as a CSS or XPath selector) are present
 on the page.
-12. `"..."."..." text should be "..."` - verify that the text of the element
+13. `"..."."..." should not be present` - verify that the element (provided in
+**"page"."element"** as a CSS or XPath selector) is not present on the page.
+- `... from ... should not be present` - verify that the element (provided in
+**element** from **page** as a CSS or XPath selector) is not present on the
+page.
+14. `"..."."..." text should be "..."` - verify that the text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string).
 - `... from ... text should be "..."` - verify that the text of the element
