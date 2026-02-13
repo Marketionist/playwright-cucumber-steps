@@ -82,7 +82,12 @@ page.
 - `... ... from ... should be present` - verify that the number of the elements
 (provided in **element** from **page** as a CSS or XPath selector) are present
 on the page.
-12. `"..."."..." text should be "..."` - verify that the text of the element
+12. `"..."."..." should not be present` - verify that the element (provided in
+**"page"."element"** as a CSS or XPath selector) is not present on the page.
+- `... from ... should not be present` - verify that the element (provided in
+**element** from **page** as a CSS or XPath selector) is not present on the
+page.
+13. `"..."."..." text should be "..."` - verify that the text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string).
 - `... from ... text should be "..."` - verify that the text of the element
