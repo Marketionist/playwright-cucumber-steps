@@ -76,6 +76,28 @@ When(
     }
 );
 
+When('I/user double click(s) {string}.{string}',
+    async ({ page, }, pageObject: string, element: string) => {
+        try {
+            await page.locator(pageObjects[pageObject][element]).dblclick();
+        } catch (error) {
+            throw new Error(`${errors.NO_ELEMENT} "${pageObject}"."${element}"
+                ${JSON.stringify(error, null, spacesToIndent)}`);
+        }
+    }
+);
+
+When('I/user double click(s) {word} from {word}( page)',
+    async ({ page, }, element: string, pageObject: string) => {
+        try {
+            await page.locator(pageObjects[pageObject][element]).dblclick();
+        } catch (error) {
+            throw new Error(`${errors.NO_ELEMENT} "${pageObject}"."${element}"
+                ${JSON.stringify(error, null, spacesToIndent)}`);
+        }
+    }
+);
+
 When('I/user type(s) {string} into {string}.{string}', async (
     { page, }, text: string, pageObject: string, element: string
 ) => {
