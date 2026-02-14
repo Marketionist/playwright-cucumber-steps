@@ -66,6 +66,16 @@ Feature: Test "user ..." steps - part 1
     When user right clicks buttonMenuRightClickXPath from test1-page
     Then blockMenu from test1-page should be present
 
+  Scenario: 'user double clicks' on Page1 test page link should lead to Page2 test page
+    Given user goes to URL "http://localhost:8001/test1.html"
+    When user double clicks "test1-page"."linkTest2Page"
+    Then page title should be "Test2 Page"
+
+  Scenario: 'user double clicks' on Page1 test page link should lead to Page2 test page (text style step)
+    Given user goes to URL "http://localhost:8001/test1.html"
+    When user double clicks linkTest2Page from test1-page
+    Then page title should be "Test2 Page"
+
   Scenario: 'user types' "Green" (string) text inside input should get this text typed in, 'text should be' should verify the text
     Given user goes to "test2-page"."pageTest2"
     When user types "Green" into "test2-page"."inputColors"
