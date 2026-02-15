@@ -76,6 +76,34 @@ Feature: Test "user ..." steps - part 1
     When user double clicks linkTest2Page from test1-page
     Then page title should be "Test2 Page"
 
+  Scenario: 'user clicks if present': link on Page1 test page should be clicked if it is visible and lead to Page2 test page
+    Given user goes to "test1-page"."pageTest1"
+    And user waits for 200 ms
+    When user clicks "test1-page"."linkTest2Page" if present
+    And user waits for 200 ms
+    Then page title should be "Test2 Page"
+
+  Scenario: 'user clicks if present': link on Page1 test page should not be clicked if it is not present
+    Given user goes to "test1-page"."pageTest1"
+    And user waits for 200 ms
+    When user clicks "test1-page"."linkInvisibleTest2Page" if present
+    And user waits for 200 ms
+    Then page title should be "Test1 Page"
+
+  Scenario: 'user clicks if present': link on Page1 test page should be clicked if it is visible and lead to Page2 test page (text style step, XPath)
+    Given user goes to pageTest1 from test1-page
+    And user waits for 200 ms
+    When user clicks linkTest2PageXPath from test1-page if present
+    And user waits for 200 ms
+    Then page title should be "Test2 Page"
+
+  Scenario: 'user clicks if present': link on Page1 test page should not be clicked if it is not present (text style step, XPath)
+    Given user goes to pageTest1 from test1-page
+    And user waits for 200 ms
+    When user clicks linkInvisibleTest2PageXPath from test1-page if present
+    And user waits for 200 ms
+    Then page title should be "Test1 Page"
+
   Scenario: 'user types' "Green" (string) text inside input should get this text typed in, 'text should be' should verify the text
     Given user goes to "test2-page"."pageTest2"
     When user types "Green" into "test2-page"."inputColors"
