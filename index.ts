@@ -15,17 +15,24 @@ Given('I/user go(es) to URL {string}', async ({ page, }, url: string) => {
     await page.goto(url);
 });
 
-Given('I/user go(es) to {string}.{string}', async ({ page, }, pageObject: string, element: string) => {
-    await page.goto(pageObjects[pageObject][element]);
-});
+Given(
+    'I/user go(es) to {string}.{string}',
+    async ({ page, }, pageObject: string, element: string) => {
+        await page.goto(pageObjects[pageObject][element]);
+    }
+);
 
-Given('I/user go(es) to {word} from {word}( page)', async ({ page, }, element: string, pageObject: string) => {
-    await page.goto(pageObjects[pageObject][element]);
-});
+Given(
+    'I/user go(es) to {word} from {word}( page)',
+    async ({ page, }, element: string, pageObject: string) => {
+        await page.goto(pageObjects[pageObject][element]);
+    }
+);
 
 // #### When steps #############################################################
 
-When('I/user click(s) {string}.{string}',
+When(
+    'I/user click(s) {string}.{string}',
     async ({ page, }, pageObject: string, element: string) => {
         try {
             await page.locator(pageObjects[pageObject][element]).click();
@@ -76,7 +83,8 @@ When(
     }
 );
 
-When('I/user double click(s) {string}.{string}',
+When(
+    'I/user double click(s) {string}.{string}',
     async ({ page, }, pageObject: string, element: string) => {
         try {
             await page.locator(pageObjects[pageObject][element]).dblclick();
@@ -87,13 +95,36 @@ When('I/user double click(s) {string}.{string}',
     }
 );
 
-When('I/user double click(s) {word} from {word}( page)',
+When(
+    'I/user double click(s) {word} from {word}( page)',
     async ({ page, }, element: string, pageObject: string) => {
         try {
             await page.locator(pageObjects[pageObject][element]).dblclick();
         } catch (error) {
             throw new Error(`${errors.NO_ELEMENT} "${pageObject}"."${element}"
                 ${JSON.stringify(error, null, spacesToIndent)}`);
+        }
+    }
+);
+
+When(
+    'I/user click(s) {string}.{string} if present',
+    async ({ page, }, pageObject: string, element: string) => {
+        const elementOnPage = page.locator(pageObjects[pageObject][element]);
+
+        if (await elementOnPage.isVisible()) {
+            await elementOnPage.click();
+        }
+    }
+);
+
+When(
+    'I/user click(s) {word} from {word}( page) if present',
+    async ({ page, }, element: string, pageObject: string) => {
+        const elementOnPage = page.locator(pageObjects[pageObject][element]);
+
+        if (await elementOnPage.isVisible()) {
+            await elementOnPage.click();
         }
     }
 );

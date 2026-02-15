@@ -46,7 +46,13 @@ from **page** as CSS or XPath selector).
 in **"page"."element"** as a CSS or XPath selector).
 - `I/user double click(s) ... from ...` - double click on the element (provided
 in **element** from **page** as a CSS or XPath selector).
-6. `I/user type(s) "..." into "..."."..."` - type the text (provided in "" as a
+6. `I/user click(s) "..."."..." if present` - click on the element (provided in
+**"page"."element"** as a CSS or XPath selector) only if it is present on the
+page.
+- `I/user click(s) ... from ... if present` - click on the element (provided in
+**element** from **page** as a CSS or XPath selector) only if it is present on
+the page.
+7. `I/user type(s) "..." into "..."."..."` - type the text (provided in "" as a
 string) into the input field (provided in **"page"."object"** as a CSS or XPath
 selector).
 - `I/user type(s) "..." into ... from ...` - type the text (provided in "" as a
@@ -57,7 +63,7 @@ XPath selector).
 **"page2"."element2"** as a CSS or XPath selector).
 - `I/user type(s) ... from ... into ... from ...` - type the text (provided in
 **element1** from **page1** as a string) into the input field (provided in **element2** from **page2** as a CSS or XPath selector).
-7. `I/user select(s) "..." in "..."."..."` - select the option (provided in ""
+8. `I/user select(s) "..." in "..."."..."` - select the option (provided in ""
 as a string) in the dropdown (provided in **"page"."element"** as a CSS or XPath
 selector).
 - `I/user select(s) "..." in ... from ...` - select the option (provided in ""
@@ -69,31 +75,31 @@ XPath selector).
 - `I/user select(s) ... from ... in ... from ...` - select the option
 (provided in **element1** from **page1** as a string) in the dropdown (provided
 in **element2** from **page2** as a CSS or XPath selector).
-8. `I/user reload(s) the page` - reload current page.
-9. `I/user wait(s) for ... ms` - wait for a provided amount of time (in
+9. `I/user reload(s) the page` - reload current page.
+10. `I/user wait(s) for ... ms` - wait for a provided amount of time (in
 milliseconds).
 
 ### Then steps
-10. `page title should be "..."` - verify that the title of the current browser
+11. `page title should be "..."` - verify that the title of the current browser
 window/tab equals to the text (provided in "" as a string).
-11. `page title should contain "..."` - verify that the title of the current
+12. `page title should contain "..."` - verify that the title of the current
 browser window/tab contains the text (provided in "" as a string).
-12. `"..."."..." should be present` - verify that the element (provided in
+13. `"..."."..." should be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is present on the page.
 - `... from ... should be present` - verify that the element (provided in
 **element** from **page** as a CSS or XPath selector) is present on the page.
-13. `... "..."."..." should be present` - verify that the number of the elements
+14. `... "..."."..." should be present` - verify that the number of the elements
 (provided in **"page"."element"** as a CSS or XPath selector) are present on the
 page.
 - `... ... from ... should be present` - verify that the number of the elements
 (provided in **element** from **page** as a CSS or XPath selector) are present
 on the page.
-14. `"..."."..." should not be present` - verify that the element (provided in
+15. `"..."."..." should not be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is not present on the page.
 - `... from ... should not be present` - verify that the element (provided in
 **element** from **page** as a CSS or XPath selector) is not present on the
 page.
-15. `"..."."..." text should be "..."` - verify that the text of the element
+16. `"..."."..." text should be "..."` - verify that the text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string).
 - `... from ... text should be "..."` - verify that the text of the element
