@@ -199,6 +199,19 @@ When('I/user select(s) {word} from {word}( page) in {word} from {word}( page)', 
         .selectOption({ label: pageObjects[pageObject1][element1], });
 });
 
+When('I/user move(s) to {string}.{string}', async (
+    { page, }, pageObject: string, element: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).hover();
+});
+
+
+When('I/user move(s) to {word} from {word}( page)', async (
+    { page, }, element: string, pageObject: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).hover();
+});
+
 When('I/user reload(s) the page', async ({ page, }) => {
     await page.reload();
 });
