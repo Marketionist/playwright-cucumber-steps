@@ -14,6 +14,10 @@ const test1Page: PageModel = {
     linkInvisibleTest2PageXPath: '//*[@id="link-invisible-test2-page"]',
     textErrorXPath: `//*[ancestor::*[@class="todo-container" and
         descendant::*[text()="New"]] and @type="checkbox"]`,
+    titleTest1: 'h1',
+    blockTextTest: '#text-test',
+    txtTest1: 'Test 1 sample',
+    txtTest2: 'Test2',
 
 };
 
