@@ -63,7 +63,18 @@ XPath selector).
 **"page2"."element2"** as a CSS or XPath selector).
 - `I/user type(s) ... from ... into ... from ...` - type the text (provided in
 **element1** from **page1** as a string) into the input field (provided in **element2** from **page2** as a CSS or XPath selector).
-8. `I/user select(s) "..." in "..."."..."` - select the option (provided in ""
+8. `I/user clear(s) "..."."..." and type(s) "..."` - clear the input field
+(provided in **"page"."element"** as a CSS or XPath selector) and type the text
+(provided in "" as a string).
+- `I/user clear(s) ... from ... and type(s) "..."` - clear the input field
+(provided in **element** from **page** as a CSS or XPath selector) and type the
+text (provided in "" as a string).
+- `I/user clear(s) "..."."..." and type(s) "..."."..."` - clear the input field (provided in **"page1"."element1"** as a CSS or XPath selector) and type the
+text (provided in **"page2"."element2"** as a string).
+- `I/user clear(s) ... from ... and type(s) ... from ...` - clear the input
+field (provided in **element1** from **page1** as a CSS or XPath selector) and
+type the text (provided in **element2** from **page2** as a string).
+9. `I/user select(s) "..." in "..."."..."` - select the option (provided in ""
 as a string) in the dropdown (provided in **"page"."element"** as a CSS or XPath
 selector).
 - `I/user select(s) "..." in ... from ...` - select the option (provided in ""
@@ -75,37 +86,37 @@ XPath selector).
 - `I/user select(s) ... from ... in ... from ...` - select the option
 (provided in **element1** from **page1** as a string) in the dropdown (provided
 in **element2** from **page2** as a CSS or XPath selector).
-9. `I/user move(s) to "..."."..."` - move the mouse pointer over the element
+10. `I/user move(s) to "..."."..."` - move the mouse pointer over the element
 (hover with cursor an element provided in **"page"."object"** as CSS or XPath
 selector).
 - `I/user move(s) to ... from ...` - move the mouse pointer over the element
 (hover with cursor an element provided in **object** from **page** as CSS or
 XPath selector).
-10. `I/user reload(s) the page` - reload current page.
-11. `I/user wait(s) for ... ms` - wait for a provided amount of time (in
+11. `I/user reload(s) the page` - reload current page.
+12. `I/user wait(s) for ... ms` - wait for a provided amount of time (in
 milliseconds).
 
 ### Then steps
-12. `page title should be "..."` - verify that the title of the current browser
+13. `page title should be "..."` - verify that the title of the current browser
 window/tab equals to the text (provided in "" as a string).
-13. `page title should contain "..."` - verify that the title of the current
+14. `page title should contain "..."` - verify that the title of the current
 browser window/tab contains the text (provided in "" as a string).
-14. `"..."."..." should be present` - verify that the element (provided in
+15. `"..."."..." should be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is present on the page.
 - `... from ... should be present` - verify that the element (provided in
 **element** from **page** as a CSS or XPath selector) is present on the page.
-15. `... "..."."..." should be present` - verify that the number of the elements
+16. `... "..."."..." should be present` - verify that the number of the elements
 (provided in **"page"."element"** as a CSS or XPath selector) are present on the
 page.
 - `... ... from ... should be present` - verify that the number of the elements
 (provided in **element** from **page** as a CSS or XPath selector) are present
 on the page.
-16. `"..."."..." should not be present` - verify that the element (provided in
+17. `"..."."..." should not be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is not present on the page.
 - `... from ... should not be present` - verify that the element (provided in
 **element** from **page** as a CSS or XPath selector) is not present on the
 page.
-17. `"..."."..." text should be "..."` - verify that the text of the element
+18. `"..."."..." text should be "..."` - verify that the text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string).
 - `... from ... text should be "..."` - verify that the text of the element
@@ -117,7 +128,7 @@ text (provided in **"page2"."element2"** as a string).
 - `... from ... text should be ... from ...` - verify that the text of the
 element (provided in **element1** from **page1** as a CSS or XPath selector)
 equals to the text (provided in **element2** from **page2** as a string).
-18. `"..."."..." text should contain "..."` - verify that the text of the
+19. `"..."."..." text should contain "..."` - verify that the text of the
 element (provided in **"page"."element"** as a CSS or XPath selector) contains
 the text (provided in "" as a string).
 - `... from ... text should contain "..."` - verify that the text of the element
