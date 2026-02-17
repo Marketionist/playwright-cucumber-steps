@@ -23,6 +23,68 @@ Cucumber steps (step definitions) written with Playwright for end-to-end (e2e) t
     </tbody>
 </table>
 
+## Installation
+> Note: this package is lightweight and has only 2 peerDependencies - it uses:
+> - [\@playwright/test](https://github.com/microsoft/playwright) to execute steps.
+> - [playwright-bdd](https://github.com/vitalets/playwright-bdd) to parse step definitions.
+
+1. First of all if you do not have `package.json` in the root folder of your
+project you will need to create it:
+```bash
+npm init --yes
+```
+
+2. To install the playwright-cucumber-steps package and its peerDependencies and
+to save it to your `package.json` just run:
+```bash
+npm install @playwright/test playwright-bdd playwright-cucumber-steps --save-dev
+```
+
+3. Specify pathes to all step definitions inside the array in `steps` property
+of the `playwright.config.ts` configuration file in the root directory of your
+project:
+```typescript
+import { defineConfig, devices } from '@playwright/test';
+import { defineBddConfig, cucumberReporter } from 'playwright-bdd';
+
+const testDir = defineBddConfig({
+    features: 'tests/features/*.feature',
+    steps: ['node_modules/playwright-cucumber-steps/index.js', '*.ts'],
+});
+
+export default defineConfig({
+    // Look for test files in the directory, relative to this configuration file
+    testDir,
+    // Each test is given 30 seconds to finish
+    timeout: 30000,
+    reporter: [
+        cucumberReporter('html', {
+            outputFile: 'cucumber-report/index.html',
+            externalAttachments: true,
+        }),
+    ],
+    use: {
+        ...devices['Desktop Chrome'],
+        channel: 'chrome', // or 'chrome-beta'
+        headless: true,
+    },
+});
+```
+and then launch tests with:
+```bash
+npx bddgen && npx playwright test
+```
+or if you use custom Page Objects folder:
+```bash
+PO_FOLDER_PATH='tests/my-custom-page-objects' npx bddgen && npx playwright test
+```
+
+If you want to get access to Page Objects in your custom Cucumber steps - you
+can just require them inside any step definitions file like this:
+```typescript
+import { pageObjects } from 'playwright-cucumber-steps/utils/get-page-objects.ts';
+```
+
 ## List of predefined steps
 ### Given steps
 1. `I/user go(es) to URL "..."` - open a site (by its URL provided in "" as a
@@ -136,13 +198,13 @@ the text (provided in "" as a string).
 text (provided in "" as a string).
 - `"..."."..." text should contain "..."."..."` - verify that the text of the
 element (provided in **"page1"."element1"** as a CSS or XPath selector) contains
-the text (provided in **"page2"."element2"**).
+the text (provided in **"page2"."element2"** as a string).
 - `... from ... text should contain ... from ...` - verify that the text of the
 element (provided in **element1** from **page1** as a CSS or XPath selector)
-contains the text (provided in **element2** from **page2**).
+contains the text (provided in **element2** from **page2** as a string).
 
 ## Contributing
-You are welcome to contribute to this repository - please see
+Please feel free to contribute to this repository - see
 [CONTRIBUTING.md](https://github.com/Marketionist/playwright-cucumber-steps/blob/main/CONTRIBUTING.md)
 to help you get started. It is not set in stone, so you can just create a pull
 request and we will help you refine it along the way.
