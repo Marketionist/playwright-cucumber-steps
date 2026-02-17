@@ -163,6 +163,44 @@ When('I/user type(s) {word} from {word}( page) into {word} from {word}( page)', 
         .fill(pageObjects[pageObject1][element1]);
 });
 
+When('I/user clear(s) {string}.{string} and type(s) {string}', async (
+    { page, }, pageObject: string, element: string, text: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).fill('');
+    await page.locator(pageObjects[pageObject][element]).fill(text);
+});
+
+When('I/user clear(s) {word} from {word}( page) and type(s) {string}', async (
+    { page, }, element: string, pageObject: string, text: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).fill('');
+    await page.locator(pageObjects[pageObject][element]).fill(text);
+});
+
+When('I/user clear(s) {string}.{string} and type(s) {string}.{string}', async (
+    { page, },
+    pageObject1: string,
+    element1: string,
+    pageObject2: string,
+    element2: string
+) => {
+    await page.locator(pageObjects[pageObject1][element1]).fill('');
+    await page.locator(pageObjects[pageObject1][element1])
+        .fill(pageObjects[pageObject2][element2]);
+});
+
+When('I/user clear(s) {word} from {word}( page) and type(s) {word} from {word}( page)', async (
+    { page, },
+    element1: string,
+    pageObject1: string,
+    element2: string,
+    pageObject2: string
+) => {
+    await page.locator(pageObjects[pageObject1][element1]).fill('');
+    await page.locator(pageObjects[pageObject1][element1])
+        .fill(pageObjects[pageObject2][element2]);
+});
+
 When('I/user select(s) {string} in {string}.{string}', async (
     { page, }, text: string, pageObject: string, element: string
 ) => {
