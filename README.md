@@ -28,8 +28,8 @@ Cucumber steps (step definitions) written with Playwright for end-to-end (e2e) t
 > - [\@playwright/test](https://github.com/microsoft/playwright) to execute steps.
 > - [playwright-bdd](https://github.com/vitalets/playwright-bdd) to parse step definitions.
 
-1. First of all if you do not have `package.json` in the root folder of your
-project you will need to create it:
+1. If you do not have `package.json` in the root folder of your project you will
+need to create it:
 ```bash
 npm init --yes
 ```
@@ -40,23 +40,23 @@ to save it to your `package.json` just run:
 npm install @playwright/test playwright-bdd playwright-cucumber-steps --save-dev
 ```
 
-3. Specify pathes to all step definitions inside the array in `steps` property
-of the `playwright.config.ts` configuration file in the root directory of your
-project:
+3. Specify the pathes to all step definitions inside the array in the `steps`
+property of the `playwright.config.ts` configuration file in the root directory
+of your project:
 ```typescript
 import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig, cucumberReporter } from 'playwright-bdd';
 
 const testDir = defineBddConfig({
     features: 'tests/features/*.feature',
-    steps: ['node_modules/playwright-cucumber-steps/index.js', '*.ts'],
+    steps: ['node_modules/playwright-cucumber-steps/index.ts', '*.ts'],
 });
 
 export default defineConfig({
     // Look for test files in the directory, relative to this configuration file
     testDir,
-    // Each test is given 30 seconds to finish
     timeout: 30000,
+    retries: 0,
     reporter: [
         cucumberReporter('html', {
             outputFile: 'cucumber-report/index.html',
@@ -65,18 +65,23 @@ export default defineConfig({
     ],
     use: {
         ...devices['Desktop Chrome'],
-        channel: 'chrome', // or 'chrome-beta'
+        channel: 'chrome',
         headless: true,
+        viewport: { width: 1920, height: 1080, },
+        ignoreHTTPSErrors: true,
+        trace: 'on',
+        screenshot: 'on',
+        video: 'on-first-retry',
     },
 });
 ```
-and then launch tests with:
+4. Launch the tests with:
 ```bash
 npx bddgen && npx playwright test
 ```
-or if you use custom Page Objects folder:
+OR if you use custom Page Objects folder:
 ```bash
-PO_FOLDER_PATH='tests/my-custom-page-objects' npx bddgen && npx playwright test
+npx bddgen && PO_FOLDER_PATH='tests/my-custom-page-objects' npx playwright test
 ```
 
 If you want to get access to Page Objects in your custom Cucumber steps - you
