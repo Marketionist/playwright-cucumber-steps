@@ -2,22 +2,23 @@
   "compilerOptions": {
     "target": "es2021",
     "module": "nodenext",
-    "outDir": "./dist",
     "types": ["node", "@playwright/test"],
+    "lib": ["esnext", "dom", "DOM.Iterable"],
+    "rootDir": "./",
+    "outDir": "dist",
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "useUnknownInCatchVariables": false,
-    "noEmit": true,
-    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true
   },
-  "include": [
-    "**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
