@@ -15,7 +15,7 @@
     "prepare": "husky",
     "start:test-server": "node ./tests/testing-server.ts",
     "test": "npx bddgen && npx playwright test",
-    "prepublish": "./node_modules/typescript/bin/tsc -p ./",
+    "tsc": "node ./node_modules/typescript/bin/tsc -p ./",
     "patch": "npm version patch -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",
     "minor": "npm version minor -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",
     "major": "npm version major -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish"
