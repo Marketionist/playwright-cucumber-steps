@@ -70,7 +70,6 @@ typings
 *.DS_Store
 .vscode
 .idea
-dist
 .features-gen
 .cache
 test-results
