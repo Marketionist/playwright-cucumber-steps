@@ -34,8 +34,9 @@ module.exports = {
     "ignorePatterns": [
         "build",
         "dist",
+        "cucumber-report",
         "node_modules",
-        ".eslintrc.js"
+        ".eslintrc.cjs"
     ],
     "rules": {
         // Possible Errors
