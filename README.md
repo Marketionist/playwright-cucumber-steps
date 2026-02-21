@@ -49,7 +49,7 @@ import { defineBddConfig, cucumberReporter } from 'playwright-bdd';
 
 const testDir = defineBddConfig({
     features: 'tests/features/*.feature',
-    steps: ['node_modules/playwright-cucumber-steps/index.ts', '*.ts'],
+    steps: ['node_modules/playwright-cucumber-steps/index.js', '*.ts'],
 });
 
 export default defineConfig({
@@ -207,6 +207,12 @@ the text (provided in **"page2"."element2"** as a string).
 - `... from ... text should contain ... from ...` - verify that the text of the
 element (provided in **element1** from **page1** as a CSS or XPath selector)
 contains the text (provided in **element2** from **page2** as a string).
+20. `URL should be "..."` - verify that the URL of the current page equals to
+the text (provided in "" as a string).
+- `URL should be "..."."..."` - verify that the URL of the current page equals
+to the text (provided in **"page"."element"**).
+- `URL should be ... from ...` - verify that the URL of the current page equals
+to the text (provided in **element** from **page**).
 
 ## Contributing
 Please feel free to contribute to this repository - see
