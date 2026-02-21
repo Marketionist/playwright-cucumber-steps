@@ -1,3 +1,4 @@
+'use strict';
 // #############################################################################
 
 import { readdir, stat } from 'node:fs';
@@ -52,11 +53,7 @@ const pOFolderPath = process.env.PO_FOLDER_PATH;
 
 const pageObjectsFolderPathes = 'PO_FOLDER_PATH' in process.env ?
     pOFolderPath.replace(/\s+/g, '').split(',') :
-    [
-        // Check that folder exists
-        // path.join('tests', 'page-objects'),
-        path.join('..', 'tests', 'page-objects'),
-    ];
+    [path.join('tests', 'page-objects'),];
 
 const fullPageObjectsFolderPathes = isCalledExternally ?
     pageObjectsFolderPathes.map((pageObjectsFolderPath) => {

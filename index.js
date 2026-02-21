@@ -1,3 +1,4 @@
+'use strict';
 /* eslint new-cap: off */ // Disable rule for Given, When, Then
 
 // #############################################################################
@@ -381,4 +382,20 @@ Then('{word} from {word}( page) text should contain {word} from {word}( page)', 
 ) => {
     await expect(page.locator(pageObjects[pageObject1][element1]))
         .toContainText(pageObjects[pageObject2][element2]);
+});
+
+Then('URL should be {string}', async ({ page, }, text) => {
+    await expect(page).toHaveURL(text);
+});
+
+Then('URL should be {string}.{string}', async (
+    { page, }, pageObject, element
+) => {
+    await expect(page).toHaveURL(pageObjects[pageObject][element]);
+});
+
+Then('URL should be {word} from {word}( page)', async (
+    { page, }, element, pageObject
+) => {
+    await expect(page).toHaveURL(pageObjects[pageObject][element]);
 });
