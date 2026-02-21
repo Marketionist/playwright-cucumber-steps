@@ -2,8 +2,8 @@ import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig, cucumberReporter } from 'playwright-bdd';
 
 const testDir = defineBddConfig({
-    features: 'tests/features/*.feature',
-    steps: '*.ts',
+    features: './tests/features/*.feature',
+    steps: './*.js',
 });
 
 export default defineConfig({
@@ -19,7 +19,7 @@ export default defineConfig({
     forbidOnly: !!process.env.CI,
     reporter: [
         cucumberReporter('html', {
-            outputFile: 'cucumber-report/index.html',
+            outputFile: './cucumber-report/index.html',
             externalAttachments: true,
         }),
     ],

@@ -14,3 +14,15 @@ Feature: Test "user ..." steps - part 2
     Given user goes to URL "http://localhost:8001/test1.html"
     When user moves to titleTest1 from test1-page
     Then blockTextTest from test1-page text should contain txtTest1 from test1-page
+
+  Scenario: 'URL should be' should verify that current URL equals provided string
+    Given user goes to URL "http://localhost:8001/test1.html"
+    Then URL should be "http://localhost:8001/test1.html"
+
+  Scenario: 'URL should be' should verify that current URL equals provided string (Page Object style step)
+    Given user goes to URL "http://localhost:8001/test1.html"
+    Then URL should be "test2-page"."urlTest1"
+
+  Scenario: 'URL should be' should verify that current URL equals provided string (text style step)
+    Given user goes to URL "http://localhost:8001/test1.html"
+    Then URL should be urlTest1 from test2-page
