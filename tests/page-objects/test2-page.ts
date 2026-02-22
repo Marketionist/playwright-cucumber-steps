@@ -13,6 +13,7 @@ const test2Page: PageModel = {
     blockInputColor: '#block-input-color',
     input: 'input',
     urlTest1: 'http://localhost:8001/test1.html',
+    pathTest1: '/test1.html',
 
 };
 
