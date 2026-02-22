@@ -383,29 +383,29 @@ Then('{word} from {word}( page) text should contain {word} from {word}( page)', 
         .toContainText(pageObjects[pageObject2][element2]);
 });
 
-Then('URL should be {string}', async ({ page, }, text: string) => {
+Then('page URL should be {string}', async ({ page, }, text: string) => {
     await expect(page).toHaveURL(text);
 });
 
-Then('URL should be {string}.{string}', async (
+Then('page URL should be {string}.{string}', async (
     { page, }, pageObject: string, element: string
 ) => {
     await expect(page).toHaveURL(pageObjects[pageObject][element]);
 });
 
-Then('URL should be {word} from {word}( page)', async (
+Then('page URL should be {word} from {word}( page)', async (
     { page, }, element: string, pageObject: string
 ) => {
     await expect(page).toHaveURL(pageObjects[pageObject][element]);
 });
 
-Then('URL should contain {string}', async ({ page, }, text: string) => {
+Then('page URL should contain {string}', async ({ page, }, text: string) => {
     const currentUrl = page.url();
 
     expect(currentUrl).toContain(text);
 });
 
-Then('URL should contain {string}.{string}', async (
+Then('page URL should contain {string}.{string}', async (
     { page, }, pageObject: string, element: string
 ) => {
     const currentUrl = page.url();
@@ -413,7 +413,7 @@ Then('URL should contain {string}.{string}', async (
     expect(currentUrl).toContain(pageObjects[pageObject][element]);
 });
 
-Then('URL should contain {word} from {word}( page)', async (
+Then('page URL should contain {word} from {word}( page)', async (
     { page, }, element: string, pageObject: string
 ) => {
     const currentUrl = page.url();
