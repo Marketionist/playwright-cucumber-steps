@@ -207,12 +207,18 @@ the text (provided in **"page2"."element2"** as a string).
 - `... from ... text should contain ... from ...` - verify that the text of the
 element (provided in **element1** from **page1** as a CSS or XPath selector)
 contains the text (provided in **element2** from **page2** as a string).
-20. `URL should be "..."` - verify that the URL of the current page equals to
+20. `page URL should be "..."` - verify that the URL of the current page equals to
 the text (provided in "" as a string).
-- `URL should be "..."."..."` - verify that the URL of the current page equals
-to the text (provided in **"page"."element"**).
-- `URL should be ... from ...` - verify that the URL of the current page equals
-to the text (provided in **element** from **page**).
+- `page URL should be "..."."..."` - verify that the URL of the current page equals
+to the text (provided in **"page"."element"** as a string).
+- `page URL should be ... from ...` - verify that the URL of the current page equals
+to the text (provided in **element** from **page** as a string).
+21. `page URL should contain "..."` - verify that the URL of the current page
+contains the text (provided in "" as a string).
+- `page URL should contain "..."."..."` - verify that the URL of the current page
+contains the text (provided in **"page"."element"** as a string).
+- `page URL should contain ... from ...` - verify that the URL of the current page
+contains the text (provided in **element** from **page** as a string).
 
 ## Contributing
 Please feel free to contribute to this repository - see
