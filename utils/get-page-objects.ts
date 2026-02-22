@@ -78,7 +78,6 @@ async function requirePageObjects (): Promise<PageObject> {
     await Promise.all(
         allRequiredPageObjects.map(async (file) => {
             const fileName = path.basename(file, '.ts');
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const fileContent: PageObject = await import(file);
 
             allPageObjects[fileName] = fileContent.default;

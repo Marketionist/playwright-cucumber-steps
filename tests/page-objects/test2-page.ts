@@ -12,6 +12,7 @@ const test2Page: PageModel = {
     inputColors: '#input-colors',
     blockInputColor: '#block-input-color',
     input: 'input',
+    urlTest1: 'http://localhost:8001/test1.html',
 
 };
 
