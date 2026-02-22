@@ -399,3 +399,25 @@ Then('URL should be {word} from {word}( page)', async (
 ) => {
     await expect(page).toHaveURL(pageObjects[pageObject][element]);
 });
+
+Then('URL should contain {string}', async ({ page, }, text) => {
+    const currentUrl = page.url();
+
+    expect(currentUrl).toContain(text);
+});
+
+Then('URL should contain {string}.{string}', async (
+    { page, }, pageObject, element
+) => {
+    const currentUrl = page.url();
+
+    expect(currentUrl).toContain(pageObjects[pageObject][element]);
+});
+
+Then('URL should contain {word} from {word}( page)', async (
+    { page, }, element, pageObject
+) => {
+    const currentUrl = page.url();
+
+    expect(currentUrl).toContain(pageObjects[pageObject][element]);
+});
