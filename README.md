@@ -224,6 +224,12 @@ can just require them inside any step definitions file like this:
 import { pageObjects } from 'playwright-cucumber-steps';
 ```
 
+Also you can import `Given`, `When`, `Then` for your own step definitions if
+need be:
+```typescript
+import { Given, When, Then } from 'playwright-cucumber-steps';
+```
+
 ## Contributing
 Please feel free to contribute to this repository - see
 [CONTRIBUTING.md](https://github.com/Marketionist/playwright-cucumber-steps/blob/main/CONTRIBUTING.md)
