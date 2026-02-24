@@ -4,9 +4,11 @@
 // #############################################################################
 
 import { expect } from '@playwright/test';
-import { Given, When, Then } from './fixtures';
-import { pageObjects } from './utils/get-page-objects';
-import errors from './utils/errors';
+import { Given, When, Then } from './fixtures.js';
+export { Given, When, Then } from './fixtures.js';
+import { pageObjects } from './utils/get-page-objects.js';
+export { pageObjects } from './utils/get-page-objects.js';
+import errors from './utils/errors.js';
 
 const spacesToIndent = 4;
 

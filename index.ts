@@ -4,7 +4,9 @@
 
 import { expect } from '@playwright/test';
 import { Given, When, Then } from './fixtures.ts';
+export { Given, When, Then } from './fixtures.ts';
 import { pageObjects } from './utils/get-page-objects.ts';
+export { pageObjects } from './utils/get-page-objects.ts';
 import errors from './utils/errors.ts';
 
 const spacesToIndent = 4;
