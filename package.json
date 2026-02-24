@@ -8,9 +8,7 @@
   "type": "module",
   "main": "./index.js",
   "exports": {
-    ".": "./index.js",
-    "./get-page-objects": "./utils/get-page-objects.js",
-    "./package.json": "./package.json"
+    ".": "./index.js"
   },
   "scripts": {
     "install:test-dependencies:firefox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install && npx playwright install firefox",
