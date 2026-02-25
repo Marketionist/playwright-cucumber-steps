@@ -48,20 +48,36 @@ async function readDirectories (directories) {
     return allFilesPaths;
 }
 
-const isCalledExternally = __dirname.includes('node_modules');
+const isCalledExternallyNpm = __dirname.includes('node_modules');
+const isCalledExternallyPnpm = __dirname.includes(path
+    .join('node_modules', '.pnpm'));
 const pOFolderPath = process.env.PO_FOLDER_PATH;
 
 const pageObjectsFolderPathes = 'PO_FOLDER_PATH' in process.env ?
     pOFolderPath.replace(/\s+/g, '').split(',') :
     [path.join('tests', 'page-objects'),];
 
-const fullPageObjectsFolderPathes = isCalledExternally ?
-    pageObjectsFolderPathes.map((pageObjectsFolderPath) => {
-        return path.join(__dirname, '..', '..', '..', pageObjectsFolderPath);
-    }) :
-    pageObjectsFolderPathes.map((pageObjectsFolderPath) => {
-        return path.join(__dirname, '..', pageObjectsFolderPath);
-    });
+let fullPageObjectsFolderPathes = [];
+
+if (isCalledExternallyPnpm) {
+    fullPageObjectsFolderPathes = pageObjectsFolderPathes.map(
+        (pageObjectsFolderPath) => {
+            return path.join(__dirname, '..', '..', '..', '..', '..', '..', pageObjectsFolderPath);
+        }
+    );
+} else if (isCalledExternallyNpm) {
+    fullPageObjectsFolderPathes = pageObjectsFolderPathes.map(
+        (pageObjectsFolderPath) => {
+            return path.join(__dirname, '..', '..', '..', pageObjectsFolderPath);
+        }
+    );
+} else {
+    fullPageObjectsFolderPathes = pageObjectsFolderPathes.map(
+        (pageObjectsFolderPath) => {
+            return path.join(__dirname, '..', pageObjectsFolderPath);
+        }
+    );
+}
 
 // Require all Page Object files in directory
 const allPageObjects = {};
