@@ -175,7 +175,7 @@ property of the `playwright.config.ts` configuration file in the root directory
 of your project:
 ```typescript
 import { defineConfig, devices } from '@playwright/test';
-import { defineBddConfig, cucumberReporter } from 'playwright-bdd';
+import { defineBddConfig } from 'playwright-bdd';
 
 const testDir = defineBddConfig({
     features: 'tests/features/*.feature',
@@ -191,12 +191,7 @@ export default defineConfig({
     testDir,
     timeout: 30000,
     retries: 0,
-    reporter: [
-        cucumberReporter('html', {
-            outputFile: 'cucumber-report/index.html',
-            externalAttachments: true,
-        }),
-    ],
+    reporter: 'html',
     use: {
         ...devices['Desktop Chrome'],
         channel: 'chrome',
