@@ -14,7 +14,26 @@ browser window/tab.
 **"page"."element"**) in the current browser window/tab.
 - `I/user go(es) to ... from ...` - open a site (by its URL provided in
 **element** from **page**) in the current browser window/tab.
-3. `I/user send(s) "..." request to "..." with headers "..." and body "..."` -
+3. `I/user send(s) "..." request to "..." with body "..."` - send request
+(request method provided in "" as a string - for example: `POST`) to URL
+(provided in "" as a string - for example: `"http://httpbin.org/post"`) with
+body (provided in "" as a string with a JSON object inside - for example:
+`"{ \"test1\": 1, \"test2\": 2 }"`).
+- `I/user send(s) "..." request to "..." with body "..."."..."` - send request
+(request method provided in "" as a string - for example: `POST`) to URL
+(provided in "" as a string - for example: `"http://httpbin.org/post"`) with
+body (provided in **"page"."element"** as a JSON object or as a string with a
+JSON object inside).
+- `I/user send(s) "..." request to "..."."..." with body "..."."..."` - send
+request (request method provided in "" as a string - for example: `POST`) to URL
+(provided in **"page1"."element1"** as a string) with body (provided in
+**"page2"."element2"** as a JSON object or as a string with a JSON object
+inside).
+- `I/user send(s) "..." request to ... from ... with body ... from ...` - send
+request (request method provided in "" as a string - for example: `POST`) to URL
+(provided in **element1** from **page1** as a string) with body (provided in **element2** from **page2** as a JSON object or as a string with a JSON object
+inside).
+4. `I/user send(s) "..." request to "..." with headers "..." and body "..."` -
 send a request (request method provided in "" as a string - for example: `POST`)
 to URL (provided in "" as a string - for example: `"http://httpbin.org/post"`)
 with headers (provided in "" as a string with a JSON object inside - for example:
@@ -24,39 +43,42 @@ with headers (provided in "" as a string with a JSON object inside - for example
 - `I/user send(s) "..." request to "..." with headers "..."."..." and body "..."."..."` -
 send a request (request method provided in "" as a string - for example: `POST`)
 to URL (provided in "" as a string - for example: `"http://httpbin.org/post"`)
-with headers (provided in **"page"."element"** as a JSON object) and body
-(provided in **"page"."element"** as a JSON object).
+with headers (provided in **"page1"."element1"** as a JSON object or as a string
+with a JSON object inside) and body (provided in **"page2"."element2"** as a
+JSON object or as a string with a JSON object inside).
 - `I/user send(s) "..." request to "..."."..." with headers "..."."..." and body "..."."..."` -
 send a request (request method provided in "" as a string - for example: `POST`)
-to URL (provided in **"page"."element"** as a string) with headers (provided in
-**"page"."element"** as a JSON object) and body (provided in
-**"page"."element"** as a JSON object).
+to URL (provided in **"page1"."element1"** as a string) with headers (provided in
+**"page2"."element2"** as a JSON object or as a string with a JSON object
+inside) and body (provided in **"page3"."element3"** as a JSON object or as a
+string with a JSON object inside).
 - `I/user send(s) "..." request to ... from ... with headers ... from ... and body ... from ...` -
 send a request (request method provided in "" as a string - for example: `POST`)
-to URL (provided in **element** from **page** as a string) with headers
-(provided in **element** from **page** as a JSON object) and body (provided in
-**element** from **page** as a JSON object).
+to URL (provided in **element1** from **page1** as a string) with headers
+(provided in **element2** from **page2** as a JSON object or as a string with a
+JSON object inside) and body (provided in **element3** from **page3** as a JSON
+object or as a string with a JSON object inside).
 
 ### When steps
-4. `I/user click(s) "..."."..."` - click on the element (provided in
+5. `I/user click(s) "..."."..."` - click on the element (provided in
 **"page"."element"** as CSS or XPath selector).
 - `I/user click(s) ... from ...` - click on the element (provided in **element**
 from **page** as CSS or XPath selector).
-5. `I/user right click(s) "..."."..."` - right click on the element (provided in
+6. `I/user right click(s) "..."."..."` - right click on the element (provided in
 **"page"."element"** as a CSS or XPath selector).
 - `I/user right click(s) ... from ...` - right click on the element (provided in
 **element** from **page** as a CSS or XPath selector).
-6. `I/user double click(s) "..."."..."` - double click on the element (provided
+7. `I/user double click(s) "..."."..."` - double click on the element (provided
 in **"page"."element"** as a CSS or XPath selector).
 - `I/user double click(s) ... from ...` - double click on the element (provided
 in **element** from **page** as a CSS or XPath selector).
-7. `I/user click(s) "..."."..." if present` - click on the element (provided in
+8. `I/user click(s) "..."."..." if present` - click on the element (provided in
 **"page"."element"** as a CSS or XPath selector) only if it is present on the
 page.
 - `I/user click(s) ... from ... if present` - click on the element (provided in
 **element** from **page** as a CSS or XPath selector) only if it is present on
 the page.
-8. `I/user type(s) "..." into "..."."..."` - type the text (provided in "" as a
+9. `I/user type(s) "..." into "..."."..."` - type the text (provided in "" as a
 string) into the input field (provided in **"page"."object"** as a CSS or XPath
 selector).
 - `I/user type(s) "..." into ... from ...` - type the text (provided in "" as a
@@ -67,7 +89,7 @@ XPath selector).
 **"page2"."element2"** as a CSS or XPath selector).
 - `I/user type(s) ... from ... into ... from ...` - type the text (provided in
 **element1** from **page1** as a string) into the input field (provided in **element2** from **page2** as a CSS or XPath selector).
-9. `I/user clear(s) "..."."..." and type(s) "..."` - clear the input field
+10. `I/user clear(s) "..."."..." and type(s) "..."` - clear the input field
 (provided in **"page"."element"** as a CSS or XPath selector) and type the text
 (provided in "" as a string).
 - `I/user clear(s) ... from ... and type(s) "..."` - clear the input field
@@ -78,7 +100,7 @@ text (provided in **"page2"."element2"** as a string).
 - `I/user clear(s) ... from ... and type(s) ... from ...` - clear the input
 field (provided in **element1** from **page1** as a CSS or XPath selector) and
 type the text (provided in **element2** from **page2** as a string).
-10. `I/user select(s) "..." in "..."."..."` - select the option (provided in ""
+11. `I/user select(s) "..." in "..."."..."` - select the option (provided in ""
 as a string) in the dropdown (provided in **"page"."element"** as a CSS or XPath
 selector).
 - `I/user select(s) "..." in ... from ...` - select the option (provided in ""
@@ -90,37 +112,37 @@ XPath selector).
 - `I/user select(s) ... from ... in ... from ...` - select the option
 (provided in **element1** from **page1** as a string) in the dropdown (provided
 in **element2** from **page2** as a CSS or XPath selector).
-11. `I/user move(s) to "..."."..."` - move the mouse pointer over the element
+12. `I/user move(s) to "..."."..."` - move the mouse pointer over the element
 (hover with cursor an element provided in **"page"."object"** as CSS or XPath
 selector).
 - `I/user move(s) to ... from ...` - move the mouse pointer over the element
 (hover with cursor an element provided in **object** from **page** as CSS or
 XPath selector).
-12. `I/user reload(s) the page` - reload current page.
-13. `I/user wait(s) for ... ms` - wait for a provided amount of time (in
+13. `I/user reload(s) the page` - reload current page.
+14. `I/user wait(s) for ... ms` - wait for a provided amount of time (in
 milliseconds).
 
 ### Then steps
-14. `page title should be "..."` - verify that the title of the current browser
+15. `page title should be "..."` - verify that the title of the current browser
 window/tab equals to the text (provided in "" as a string).
-15. `page title should contain "..."` - verify that the title of the current
+16. `page title should contain "..."` - verify that the title of the current
 browser window/tab contains the text (provided in "" as a string).
-16. `"..."."..." should be present` - verify that the element (provided in
+17. `"..."."..." should be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is present on the page.
 - `... from ... should be present` - verify that the element (provided in
 **element** from **page** as a CSS or XPath selector) is present on the page.
-17. `... "..."."..." should be present` - verify that the number of the elements
+18. `... "..."."..." should be present` - verify that the number of the elements
 (provided in **"page"."element"** as a CSS or XPath selector) are present on the
 page.
 - `... ... from ... should be present` - verify that the number of the elements
 (provided in **element** from **page** as a CSS or XPath selector) are present
 on the page.
-18. `"..."."..." should not be present` - verify that the element (provided in
+19. `"..."."..." should not be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is not present on the page.
 - `... from ... should not be present` - verify that the element (provided in
 **element** from **page** as a CSS or XPath selector) is not present on the
 page.
-19. `"..."."..." text should be "..."` - verify that the text of the element
+20. `"..."."..." text should be "..."` - verify that the text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string).
 - `... from ... text should be "..."` - verify that the text of the element
@@ -132,7 +154,7 @@ text (provided in **"page2"."element2"** as a string).
 - `... from ... text should be ... from ...` - verify that the text of the
 element (provided in **element1** from **page1** as a CSS or XPath selector)
 equals to the text (provided in **element2** from **page2** as a string).
-20. `"..."."..." text should contain "..."` - verify that the text of the
+21. `"..."."..." text should contain "..."` - verify that the text of the
 element (provided in **"page"."element"** as a CSS or XPath selector) contains
 the text (provided in "" as a string).
 - `... from ... text should contain "..."` - verify that the text of the element
@@ -144,13 +166,13 @@ the text (provided in **"page2"."element2"** as a string).
 - `... from ... text should contain ... from ...` - verify that the text of the
 element (provided in **element1** from **page1** as a CSS or XPath selector)
 contains the text (provided in **element2** from **page2** as a string).
-21. `page URL should be "..."` - verify that the URL of the current page equals to
+22. `page URL should be "..."` - verify that the URL of the current page equals to
 the text (provided in "" as a string).
 - `page URL should be "..."."..."` - verify that the URL of the current page equals
 to the text (provided in **"page"."element"** as a string).
 - `page URL should be ... from ...` - verify that the URL of the current page equals
 to the text (provided in **element** from **page** as a string).
-22. `page URL should contain "..."` - verify that the URL of the current page
+23. `page URL should contain "..."` - verify that the URL of the current page
 contains the text (provided in "" as a string).
 - `page URL should contain "..."."..."` - verify that the URL of the current page
 contains the text (provided in **"page"."element"** as a string).
