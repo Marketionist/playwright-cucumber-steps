@@ -1,4 +1,5 @@
 /* eslint new-cap: off */ // Disable rule for Given, When, Then
+/* eslint max-params: off */
 
 // #############################################################################
 
@@ -8,6 +9,8 @@ export { Given, When, Then } from './fixtures.ts';
 import { pageObjects } from './utils/get-page-objects.ts';
 export { pageObjects } from './utils/get-page-objects.ts';
 import errors from './utils/errors.ts';
+import sendRequest from './utils/send-request.ts';
+
 
 const spacesToIndent = 4;
 
@@ -28,6 +31,135 @@ Given(
     'I/user go(es) to {word} from {word}( page)',
     async ({ page, }, element: string, pageObject: string) => {
         await page.goto(pageObjects[pageObject][element]);
+    }
+);
+
+Given('I/user send(s) {string} request to {string} with body {string}', async (
+    { request, ctx, }, reqMethod: string, reqUrl: string, reqBody: string
+) => {
+    await sendRequest(request, ctx, reqMethod, reqUrl, '', reqBody);
+});
+
+Given('I/user send(s) {string} request to {string} with body {string}.{string}', async (
+    { request, ctx, },
+    reqMethod: string,
+    reqUrl: string,
+    pageObject: string,
+    element: string
+) => {
+    await sendRequest(request, ctx, reqMethod, reqUrl, '', pageObjects[pageObject][element]);
+});
+
+Given('I/user send(s) {string} request to {string}.{string} with body {string}.{string}', async (
+    { request, ctx, },
+    reqMethod: string,
+    pageObject1: string,
+    element1: string,
+    pageObject2: string,
+    element2: string
+) => {
+    await sendRequest(
+        request,
+        ctx,
+        reqMethod,
+        pageObjects[pageObject1][element1],
+        '',
+        pageObjects[pageObject2][element2]
+    );
+});
+
+Given(
+    'I/user send(s) {string} request to {word} from {word}( page) with body {word} from {word}( page)', async (
+        { request, ctx, },
+        reqMethod: string,
+        element1: string,
+        pageObject1: string,
+        element2: string,
+        pageObject2: string
+    ) => {
+        await sendRequest(
+            request,
+            ctx,
+            reqMethod,
+            pageObjects[pageObject1][element1],
+            '',
+            pageObjects[pageObject2][element2]
+        );
+    }
+);
+
+Given('I/user send(s) {string} request to {string} with headers {string} and body {string}', async (
+    { request, ctx, },
+    reqMethod: string,
+    reqUrl: string,
+    reqHeaders: string,
+    reqBody: string
+) => {
+    await sendRequest(request, ctx, reqMethod, reqUrl, reqHeaders, reqBody);
+});
+
+Given('I/user send(s) {string} request to {string} with headers {string}.{string} and body {string}.{string}', async (
+    { request, ctx, },
+    reqMethod: string,
+    reqUrl: string,
+    pageObject1: string,
+    element1: string,
+    pageObject2: string,
+    element2: string
+) => {
+    await sendRequest(
+        request,
+        ctx,
+        reqMethod,
+        reqUrl,
+        pageObjects[pageObject1][element1],
+        pageObjects[pageObject2][element2]
+    );
+});
+
+Given(
+    'I/user send(s) {string} request to {string}.{string} with ' +
+    'headers {string}.{string} and body {string}.{string}', async (
+        { request, ctx, },
+        reqMethod: string,
+        pageObject1: string,
+        element1: string,
+        pageObject2: string,
+        element2: string,
+        pageObject3: string,
+        element3: string
+    ) => {
+        await sendRequest(
+            request,
+            ctx,
+            reqMethod,
+            pageObjects[pageObject1][element1],
+            pageObjects[pageObject2][element2],
+            pageObjects[pageObject3][element3]
+        );
+    }
+);
+
+Given(
+    'I/user send(s) {string} request to {word} from {word}( page) with ' +
+    'headers {word} from {word}( page) and body {word} from {word}( page)', async (
+        { request, ctx, },
+        reqMethod: string,
+        element1: string,
+        pageObject1: string,
+        element2: string,
+        pageObject2: string,
+        element3: string,
+        pageObject3: string
+    ) => {
+        await sendRequest(
+            request,
+            ctx,
+            reqMethod,
+            pageObjects[pageObject1][element1],
+            pageObjects[pageObject2][element2],
+            pageObjects[pageObject3][element3]
+        );
     }
 );
 
