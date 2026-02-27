@@ -14,6 +14,28 @@ browser window/tab.
 **"page"."element"**) in the current browser window/tab.
 - `I/user go(es) to ... from ...` - open a site (by its URL provided in
 **element** from **page**) in the current browser window/tab.
+3. `I/user send(s) "..." request to "..." with headers "..." and body "..."` -
+send a request (request method provided in "" as a string - for example: `POST`)
+to URL (provided in "" as a string - for example: `"http://httpbin.org/post"`)
+with headers (provided in "" as a string with a JSON object inside - for example:
+`"{ \"Content-Type\": \"application/json\", \"Authorization\": \"Bearer aBcD1234\" }"`
+) and body (provided in "" as a string with a JSON object inside - for example:
+`"{ \"test1\": 1, \"test2\": 2 }"`).
+- `I/user send(s) "..." request to "..." with headers "..."."..." and body "..."."..."` -
+send a request (request method provided in "" as a string - for example: `POST`)
+to URL (provided in "" as a string - for example: `"http://httpbin.org/post"`)
+with headers (provided in **"page"."element"** as a JSON object) and body
+(provided in **"page"."element"** as a JSON object).
+- `I/user send(s) "..." request to "..."."..." with headers "..."."..." and body "..."."..."` -
+send a request (request method provided in "" as a string - for example: `POST`)
+to URL (provided in **"page"."element"** as a string) with headers (provided in
+**"page"."element"** as a JSON object) and body (provided in
+**"page"."element"** as a JSON object).
+- `I/user send(s) "..." request to ... from ... with headers ... from ... and body ... from ...` -
+send a request (request method provided in "" as a string - for example: `POST`)
+to URL (provided in **element** from **page** as a string) with headers
+(provided in **element** from **page** as a JSON object) and body (provided in
+**element** from **page** as a JSON object).
 
 ### When steps
 3. `I/user click(s) "..."."..."` - click on the element (provided in
@@ -191,7 +213,7 @@ export default defineConfig({
     testDir,
     timeout: 30000,
     retries: 0,
-    reporter: 'html',
+    reporter: [['html', { open: 'never' }]],
     use: {
         ...devices['Desktop Chrome'],
         channel: 'chrome',
