@@ -3,43 +3,43 @@
 
 // #############################################################################
 
-export default async function sendRequest (
+export default async function sendRequest ({
     request,
-    contxt,
+    context,
     requestMethod,
     requestUrl,
     requestHeaders,
-    requestBody
-) {
-    const reqHeaders = requestHeaders.length > 0 ? JSON.parse(requestHeaders) : {};
-    const reqBody = requestBody.length > 0 ? JSON.parse(requestBody) : {};
+    requestBody,
+}) {
+    const reqHeaders = requestHeaders !== undefined && requestHeaders.length > 0 ? JSON.parse(requestHeaders) : {};
+    const reqBody = requestBody !== undefined && requestBody.length > 0 ? JSON.parse(requestBody) : {};
 
     if (requestMethod === 'POST') {
-        contxt.response = await request.post(requestUrl, {
+        context.response = await request.post(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else if (requestMethod === 'PUT') {
-        contxt.response = await request.put(requestUrl, {
+        context.response = await request.put(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else if (requestMethod === 'PATCH') {
-        contxt.response = await request.patch(requestUrl, {
+        context.response = await request.patch(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else if (requestMethod === 'DELETE') {
-        contxt.response = await request.delete(requestUrl, {
+        context.response = await request.delete(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else {
-        contxt.response = await request.get(requestUrl, {
+        context.response = await request.get(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     }
 
-    return contxt.response;
+    return context.response;
 }

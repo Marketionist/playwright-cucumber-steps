@@ -4,43 +4,52 @@
 
 import { APIRequestContext } from '@playwright/test';
 
-export default async function sendRequest (
+interface RequestConfig {
     request: APIRequestContext,
-    contxt: Record<string, any>,
+    context: Record<string, any>,
     requestMethod: string,
     requestUrl: string,
-    requestHeaders: string,
-    requestBody: string
-): Promise<Record<any, any>> {
-    const reqHeaders = requestHeaders.length > 0 ? JSON.parse(requestHeaders) : {};
-    const reqBody = requestBody.length > 0 ? JSON.parse(requestBody) : {};
+    requestHeaders?: string,
+    requestBody?: string
+}
+
+export default async function sendRequest ({
+    request,
+    context,
+    requestMethod,
+    requestUrl,
+    requestHeaders,
+    requestBody,
+}: RequestConfig): Promise<Record<any, any>> {
+    const reqHeaders = requestHeaders !== undefined && requestHeaders.length > 0 ? JSON.parse(requestHeaders) : {};
+    const reqBody = requestBody !== undefined && requestBody.length > 0 ? JSON.parse(requestBody) : {};
 
     if (requestMethod === 'POST') {
-        contxt.response = await request.post(requestUrl, {
+        context.response = await request.post(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else if (requestMethod === 'PUT') {
-        contxt.response = await request.put(requestUrl, {
+        context.response = await request.put(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else if (requestMethod === 'PATCH') {
-        contxt.response = await request.patch(requestUrl, {
+        context.response = await request.patch(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else if (requestMethod === 'DELETE') {
-        contxt.response = await request.delete(requestUrl, {
+        context.response = await request.delete(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else {
-        contxt.response = await request.get(requestUrl, {
+        context.response = await request.get(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     }
 
-    return contxt.response;
+    return context.response;
 }

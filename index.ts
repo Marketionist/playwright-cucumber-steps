@@ -37,7 +37,13 @@ Given(
 Given('I/user send(s) {string} request to {string} with body {string}', async (
     { request, ctx, }, reqMethod: string, reqUrl: string, reqBody: string
 ) => {
-    await sendRequest(request, ctx, reqMethod, reqUrl, '', reqBody);
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: reqUrl,
+        requestBody: reqBody,
+    });
 });
 
 Given('I/user send(s) {string} request to {string} with body {string}.{string}', async (
@@ -47,7 +53,13 @@ Given('I/user send(s) {string} request to {string} with body {string}.{string}',
     pageObject: string,
     element: string
 ) => {
-    await sendRequest(request, ctx, reqMethod, reqUrl, '', pageObjects[pageObject][element]);
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: reqUrl,
+        requestBody: pageObjects[pageObject][element],
+    });
 });
 
 Given('I/user send(s) {string} request to {string}.{string} with body {string}.{string}', async (
@@ -58,14 +70,13 @@ Given('I/user send(s) {string} request to {string}.{string} with body {string}.{
     pageObject2: string,
     element2: string
 ) => {
-    await sendRequest(
-        request,
-        ctx,
-        reqMethod,
-        pageObjects[pageObject1][element1],
-        '',
-        pageObjects[pageObject2][element2]
-    );
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: pageObjects[pageObject1][element1],
+        requestBody: pageObjects[pageObject2][element2],
+    });
 });
 
 Given(
@@ -77,14 +88,13 @@ Given(
         element2: string,
         pageObject2: string
     ) => {
-        await sendRequest(
-            request,
-            ctx,
-            reqMethod,
-            pageObjects[pageObject1][element1],
-            '',
-            pageObjects[pageObject2][element2]
-        );
+        await sendRequest({
+            request: request,
+            context: ctx,
+            requestMethod: reqMethod,
+            requestUrl: pageObjects[pageObject1][element1],
+            requestBody: pageObjects[pageObject2][element2],
+        });
     }
 );
 
@@ -95,7 +105,14 @@ Given('I/user send(s) {string} request to {string} with headers {string} and bod
     reqHeaders: string,
     reqBody: string
 ) => {
-    await sendRequest(request, ctx, reqMethod, reqUrl, reqHeaders, reqBody);
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: reqUrl,
+        requestHeaders: reqHeaders,
+        requestBody: reqBody,
+    });
 });
 
 Given('I/user send(s) {string} request to {string} with headers {string}.{string} and body {string}.{string}', async (
@@ -107,14 +124,14 @@ Given('I/user send(s) {string} request to {string} with headers {string}.{string
     pageObject2: string,
     element2: string
 ) => {
-    await sendRequest(
-        request,
-        ctx,
-        reqMethod,
-        reqUrl,
-        pageObjects[pageObject1][element1],
-        pageObjects[pageObject2][element2]
-    );
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: reqUrl,
+        requestHeaders: pageObjects[pageObject1][element1],
+        requestBody: pageObjects[pageObject2][element2],
+    });
 });
 
 Given(
@@ -129,14 +146,14 @@ Given(
         pageObject3: string,
         element3: string
     ) => {
-        await sendRequest(
-            request,
-            ctx,
-            reqMethod,
-            pageObjects[pageObject1][element1],
-            pageObjects[pageObject2][element2],
-            pageObjects[pageObject3][element3]
-        );
+        await sendRequest({
+            request: request,
+            context: ctx,
+            requestMethod: reqMethod,
+            requestUrl: pageObjects[pageObject1][element1],
+            requestHeaders: pageObjects[pageObject2][element2],
+            requestBody: pageObjects[pageObject3][element3],
+        });
     }
 );
 
@@ -152,14 +169,14 @@ Given(
         element3: string,
         pageObject3: string
     ) => {
-        await sendRequest(
-            request,
-            ctx,
-            reqMethod,
-            pageObjects[pageObject1][element1],
-            pageObjects[pageObject2][element2],
-            pageObjects[pageObject3][element3]
-        );
+        await sendRequest({
+            request: request,
+            context: ctx,
+            requestMethod: reqMethod,
+            requestUrl: pageObjects[pageObject1][element1],
+            requestHeaders: pageObjects[pageObject2][element2],
+            requestBody: pageObjects[pageObject3][element3],
+        });
     }
 );
 
