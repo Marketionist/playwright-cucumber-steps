@@ -1,7 +1,7 @@
-// #############################################################################
-
 /* eslint @typescript-eslint/no-explicit-any: off */
 /* eslint no-empty-pattern: off */
+
+// #############################################################################
 
 import { test as base, createBdd } from 'playwright-bdd';
 
