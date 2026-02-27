@@ -1,5 +1,3 @@
-/* eslint max-params: off */
-
 // #############################################################################
 
 import { APIRequestContext } from '@playwright/test';
