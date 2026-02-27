@@ -10,8 +10,24 @@ export default async function sendRequest ({
     requestHeaders,
     requestBody,
 }) {
-    const reqHeaders = requestHeaders !== undefined && requestHeaders.length > 0 ? JSON.parse(requestHeaders) : {};
-    const reqBody = requestBody !== undefined && requestBody.length > 0 ? JSON.parse(requestBody) : {};
+    let reqHeaders;
+    let reqBody;
+
+    if (typeof requestHeaders === 'string' && requestHeaders.length > 0) {
+        reqHeaders = JSON.parse(requestHeaders);
+    } else if (typeof requestHeaders === 'object') {
+        reqHeaders = requestHeaders;
+    } else {
+        reqHeaders = {};
+    }
+
+    if (typeof requestBody === 'string' && requestBody.length > 0) {
+        reqBody = JSON.parse(requestBody);
+    } else if (typeof requestBody === 'object') {
+        reqBody = requestBody;
+    } else {
+        reqBody = {};
+    }
 
     if (requestMethod === 'POST') {
         context.response = await request.post(requestUrl, {
