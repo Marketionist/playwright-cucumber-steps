@@ -14,6 +14,9 @@ const test2Page: PageModel = {
     input: 'input',
     urlTest1: 'http://localhost:8001/test1.html',
     pathTest1: '/test1.html',
+    bodyTest: '{"items":3,"item1":"nice","item2":true,"item3":[1,2,3]}',
+    headersTest: '{"Content-Type":"application/json","Authorization":"Bearer EfGh2345"}',
+    urlTestRequest: 'http://localhost:8001/post',
 
 };
 
