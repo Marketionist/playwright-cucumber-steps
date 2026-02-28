@@ -2,7 +2,10 @@
 
 // #############################################################################
 
-export default async function sendRequest ({
+import { expect } from '@playwright/test';
+
+
+export async function sendRequest ({
     request,
     context,
     requestMethod,
@@ -12,6 +15,7 @@ export default async function sendRequest ({
 }) {
     let reqHeaders;
     let reqBody;
+    let response;
 
     if (typeof requestHeaders === 'string' && requestHeaders.length > 0) {
         reqHeaders = JSON.parse(requestHeaders);
@@ -30,31 +34,64 @@ export default async function sendRequest ({
     }
 
     if (requestMethod === 'POST') {
-        context.response = await request.post(requestUrl, {
+        response = await request.post(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else if (requestMethod === 'PUT') {
-        context.response = await request.put(requestUrl, {
+        response = await request.put(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else if (requestMethod === 'PATCH') {
-        context.response = await request.patch(requestUrl, {
+        response = await request.patch(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else if (requestMethod === 'DELETE') {
-        context.response = await request.delete(requestUrl, {
+        response = await request.delete(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     } else {
-        context.response = await request.get(requestUrl, {
+        response = await request.get(requestUrl, {
             headers: reqHeaders,
             data: reqBody,
         });
     }
 
+    const responseStatus = response.status();
+    const responseHeaders = response.headers();
+    let responseBody;
+
+    try {
+        responseBody = await response.json();
+        // If parsing succeeds, treat body as a JSON object
+    } catch {
+        // If parsing fails, treat body as a string
+        responseBody = await response.text();
+    }
+
+    context.response = {
+        status: responseStatus,
+        headers: responseHeaders,
+        body: responseBody,
+    };
+
     return context.response;
+}
+
+export async function verifyResponseBody (
+    context,
+    responseProperty
+) {
+    try {
+        const resProperty = JSON.parse(responseProperty);
+
+        // If parsing succeeds, treat responseProperty as a JSON object
+        await expect(context.response.body).toEqual(expect.objectContaining(resProperty));
+    } catch {
+        // If parsing fails, treat responseProperty as a string
+        expect(context.response.body).toContain(responseProperty);
+    }
 }

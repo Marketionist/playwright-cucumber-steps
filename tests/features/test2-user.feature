@@ -41,30 +41,39 @@ Feature: Test "user ..." steps - part 2
 
   Scenario: 'user sends "POST" request' should return the content of the page (body provided in the step string)
     When user sends "POST" request to "http://localhost:8001/post" with body "{ \"test1\": 1, \"test2\": 2 }"
+    Then response body should contain "{\"test1\":1,\"test2\":2}"
 
   Scenario: 'user sends "GET" request' should return the content of the page (empty body provided in the step string)
     When user sends "GET" request to "http://localhost:8001/" with body ""
 
-  Scenario: 'user sends "POST" request' should return the content of the page (Page Object style step)
-    When user sends "POST" request to "http://localhost:8001/post" with body "test2-page"."bodyTest"
+  Scenario: 'user sends "POST" request' should return the content of the page (Page Object style step), 'response body should contain' with body as a string
+    When user sends "POST" request to "http://localhost:8001/post" with body "test2-page"."bodyTestString"
+    Then response body should contain "test2-page"."bodyTestString"
 
-  Scenario: 'user sends "POST" request' should return the content of the page (full Page Object style step)
-    When user sends "POST" request to "test2-page"."urlTestRequest" with body "test2-page"."bodyTest"
+  Scenario: 'user sends "POST" request' should return the content of the page (full Page Object style step), 'response body should contain' with body as a JSON object
+    When user sends "POST" request to "test2-page"."urlTestRequest" with body "test2-page"."bodyTestJson"
+    Then response body should contain "test2-page"."bodyTestString"
 
-  Scenario: 'user sends "POST" request' should return the content of the page (full text style step)
-    When user sends "POST" request to urlTestRequest from test2-page with body bodyTest from test2-page
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (full text style step)
+    When user sends "POST" request to urlTestRequest from test2-page with body bodyTestString from test2-page
+    Then response body should contain bodyTestString from test2-page
 
-  Scenario: 'user sends "POST" request' should return the content of the page (headers, body provided in the step string)
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (headers, body provided in the step string)
     When user sends "POST" request to "http://localhost:8001/post" with headers "{ \"Content-Type\": \"application/json\", \"Authorization\": \"Bearer aBcD1234\" }" and body "{ \"test1\": 1, \"test2\": 2 }"
+   Then response body should contain "{\"test1\":1,\"test2\":2}"
 
-  Scenario: 'user sends "POST" request' should return the content of the page (empty headers, body provided in the step string)
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (empty headers, body provided in the step string)
     When user sends "POST" request to "http://localhost:8001/post" with headers "" and body "{ \"test1\": 1, \"test2\": 2 }"
+    Then response body should contain "{\"test1\":1,\"test2\":2}"
 
-  Scenario: 'user sends "POST" request' should return the content of the page (Page Object style step with headers and body)
-    When user sends "POST" request to "http://localhost:8001/post" with headers "test2-page"."headersTest" and body "test2-page"."bodyTest"
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (Page Object style step with headers and body)
+    When user sends "POST" request to "http://localhost:8001/post" with headers "test2-page"."headersTest" and body "test2-page"."bodyTestString"
+    Then response body should contain "test2-page"."bodyTestString"
 
-  Scenario: 'user sends "POST" request' should return the content of the page (full Page Object style step with headers and body)
-    When user sends "POST" request to "test2-page"."urlTestRequest" with headers "test2-page"."headersTest" and body "test2-page"."bodyTest"
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (full Page Object style step with headers and body)
+    When user sends "POST" request to "test2-page"."urlTestRequest" with headers "test2-page"."headersTest" and body "test2-page"."bodyTestJson"
+    Then response body should contain "test2-page"."bodyTestString"
 
-  Scenario: 'user sends "POST" request' should return the content of the page (full text style step with headers and body)
-    When user sends "POST" request to urlTestRequest from test2-page with headers headersTest from test2-page and body bodyTest from test2-page
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (full text style step with headers and body)
+    When user sends "POST" request to urlTestRequest from test2-page with headers headersTest from test2-page and body bodyTestString from test2-page
+    Then response body should contain bodyTestString from test2-page
