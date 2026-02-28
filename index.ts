@@ -9,7 +9,7 @@ export { Given, When, Then } from './fixtures.ts';
 import { pageObjects } from './utils/get-page-objects.ts';
 export { pageObjects } from './utils/get-page-objects.ts';
 import errors from './utils/errors.ts';
-import sendRequest from './utils/send-request.ts';
+import { sendRequest, verifyResponseBody } from './utils/verify-api.ts';
 
 
 const spacesToIndent = 4;
@@ -570,4 +570,22 @@ Then('page URL should contain {word} from {word}( page)', async (
     const currentUrl = page.url();
 
     expect(currentUrl).toContain(pageObjects[pageObject][element]);
+});
+
+Then('response body should contain {string}', async (
+    { ctx, }, resProperty: string
+) => {
+    await verifyResponseBody(ctx, resProperty);
+});
+
+Then('response body should contain {string}.{string}', async (
+    { ctx, }, pageObject: string, element: string
+) => {
+    await verifyResponseBody(ctx, pageObjects[pageObject][element]);
+});
+
+Then('response body should contain {word} from {word}( page)', async (
+    { ctx, }, element: string, pageObject: string
+) => {
+    await verifyResponseBody(ctx, pageObjects[pageObject][element]);
 });
