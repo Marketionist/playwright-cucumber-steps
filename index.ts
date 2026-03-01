@@ -180,6 +180,52 @@ Given(
     }
 );
 
+Given('I/user send(s) {string} request to {string} with body:', async (
+    { request, ctx, }, reqMethod: string, reqUrl: string, reqBody: string
+) => {
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: reqUrl,
+        requestBody: reqBody,
+    });
+});
+
+Given('I/user send(s) {string} request to {string}.{string} with body:', async (
+    { request, ctx, },
+    reqMethod: string,
+    pageObject: string,
+    element: string,
+    reqBody: string
+) => {
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: pageObjects[pageObject][element],
+        requestBody: reqBody,
+    });
+});
+
+Given(
+    'I/user send(s) {string} request to {word} from {word}( page) with body:', async (
+        { request, ctx, },
+        reqMethod: string,
+        element: string,
+        pageObject: string,
+        reqBody: string
+    ) => {
+        await sendRequest({
+            request: request,
+            context: ctx,
+            requestMethod: reqMethod,
+            requestUrl: pageObjects[pageObject][element],
+            requestBody: reqBody,
+        });
+    }
+);
+
 // #### When steps #############################################################
 
 When(
