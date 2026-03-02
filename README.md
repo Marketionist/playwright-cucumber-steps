@@ -104,6 +104,64 @@ request (request method provided in "" as a string - for example: `POST`) to URL
 }
 """
 ```
+6. `I/user send(s) "..." request to "..." with headers and body:` - send request
+(request method provided in "" as a string - for example: `POST`) to URL
+(provided in "" as a string - for example: `"http://httpbin.org/post"`) with
+headers and body (provided in """""" as a doc string with a JSON object inside -
+for example:
+```
+"""
+{
+  "headers": {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer aBcD1234"
+  },
+  "body": {
+    "username": "testuser",
+    "email": "testuser@example.com",
+    "active": true
+  }
+}
+"""
+```
+- `I/user send(s) "..." request to "..."."..." with headers and body:` - send
+request (request method provided in "" as a string - for example: `POST`) to URL
+(provided in **"page"."element"** as a string) with headers and body (provided
+in """""" as a doc string with a JSON object inside - for example:
+```
+"""
+{
+  "headers": {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer aBcD1234"
+  },
+  "body": {
+    "username": "testuser",
+    "email": "testuser@example.com",
+    "active": true
+  }
+}
+"""
+```
+- `I/user send(s) "..." request to ... from ... with headers and body:` - send
+request (request method provided in "" as a string - for example: `POST`) to URL
+(provided in **element** from **page** as a string) with headers and body
+(provided in """""" as a doc string with a JSON object inside - for example:
+```
+"""
+{
+  "headers": {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer aBcD1234"
+  },
+  "body": {
+    "username": "testuser",
+    "email": "testuser@example.com",
+    "active": true
+  }
+}
+"""
+```
 
 ### When steps
 6. `I/user click(s) "..."."..."` - click on the element (provided in
