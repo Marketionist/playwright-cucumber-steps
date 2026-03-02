@@ -79,24 +79,22 @@ Given('I/user send(s) {string} request to {string}.{string} with body {string}.{
     });
 });
 
-Given(
-    'I/user send(s) {string} request to {word} from {word}( page) with body {word} from {word}( page)', async (
-        { request, ctx, },
-        reqMethod,
-        element1,
-        pageObject1,
-        element2,
-        pageObject2
-    ) => {
-        await sendRequest({
-            request: request,
-            context: ctx,
-            requestMethod: reqMethod,
-            requestUrl: pageObjects[pageObject1][element1],
-            requestBody: pageObjects[pageObject2][element2],
-        });
-    }
-);
+Given('I/user send(s) {string} request to {word} from {word}( page) with body {word} from {word}( page)', async (
+    { request, ctx, },
+    reqMethod,
+    element1,
+    pageObject1,
+    element2,
+    pageObject2
+) => {
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: pageObjects[pageObject1][element1],
+        requestBody: pageObjects[pageObject2][element2],
+    });
+});
 
 Given('I/user send(s) {string} request to {string} with headers {string} and body {string}', async (
     { request, ctx, },
@@ -208,23 +206,77 @@ Given('I/user send(s) {string} request to {string}.{string} with body:', async (
     });
 });
 
-Given(
-    'I/user send(s) {string} request to {word} from {word}( page) with body:', async (
-        { request, ctx, },
-        reqMethod,
-        element,
-        pageObject,
-        reqBody
-    ) => {
-        await sendRequest({
-            request: request,
-            context: ctx,
-            requestMethod: reqMethod,
-            requestUrl: pageObjects[pageObject][element],
-            requestBody: reqBody,
-        });
-    }
-);
+Given('I/user send(s) {string} request to {word} from {word}( page) with body:', async (
+    { request, ctx, },
+    reqMethod,
+    element,
+    pageObject,
+    reqBody
+) => {
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: pageObjects[pageObject][element],
+        requestBody: reqBody,
+    });
+});
+
+Given('I/user send(s) {string} request to {string} with headers and body:', async (
+    { request, ctx, },
+    reqMethod,
+    reqUrl,
+    reqHeadersAndBody
+) => {
+    const reqHeadersBody = JSON.parse(reqHeadersAndBody);
+
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: reqUrl,
+        requestHeaders: reqHeadersBody.headers,
+        requestBody: reqHeadersBody.body,
+    });
+});
+
+Given('I/user send(s) {string} request to {string}.{string} with headers and body:', async (
+    { request, ctx, },
+    reqMethod,
+    pageObject,
+    element,
+    reqHeadersAndBody
+) => {
+    const reqHeadersBody = JSON.parse(reqHeadersAndBody);
+
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: pageObjects[pageObject][element],
+        requestHeaders: reqHeadersBody.headers,
+        requestBody: reqHeadersBody.body,
+    });
+});
+
+Given('I/user send(s) {string} request to {word} from {word}( page) with headers and body:', async (
+    { request, ctx, },
+    reqMethod,
+    element,
+    pageObject,
+    reqHeadersAndBody
+) => {
+    const reqHeadersBody = JSON.parse(reqHeadersAndBody);
+
+    await sendRequest({
+        request: request,
+        context: ctx,
+        requestMethod: reqMethod,
+        requestUrl: pageObjects[pageObject][element],
+        requestHeaders: reqHeadersBody.headers,
+        requestBody: reqHeadersBody.body,
+    });
+});
 
 // #### When steps #############################################################
 
