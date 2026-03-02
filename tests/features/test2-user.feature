@@ -106,3 +106,47 @@ Feature: Test "user ..." steps - part 2
     }
     """
     Then response body should contain bodyTestString from test2-page
+
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (headers and body provided in the step doc string)
+    Given user sends "POST" request to "http://localhost:8001/post" with headers and body:
+    """
+    {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer aBcD1234_1"
+      },
+      "body": {
+        "test1": 1,
+        "test2": 2
+      }
+    }
+    """
+    Then response body should contain "{\"test1\":1,\"test2\":2}"
+
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (full Page Object style step, headers and body provided in the step doc string)
+    Given user sends "POST" request to "test2-page"."urlTestRequest" with headers and body:
+    """
+    {
+      "headers": {"Content-Type": "application/json","Authorization": "Bearer aBcD1234_2"},
+      "body": {"items":3,"item1":"nice","item2":true,"item3":[1,2,3]}
+    }
+    """
+    Then response body should contain "test2-page"."bodyTestString"
+
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (full text style step, headers and body provided in the step doc string)
+    Given user sends "POST" request to urlTestRequest from test2-page with headers and body:
+    """
+    {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer aBcD1234_3"
+      },
+      "body": {
+        "items": 3,
+        "item1": "nice",
+        "item2": true,
+        "item3": [1, 2, 3]
+      }
+    }
+    """
+    Then response body should contain bodyTestString from test2-page
