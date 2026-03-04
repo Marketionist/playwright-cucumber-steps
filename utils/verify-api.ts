@@ -87,6 +87,13 @@ export async function sendRequest ({
     return context.response;
 }
 
+export async function verifyResponseStatus (
+    context: Record<string, any>,
+    responseStatusCode: number
+) {
+    expect(context.response.status).toBe(responseStatusCode);
+}
+
 export async function verifyResponseBody (
     context: Record<string, any>,
     responseProperty: string

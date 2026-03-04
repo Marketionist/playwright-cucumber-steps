@@ -12,6 +12,7 @@ export { pageObjects } from './utils/get-page-objects.js';
 import errors from './utils/errors.js';
 import {
     sendRequest,
+    verifyResponseStatus,
     verifyResponseBody,
     verifyResponseHeaders
 } from './utils/verify-api.js';
@@ -672,6 +673,12 @@ Then('page URL should contain {word} from {word}( page)', async (
     const currentUrl = page.url();
 
     expect(currentUrl).toContain(pageObjects[pageObject][element]);
+});
+
+Then('response status code should be {int}', async (
+    { ctx, }, resStatusCode
+) => {
+    await verifyResponseStatus(ctx, resStatusCode);
 });
 
 Then('response body should contain {string}', async (

@@ -39,12 +39,13 @@ Feature: Test "user ..." steps - part 2
     Given user goes to URL "http://localhost:8001/test1.html"
     Then page URL should contain pathTest1 from test2-page
 
-  Scenario: 'user sends "POST" request' should return the content of the page (body provided in the step string)
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response status code should be' (body provided in the step string)
     Given user sends "POST" request to "http://localhost:8001/post" with body "{ \"test1\": 1, \"test2\": 2 }"
-    Then response body should contain "{\"test1\":1,\"test2\":2}"
+    Then response status code should be 200
 
-  Scenario: 'user sends "GET" request' should return the content of the page (empty body provided in the step string)
+  Scenario: 'user sends "GET" request' should return the content of the page, 'response status code should be' (empty body provided in the step string)
     Given user sends "GET" request to "http://localhost:8001/" with body ""
+    Then response status code should be 200
 
   Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' with body as a string (Page Object style step)
     Given user sends "POST" request to "http://localhost:8001/post" with body "test2-page"."bodyTestString"
