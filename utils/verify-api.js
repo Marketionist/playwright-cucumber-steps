@@ -81,6 +81,13 @@ export async function sendRequest ({
     return context.response;
 }
 
+export async function verifyResponseStatus (
+    context,
+    responseStatusCode
+) {
+    expect(context.response.status).toBe(responseStatusCode);
+}
+
 export async function verifyResponseBody (
     context,
     responseProperty
