@@ -67,15 +67,15 @@ Feature: Test "user ..." steps - part 2
     Then response body should contain "{\"test1\":1,\"test2\":2}"
 
   Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (Page Object style step with headers and body)
-    Given user sends "POST" request to "http://localhost:8001/post" with headers "test2-page"."headersTest" and body "test2-page"."bodyTestString"
+    Given user sends "POST" request to "http://localhost:8001/post" with headers "test2-page"."headersTestString" and body "test2-page"."bodyTestString"
     Then response body should contain "test2-page"."bodyTestString"
 
   Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (full Page Object style step with headers and body)
-    Given user sends "POST" request to "test2-page"."urlTestRequest" with headers "test2-page"."headersTest" and body "test2-page"."bodyTestJson"
+    Given user sends "POST" request to "test2-page"."urlTestRequest" with headers "test2-page"."headersTestString" and body "test2-page"."bodyTestJson"
     Then response body should contain "test2-page"."bodyTestString"
 
   Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (full text style step with headers and body)
-    Given user sends "POST" request to urlTestRequest from test2-page with headers headersTest from test2-page and body bodyTestString from test2-page
+    Given user sends "POST" request to urlTestRequest from test2-page with headers headersTestString from test2-page and body bodyTestString from test2-page
     Then response body should contain bodyTestString from test2-page
 
   Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (body provided in the step doc string)
@@ -107,7 +107,7 @@ Feature: Test "user ..." steps - part 2
     """
     Then response body should contain bodyTestString from test2-page
 
-  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (headers and body provided in the step doc string)
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response headers should contain' (headers and body provided in the step doc string)
     Given user sends "POST" request to "http://localhost:8001/post" with headers and body:
     """
     {
@@ -121,25 +121,25 @@ Feature: Test "user ..." steps - part 2
       }
     }
     """
-    Then response body should contain "{\"test1\":1,\"test2\":2}"
+    Then response headers should contain "{\"content-type\":\"application/json\"}"
 
-  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (full Page Object style step, headers and body provided in the step doc string)
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response headers should contain' (full Page Object style step, headers and body provided in the step doc string)
     Given user sends "POST" request to "test2-page"."urlTestRequest" with headers and body:
     """
     {
-      "headers": {"Content-Type": "application/json","Authorization": "Bearer aBcD1234_2"},
+      "headers": {"Content-Type":"application/json","Authorization":"Bearer EfGh2345"},
       "body": {"items":3,"item1":"nice","item2":true,"item3":[1,2,3]}
     }
     """
-    Then response body should contain "test2-page"."bodyTestString"
+    Then response headers should contain "test2-page"."headersTestString"
 
-  Scenario: 'user sends "POST" request' should return the content of the page, 'response body should contain' (full text style step, headers and body provided in the step doc string)
+  Scenario: 'user sends "POST" request' should return the content of the page, 'response headers should contain' (full text style step, headers and body provided in the step doc string)
     Given user sends "POST" request to urlTestRequest from test2-page with headers and body:
     """
     {
       "headers": {
         "Content-Type": "application/json",
-        "Authorization": "Bearer aBcD1234_3"
+        "Authorization": "Bearer EfGh2345"
       },
       "body": {
         "items": 3,
@@ -149,4 +149,4 @@ Feature: Test "user ..." steps - part 2
       }
     }
     """
-    Then response body should contain bodyTestString from test2-page
+    Then response headers should contain headersTestJson from test2-page
