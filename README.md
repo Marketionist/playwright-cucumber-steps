@@ -282,7 +282,9 @@ contains the text (provided in "" as a string).
 page contains the text (provided in **"page"."element"** as a string).
 - `page URL should contain ... from ...` - verify that the URL of the current
 page contains the text (provided in **element** from **page** as a string).
-26. `response body should contain "..."` - verify that the response body
+26. `response status code should be ...` - verify that the response status code
+equals to a provided number.
+27. `response body should contain "..."` - verify that the response body
 contains the property (provided in "" as a JSON object or as a string with a
 JSON object inside).
 - `response body should contain "..."."..."` - verify that the response body
@@ -291,7 +293,7 @@ string with a JSON object inside).
 - `response body should contain ... from ...` - verify that the response body
 contains the property (provided in **element** from **page** as a JSON object or
 as a string with a JSON object inside).
-27. `response headers should contain "..."` - verify that the response headers
+28. `response headers should contain "..."` - verify that the response headers
 contain the property (provided in "" as a JSON object or as a string with a
 JSON object inside).
 - `response headers should contain "..."."..."` - verify that the response
