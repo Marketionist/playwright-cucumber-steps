@@ -291,6 +291,15 @@ string with a JSON object inside).
 - `response body should contain ... from ...` - verify that the response body
 contains the property (provided in **element** from **page** as a JSON object or
 as a string with a JSON object inside).
+27. `response headers should contain "..."` - verify that the response headers
+contain the property (provided in "" as a JSON object or as a string with a
+JSON object inside).
+- `response headers should contain "..."."..."` - verify that the response
+headers contain the property (provided in **"page"."element"** as a JSON object
+or as a string with a JSON object inside).
+- `response headers should contain ... from ...` - verify that the response
+headers contain the property (provided in **element** from **page** as a JSON
+object or as a string with a JSON object inside).
 
 ## Requirements
 <table>

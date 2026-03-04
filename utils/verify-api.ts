@@ -101,3 +101,22 @@ export async function verifyResponseBody (
         expect(context.response.body).toContain(responseProperty);
     }
 }
+
+export async function verifyResponseHeaders (
+    context: Record<string, any>,
+    responseProperty: string
+) {
+    try {
+        const resProperty = JSON.parse(responseProperty);
+
+        // If parsing succeeded, responseProperty was a string with a JSON object inside
+        await expect(context.response.headers).toEqual(
+            expect.objectContaining(resProperty)
+        );
+    } catch {
+        // If parsing failed, responseProperty was a JSON object
+        await expect(context.response.headers).toEqual(
+            expect.objectContaining(responseProperty as any as Record<string, any>)
+        );
+    }
+}

@@ -10,7 +10,11 @@ export { Given, When, Then } from './fixtures.js';
 import { pageObjects } from './utils/get-page-objects.js';
 export { pageObjects } from './utils/get-page-objects.js';
 import errors from './utils/errors.js';
-import { sendRequest, verifyResponseBody } from './utils/verify-api.js';
+import {
+    sendRequest,
+    verifyResponseBody,
+    verifyResponseHeaders
+} from './utils/verify-api.js';
 
 const spacesToIndent = 4;
 
@@ -686,4 +690,22 @@ Then('response body should contain {word} from {word}( page)', async (
     { ctx, }, element, pageObject
 ) => {
     await verifyResponseBody(ctx, pageObjects[pageObject][element]);
+});
+
+Then('response headers should contain {string}', async (
+    { ctx, }, resProperty
+) => {
+    await verifyResponseHeaders(ctx, resProperty);
+});
+
+Then('response headers should contain {string}.{string}', async (
+    { ctx, }, pageObject, element
+) => {
+    await verifyResponseHeaders(ctx, pageObjects[pageObject][element]);
+});
+
+Then('response headers should contain {word} from {word}( page)', async (
+    { ctx, }, element, pageObject
+) => {
+    await verifyResponseHeaders(ctx, pageObjects[pageObject][element]);
 });

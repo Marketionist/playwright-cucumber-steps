@@ -16,7 +16,8 @@ const test2Page: PageModel = {
     pathTest1: '/test1.html',
     bodyTestString: '{"items":3,"item1":"nice","item2":true,"item3":[1,2,3]}',
     bodyTestJson: { items: 3, item1: 'nice', item2: true, item3: [1, 2, 3,], },
-    headersTest: '{"Content-Type":"application/json","Authorization":"Bearer EfGh2345"}',
+    headersTestString: '{"content-type":"application/json"}',
+    headersTestJson: { 'content-type': 'application/json', },
     urlTestRequest: 'http://localhost:8001/post',
 
 };
