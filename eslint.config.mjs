@@ -12,13 +12,12 @@ export default [
         "files": ["**/*.js", "**/*.mjs", "**/*.cjs"],
         "languageOptions": {
             "ecmaVersion": "latest", // Use the latest ECMAScript version
-            "sourceType": "module",  // Use ECMAScript modules (or 'script' if needed)
+            "sourceType": "commonjs",  // Use ECMAScript modules (or 'script' if needed)
             "globals": {
                 ...globals.browser,
                 ...globals.node,
                 "module": "writable",
                 "process": "writable",
-                "expect": "writable",
                 "beforeEach": "writable",
                 "afterEach": "writable",
                 "beforeAll": "writable",
@@ -77,7 +76,7 @@ export default [
             // Best Practices
             "accessor-pairs": "error",
             "block-scoped-var": "error",
-            "complexity": ["error", { "max": 20 } ],
+            "complexity": ["error", { "max": 20 }],
             "consistent-return": "off",
             "curly": "error",
             "default-case": "error",
@@ -240,8 +239,8 @@ export default [
             "parser": tseslint.parser,
             "parserOptions": {
                 "ecmaVersion": "latest",
-                "sourceType": "module",
-                "project": "./tsconfig.json",
+                "sourceType": "commonjs",
+                "project": "./tsconfig.eslint.json",
                 "tsconfigRootDir": __dirname
             },
             "globals": {
@@ -249,7 +248,6 @@ export default [
                 ...globals.node,
                 "module": "writable",
                 "process": "writable",
-                "expect": "writable",
                 "beforeEach": "writable",
                 "afterEach": "writable",
                 "beforeAll": "writable",
@@ -308,7 +306,7 @@ export default [
             // Best Practices
             "accessor-pairs": "error",
             "block-scoped-var": "error",
-            "complexity": ["error", { "max": 20 } ],
+            "complexity": ["error", { "max": 20 }],
             "consistent-return": "off",
             "curly": "error",
             "default-case": "error",

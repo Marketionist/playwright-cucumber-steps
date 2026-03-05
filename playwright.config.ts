@@ -3,7 +3,7 @@ import { defineBddConfig, cucumberReporter } from 'playwright-bdd';
 
 const testDir = defineBddConfig({
     features: './tests/features/*.feature',
-    steps: './*.js',
+    steps: './dist/*.js',
 });
 
 export default defineConfig({
