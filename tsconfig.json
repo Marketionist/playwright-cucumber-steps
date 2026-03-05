@@ -4,11 +4,10 @@
     "module": "nodenext",
     "types": ["node", "@playwright/test"],
     "lib": ["esnext", "dom", "DOM.Iterable"],
-    "rootDir": "./",
+    "rootDir": "src",
     "outDir": "dist",
     "noEmit": false,
-    "emitDeclarationOnly": true,
-    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": false,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -19,6 +18,6 @@
     "declarationMap": true,
     "sourceMap": true
   },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "tests"]
 }
