@@ -8,8 +8,8 @@ tests
 
 ## List of predefined steps
 > Note: see all steps usage examples in:
-> - [test1-user.feature](https://github.com/Marketionist/playwright-cucumber-steps/blob/main/tests/features/test1-user.feature)
-> - [test2-user.feature](https://github.com/Marketionist/playwright-cucumber-steps/blob/main/tests/features/test2-user.feature)
+> - [i-steps-test1.feature](https://github.com/Marketionist/playwright-cucumber-steps/blob/main/tests/features/i-steps-test1.feature)
+> - [i-steps-test2.feature](https://github.com/Marketionist/playwright-cucumber-steps/blob/main/tests/features/i-steps-test2.feature)
 
 ### Given steps
 1. `I/user go(es) to URL "..."` - open a site (by its URL provided in "" as a
@@ -329,13 +329,13 @@ object or as a string with a JSON object inside).
 1. If you do not have `package.json` in the root folder of your project you will
 need to create it:
 ```bash
-npm init --yes
+npm init --init-type=module --yes
 ```
 
 2. To install the playwright-cucumber-steps package and its peerDependencies and
 to save it to your `package.json` just run:
 ```bash
-npm install @playwright/test playwright-bdd playwright-cucumber-steps --save-dev
+npm install @playwright/test@1.57.0 --save-exact --save-dev && npm install playwright-bdd playwright-cucumber-steps --save-dev
 ```
 
 3. Specify the pathes to all step definitions inside the array in the `steps`
@@ -350,7 +350,7 @@ const testDir = defineBddConfig({
     steps: [
         'node_modules/playwright-cucumber-steps/index.js',
         'node_modules/playwright-cucumber-steps/fixtures.js',
-        '*.ts'
+        'tests/steps/*.ts'
     ],
 });
 
@@ -358,6 +358,8 @@ export default defineConfig({
     // Look for test files in the directory, relative to this configuration file
     testDir,
     timeout: 30000,
+    workers: 8,
+    fullyParallel: true,
     retries: 0,
     reporter: [['html', { open: 'never' }]],
     use: {
@@ -378,19 +380,18 @@ npx bddgen && npx playwright test
 ```
 OR if you use custom Page Objects folder (not `tests/page-objects`):
 ```bash
-PO_FOLDER_PATH='tests/my-custom-page-objects' npx bddgen && PO_FOLDER_PATH='tests/my-custom-page-objects' npx playwright test
+PO_FOLDER_PATH="tests/my-custom-page-objects" npx bddgen && PO_FOLDER_PATH="tests/my-custom-page-objects" npx playwright test
 ```
 
-If you want to get access to Page Objects in your custom Cucumber steps - you
-can just require them inside any step definitions file like this:
-```typescript
-import { pageObjects } from 'playwright-cucumber-steps';
-```
-
-Also you can import `Given`, `When`, `Then` for your own step definitions if
-need be:
+You can import `Given`, `When`, `Then` into your custom Cucumber step
+definitions file like this:
 ```typescript
 import { Given, When, Then } from 'playwright-cucumber-steps';
+```
+
+Also you can access Page Objects like this:
+```typescript
+import { pageObjects } from 'playwright-cucumber-steps';
 ```
 
 ## Contributing

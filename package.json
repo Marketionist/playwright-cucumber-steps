@@ -19,7 +19,7 @@
     "install:test-dependencies:firefox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install && npx playwright install firefox",
     "install:test-dependencies:chrome": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install && npx playwright install chrome",
     "install:test-dependencies:all": "npm install && npx playwright install",
-    "lint": "node ./node_modules/.bin/eslint \"src/*.{js,ts}\" \"src/utils/**/*.{js,ts}\" \"tests/**/*.{js,ts}\"",
+    "lint": "eslint \"src/**/*.{js,ts}\" \"tests/**/*.{js,ts}\"",
     "prepare": "husky",
     "start:test-server": "node ./tests/testing-server.ts",
     "test": "PO_FOLDER_PATH=\"../tests/page-objects\" npx bddgen && PO_FOLDER_PATH=\"../tests/page-objects\" npx playwright test --grep \"@i-steps\"",

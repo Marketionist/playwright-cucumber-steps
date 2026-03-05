@@ -1,6 +1,7 @@
+// #############################################################################
+
 // Add testing server to provide pages for tests
-// import { NodeTestingServer } from './testing-server.d.ts';
-import { nodeTestingServer } from 'node-testing-server';
+const { nodeTestingServer, } = require('node-testing-server');
 
 // Settings for node testing server
 nodeTestingServer.config = {
@@ -165,5 +166,11 @@ nodeTestingServer.config = {
     },
 };
 
-// Start node testing server
-await nodeTestingServer.start();
+(async () => {
+    try {
+        // Start node testing server
+        await nodeTestingServer.start();
+    } catch (error) {
+        throw error;
+    }
+})().catch(console.error);

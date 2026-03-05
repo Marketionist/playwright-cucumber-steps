@@ -1,6 +1,6 @@
 // #############################################################################
 
-import { PageModel } from './PageModelInterface.ts';
+import { PageModel } from './PageModelInterface';
 
 const test2Page: PageModel = {
 
@@ -22,6 +22,6 @@ const test2Page: PageModel = {
 
 };
 
-test2Page.pageTest2 = `${test2Page.protocol}localhost:8001/test2.html`;
+test2Page.urlTest2 = `${test2Page.protocol}localhost:8001/test2.html`;
 
 export default test2Page;
