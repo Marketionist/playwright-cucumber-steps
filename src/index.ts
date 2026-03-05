@@ -4,17 +4,17 @@
 // #############################################################################
 
 import { expect } from '@playwright/test';
-import { Given, When, Then } from './fixtures.ts';
-export { Given, When, Then } from './fixtures.ts';
-import { pageObjects } from './utils/get-page-objects.ts';
-export { pageObjects } from './utils/get-page-objects.ts';
-import errors from './utils/errors.ts';
+import { Given, When, Then } from './fixtures';
+export { Given, When, Then } from './fixtures';
+import { pageObjects } from './utils/get-page-objects';
+export { pageObjects } from './utils/get-page-objects';
+import errors from './utils/errors';
 import {
     sendRequest,
     verifyResponseStatus,
     verifyResponseBody,
     verifyResponseHeaders
-} from './utils/verify-api.ts';
+} from './utils/verify-api';
 
 
 const spacesToIndent = 4;

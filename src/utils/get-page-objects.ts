@@ -1,12 +1,10 @@
+/* eslint no-void: off */
+
 // #############################################################################
 
 import { readdir, stat } from 'node:fs';
 import { promisify } from 'node:util';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const spacesToIndent = 4;
 
@@ -82,36 +80,46 @@ if (isCalledExternallyPnpm) {
 type PageObject = Record<string, Record<string, string>>;
 const allPageObjects: PageObject = {};
 
-async function requirePageObjects (): Promise<PageObject> {
-    const allPageObjectFiles = await readDirectories(
-        fullPageObjectsFolderPathes);
-    const allRequiredPageObjects = allPageObjectFiles.filter(
-        (value) => {
-            return value.includes('.ts');
-        }
-    );
-
-    await Promise.all(
-        allRequiredPageObjects.map(async (file) => {
-            const fileName = path.basename(file, '.ts');
-            const fileContent: PageObject = await import(file);
-
-            allPageObjects[fileName] = fileContent.default;
-
-            return file;
-        })
-    );
-
-    if (process.env.PRINT_PO !== undefined) {
-        console.log(
-            '\nPage Objects from PO_FOLDER_PATH:',
-            `\n${JSON.stringify(allPageObjects, null, spacesToIndent)}\n\n`
+void (async function requirePageObjects (): Promise<PageObject> {
+    try {
+        const allPageObjectFiles = await readDirectories(
+            fullPageObjectsFolderPathes);
+        const allRequiredPageObjects = allPageObjectFiles.filter(
+            (value) => {
+                return value.includes('page.ts');
+            }
         );
+
+        await Promise.all(
+            allRequiredPageObjects.map(async (file) => {
+                const fileName = path.basename(file, '.ts');
+                let fileContent: any;
+
+                try {
+                    fileContent = require(file);
+                } catch {
+                    const { pathToFileURL, } = await import('node:url');
+
+                    fileContent = await import(pathToFileURL(file).href);
+                }
+
+                allPageObjects[fileName] = fileContent.default ?? fileContent;
+
+                return file;
+            })
+        );
+
+        if (process.env.PRINT_PO !== undefined) {
+            console.log(
+                '\nPage Objects from PO_FOLDER_PATH:',
+                `\n${JSON.stringify(allPageObjects, null, spacesToIndent)}\n\n`
+            );
+        }
+
+        return allPageObjects;
+    } catch (error) {
+        throw error;
     }
-
-    return allPageObjects;
-}
-
-await requirePageObjects();
+})();
 
 export const pageObjects = allPageObjects;
