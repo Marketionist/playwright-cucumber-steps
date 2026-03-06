@@ -43,17 +43,17 @@ const pageObjectsFolderPathes = 'PO_FOLDER_PATH' in process.env ?
 let fullPageObjectsFolderPathes = [];
 if (isCalledExternallyPnpm) {
     fullPageObjectsFolderPathes = pageObjectsFolderPathes.map((pageObjectsFolderPath) => {
-        return node_path_1.default.join(__dirname, '..', '..', '..', '..', '..', '..', pageObjectsFolderPath);
+        return node_path_1.default.join(__dirname, '..', '..', '..', '..', '..', '..', '..', pageObjectsFolderPath);
     });
 }
 else if (isCalledExternallyNpm) {
     fullPageObjectsFolderPathes = pageObjectsFolderPathes.map((pageObjectsFolderPath) => {
-        return node_path_1.default.join(__dirname, '..', '..', '..', pageObjectsFolderPath);
+        return node_path_1.default.join(__dirname, '..', '..', '..', '..', pageObjectsFolderPath);
     });
 }
 else {
     fullPageObjectsFolderPathes = pageObjectsFolderPathes.map((pageObjectsFolderPath) => {
-        return node_path_1.default.join(__dirname, '..', pageObjectsFolderPath);
+        return node_path_1.default.join(__dirname, '..', '..', pageObjectsFolderPath);
     });
 }
 const allPageObjects = {};
