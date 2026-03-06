@@ -59,19 +59,19 @@ let fullPageObjectsFolderPathes: string[] = [];
 if (isCalledExternallyPnpm) {
     fullPageObjectsFolderPathes = pageObjectsFolderPathes.map(
         (pageObjectsFolderPath) => {
-            return path.join(__dirname, '..', '..', '..', '..', '..', '..', pageObjectsFolderPath);
+            return path.join(__dirname, '..', '..', '..', '..', '..', '..', '..', pageObjectsFolderPath);
         }
     );
 } else if (isCalledExternallyNpm) {
     fullPageObjectsFolderPathes = pageObjectsFolderPathes.map(
         (pageObjectsFolderPath) => {
-            return path.join(__dirname, '..', '..', '..', pageObjectsFolderPath);
+            return path.join(__dirname, '..', '..', '..', '..', pageObjectsFolderPath);
         }
     );
 } else {
     fullPageObjectsFolderPathes = pageObjectsFolderPathes.map(
         (pageObjectsFolderPath) => {
-            return path.join(__dirname, '..', pageObjectsFolderPath);
+            return path.join(__dirname, '..', '..', pageObjectsFolderPath);
         }
     );
 }
