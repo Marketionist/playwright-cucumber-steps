@@ -4,164 +4,371 @@ tests
 
 [![Actions Status](https://github.com/Marketionist/playwright-cucumber-steps/workflows/Build%20and%20Test/badge.svg)](https://github.com/Marketionist/playwright-cucumber-steps/actions)
 [![npm version](https://img.shields.io/npm/v/playwright-cucumber-steps.svg)](https://www.npmjs.com/package/playwright-cucumber-steps)
-[![NPM License](https://img.shields.io/npm/l/playwright-cucumber-steps.svg)](https://github.com/Marketionist/playwright-cucumber-steps/blob/main/LICENSE)
+[![npm license](https://img.shields.io/npm/l/playwright-cucumber-steps.svg)](https://github.com/Marketionist/playwright-cucumber-steps/blob/main/LICENSE)
 
 ## List of predefined steps
 > Note: see all steps usage examples in:
 > - [i-steps-test1.feature](https://github.com/Marketionist/playwright-cucumber-steps/blob/main/tests/features/i-steps-test1.feature)
 > - [i-steps-test2.feature](https://github.com/Marketionist/playwright-cucumber-steps/blob/main/tests/features/i-steps-test2.feature)
 
+> Note: if you are using TypeScript, don't forget to add PageModel interface to
+> your page-objects:
+> ```
+> // tests/page-objects/my-page.ts
+>
+> interface PageModel {
+>     [key: string]: any;
+> }
+>
+> const myPage: PageModel = {
+>     // ...
+> };
+>
+> export default myPage;
+> ```
+
 ### Given steps
 1. `I/user go(es) to URL "..."` - open a site (by its URL provided in "" as a
-string - for example: `"https://github.com/Marketionist"`) in the current
-browser window/tab.
+string) in the current browser window/tab. For example:
+    ```gherkin
+    # my-test.feature
+
+    Given I go to URL "https://github.com/Marketionist"
+    ```
 2. `I/user go(es) to "..."."..."` - open a site (by its URL provided in
-**"page"."element"**) in the current browser window/tab.
+**"page"."element"**) in the current browser window/tab. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Given I go to "my-page"."urlMyAccount"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        urlMyAccount: 'https://github.com/Marketionist',
+        // ...
+    };
+    ```
 - `I/user go(es) to ... from ...` - open a site (by its URL provided in
-**element** from **page**) in the current browser window/tab.
+**element** from **page**) in the current browser window/tab. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Given I go to urlMyAccount from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        urlMyAccount: 'https://github.com/Marketionist',
+        // ...
+    };
+    ```
 3. `I/user send(s) "..." request to "..." with body "..."` - send request
-(request method provided in "" as a string - for example: `POST`) to URL
-(provided in "" as a string - for example: `"http://httpbin.org/post"`) with
-body (provided in "" as a string with a JSON object inside - for example:
-`"{ \"test1\": 1, \"test2\": 2 }"`).
+(request method provided in "" as a string) to URL (provided in "" as a string)
+with body (provided in "" as a string with a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to "http://httpbin.org/post" with body "{ \"test1\": 1, \"test2\": 2 }"
+    ```
 - `I/user send(s) "..." request to "..." with body "..."."..."` - send request
-(request method provided in "" as a string - for example: `POST`) to URL
-(provided in "" as a string - for example: `"http://httpbin.org/post"`) with
-body (provided in **"page"."element"** as a JSON object or as a string with a
-JSON object inside).
+(request method provided in "" as a string) to URL (provided in "" as a string)
+with body (provided in **"page"."element"** as a JSON object or as a string with
+a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to "http://httpbin.org/post" with body "my-test-api-page"."bodyTestString"
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        bodyTestString: '{"items":3,"item1":"nice","item2":true,"item3":[1,2,3]}',
+        // OR
+        bodyTestJson: { items: 3, item1: 'nice', item2: true, item3: [1, 2, 3,], },
+        // ...
+    };
+    ```
 - `I/user send(s) "..." request to "..."."..." with body "..."."..."` - send
-request (request method provided in "" as a string - for example: `POST`) to URL
-(provided in **"page1"."element1"** as a string) with body (provided in
+request (request method provided in "" as a string) to URL (provided in
+**"page1"."element1"** as a string) with body (provided in
 **"page2"."element2"** as a JSON object or as a string with a JSON object
-inside).
+inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to "my-test-api-page"."urlTestRequest" with body "my-test-api-page"."bodyTestJson"
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        urlTestRequest: 'http://httpbin.org/post',
+        bodyTestJson: { items: 3, item1: 'nice', item2: true, item3: [1, 2, 3,], },
+        // ...
+    };
+    ```
 - `I/user send(s) "..." request to ... from ... with body ... from ...` - send
-request (request method provided in "" as a string - for example: `POST`) to URL
-(provided in **element1** from **page1** as a string) with body (provided in **element2** from **page2** as a JSON object or as a string with a JSON object
-inside).
-4. `I/user send(s) "..." request to "..." with headers "..." and body "..."` -
-send a request (request method provided in "" as a string - for example: `POST`)
-to URL (provided in "" as a string - for example: `"http://httpbin.org/post"`)
-with headers (provided in "" as a string with a JSON object inside - for
+request (request method provided in "" as a string) to URL (provided in
+**element1** from **page1** as a string) with body (provided in **element2**
+from **page2** as a JSON object or as a string with a JSON object inside). For
 example:
-`"{ \"Content-Type\": \"application/json\", \"Authorization\": \"Bearer aBcD1234\" }"`
-) and body (provided in "" as a string with a JSON object inside - for example:
-`"{ \"test1\": 1, \"test2\": 2 }"`).
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to urlTestRequest from my-test-api-page with body bodyTestString from my-test-api-page
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        urlTestRequest: 'http://httpbin.org/post',
+        bodyTestString: '{"items":3,"item1":"nice","item2":true,"item3":[1,2,3]}',
+        // ...
+    };
+    ```
+4. `I/user send(s) "..." request to "..." with headers "..." and body "..."` -
+send a request (request method provided in "" as a string) to URL (provided in
+"" as a string) with headers (provided in "" as a string with a JSON object
+inside) and body (provided in "" as a string with a JSON object inside). For
+example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to "http://httpbin.org/post" with headers "{ \"Content-Type\": \"application/json\", \"Authorization\": \"Bearer aBcD1234\" }" and body "{ \"test1\": 1, \"test2\": 2 }"
+    ```
 - `I/user send(s) "..." request to "..." with headers "..."."..." and body "..."."..."` -
-send a request (request method provided in "" as a string - for example: `POST`)
-to URL (provided in "" as a string - for example: `"http://httpbin.org/post"`)
-with headers (provided in **"page1"."element1"** as a JSON object or as a string
-with a JSON object inside) and body (provided in **"page2"."element2"** as a
-JSON object or as a string with a JSON object inside).
+send a request (request method provided in "" as a string) to URL (provided in
+"" as a string) with headers (provided in **"page1"."element1"** as a JSON
+object or as a string with a JSON object inside) and body (provided in
+**"page2"."element2"** as a JSON object or as a string with a JSON object
+inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to "http://httpbin.org/post" with headers "my-test-api-page"."headersTestString" and body "my-test-api-page"."bodyTestString"
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        headersTestString: '{"content-type":"application/json"}',
+        bodyTestString: '{"items":3,"item1":"nice","item2":true,"item3":[1,2,3]}',
+        // OR
+        headersTestJson: { 'content-type': 'application/json', },
+        bodyTestJson: { items: 3, item1: 'nice', item2: true, item3: [1, 2, 3,], },
+        // ...
+    };
+    ```
 - `I/user send(s) "..." request to "..."."..." with headers "..."."..." and body "..."."..."` -
-send a request (request method provided in "" as a string - for example: `POST`)
-to URL (provided in **"page1"."element1"** as a string) with headers (provided
+send a request (request method provided in "" as a string) to URL (provided
+in **"page1"."element1"** as a string) with headers (provided
 in **"page2"."element2"** as a JSON object or as a string with a JSON object
 inside) and body (provided in **"page3"."element3"** as a JSON object or as a
-string with a JSON object inside).
+string with a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to "my-test-api-page"."urlTestRequest" with headers "my-test-api-page"."headersTestString" and body "my-test-api-page"."bodyTestString"
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        urlTestRequest: 'http://httpbin.org/post',
+        // ...
+        headersTestString: '{"content-type":"application/json"}',
+        bodyTestString: '{"items":3,"item1":"nice","item2":true,"item3":[1,2,3]}',
+        // OR
+        headersTestJson: { 'content-type': 'application/json', },
+        bodyTestJson: { items: 3, item1: 'nice', item2: true, item3: [1, 2, 3,], },
+        // ...
+    };
+    ```
 - `I/user send(s) "..." request to ... from ... with headers ... from ... and body ... from ...` -
-send a request (request method provided in "" as a string - for example: `POST`)
-to URL (provided in **element1** from **page1** as a string) with headers
-(provided in **element2** from **page2** as a JSON object or as a string with a
-JSON object inside) and body (provided in **element3** from **page3** as a JSON
-object or as a string with a JSON object inside).
+send a request (request method provided in "" as a string) to URL (provided in
+**element1** from **page1** as a string) with headers (provided in **element2**
+from **page2** as a JSON object or as a string with a JSON object inside) and
+body (provided in **element3** from **page3** as a JSON object or as a string
+with a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to urlTestRequest from my-test-api-page with headers headersTestString from my-test-api-page and body bodyTestString from my-test-api-page
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        urlTestRequest: 'http://httpbin.org/post',
+        // ...
+        headersTestString: '{"content-type":"application/json"}',
+        bodyTestString: '{"items":3,"item1":"nice","item2":true,"item3":[1,2,3]}',
+        // OR
+        headersTestJson: { 'content-type': 'application/json', },
+        bodyTestJson: { items: 3, item1: 'nice', item2: true, item3: [1, 2, 3,], },
+        // ...
+    };
+    ```
 5. `I/user send(s) "..." request to "..." with body:` - send request
-(request method provided in "" as a string - for example: `POST`) to URL
-(provided in "" as a string - for example: `"http://httpbin.org/post"`) with
-body (provided in """""" as a doc string with a JSON object inside - for
+(request method provided in "" as a string) to URL (provided in "" as a string)
+with body (provided in """""" as a doc string with a JSON object inside). For
 example:
-```
-"""
-{
-  "username": "testuser",
-  "email": "testuser@example.com",
-  "active": true
-}
-"""
-```
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to "http://localhost:8001/post" with body:
+    """
+    {
+      "username": "testuser",
+      "email": "testuser@example.com",
+      "active": true
+    }
+    """
+    ```
 - `I/user send(s) "..." request to "..."."..." with body:` - send
-request (request method provided in "" as a string - for example: `POST`) to URL
-(provided in **"page"."element"** as a string) with body (provided in """""" as
-a doc string with a JSON object inside - for example:
-```
-"""
-{
-  "username": "testuser",
-  "email": "testuser@example.com",
-  "active": true
-}
-"""
-```
+request (request method provided in "" as a string) to URL (provided in
+**"page"."element"** as a string) with body (provided in """""" as a doc string
+with a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to "my-test-api-page"."urlTestRequest" with body:
+    """
+    {
+      "username": "testuser",
+      "email": "testuser@example.com",
+      "active": true
+    }
+    """
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        urlTestRequest: 'http://httpbin.org/post',
+        // ...
+    };
+    ```
 - `I/user send(s) "..." request to ... from ... with body:` - send
-request (request method provided in "" as a string - for example: `POST`) to URL
-(provided in **element** from **page** as a string) with body (provided in
-"""""" as a doc string with a JSON object inside - for example:
-```
-"""
-{
-  "username": "testuser",
-  "email": "testuser@example.com",
-  "active": true
-}
-"""
-```
+request (request method provided in "" as a string) to URL (provided in
+**element** from **page** as a string) with body (provided in """""" as a doc
+string with a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to urlTestRequest from my-test-api-page with body:
+    """
+    {
+      "username": "testuser",
+      "email": "testuser@example.com",
+      "active": true
+    }
+    """
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        urlTestRequest: 'http://httpbin.org/post',
+        // ...
+    };
+    ```
 6. `I/user send(s) "..." request to "..." with headers and body:` - send request
-(request method provided in "" as a string - for example: `POST`) to URL
-(provided in "" as a string - for example: `"http://httpbin.org/post"`) with
-headers and body (provided in """""" as a doc string with a JSON object inside -
-for example:
-```
-"""
-{
-  "headers": {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer aBcD1234"
-  },
-  "body": {
-    "username": "testuser",
-    "email": "testuser@example.com",
-    "active": true
-  }
-}
-"""
-```
+(request method provided in "" as a string) to URL (provided in "" as a string)
+with headers and body (provided in """""" as a doc string with a JSON object
+inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to "http://localhost:8001/post" with headers and body:
+    """
+    {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer aBcD1234"
+      },
+      "body": {
+        "username": "testuser",
+        "email": "testuser@example.com",
+        "active": true
+      }
+    }
+    """
+    ```
 - `I/user send(s) "..." request to "..."."..." with headers and body:` - send
-request (request method provided in "" as a string - for example: `POST`) to URL
-(provided in **"page"."element"** as a string) with headers and body (provided
-in """""" as a doc string with a JSON object inside - for example:
-```
-"""
-{
-  "headers": {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer aBcD1234"
-  },
-  "body": {
-    "username": "testuser",
-    "email": "testuser@example.com",
-    "active": true
-  }
-}
-"""
-```
+request (request method provided in "" as a string) to URL (provided in
+**"page"."element"** as a string) with headers and body (provided in """""" as a
+doc string with a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to "my-test-api-page"."urlTestRequest" with headers and body:
+    """
+    {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer aBcD1234"
+      },
+      "body": {
+        "username": "testuser",
+        "email": "testuser@example.com",
+        "active": true
+      }
+    }
+    """
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        urlTestRequest: 'http://httpbin.org/post',
+        // ...
+    };
+    ```
 - `I/user send(s) "..." request to ... from ... with headers and body:` - send
-request (request method provided in "" as a string - for example: `POST`) to URL
-(provided in **element** from **page** as a string) with headers and body
-(provided in """""" as a doc string with a JSON object inside - for example:
-```
-"""
-{
-  "headers": {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer aBcD1234"
-  },
-  "body": {
-    "username": "testuser",
-    "email": "testuser@example.com",
-    "active": true
-  }
-}
-"""
-```
+request (request method provided in "" as a string) to URL (provided in
+**element** from **page** as a string) with headers and body (provided in """"""
+as a doc string with a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Given I send "POST" request to urlTestRequest from my-test-api-page with headers and body:
+    """
+    {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer aBcD1234"
+      },
+      "body": {
+        "username": "testuser",
+        "email": "testuser@example.com",
+        "active": true
+      }
+    }
+    """
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        urlTestRequest: 'http://httpbin.org/post',
+        // ...
+    };
+    ```
 
 ### When steps
 7. `I/user click(s) "..."."..."` - click on the element (provided in
@@ -283,25 +490,104 @@ page contains the text (provided in **"page"."element"** as a string).
 - `page URL should contain ... from ...` - verify that the URL of the current
 page contains the text (provided in **element** from **page** as a string).
 26. `response status code should be ...` - verify that the response status code
-equals to a provided number.
+equals to a provided number. For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Then response status code should be 200
+    ```
 27. `response body should contain "..."` - verify that the response body
-contains the property (provided in "" as a JSON object or as a string with a
-JSON object inside).
+contains the property (provided in "" as a string with a JSON object inside).
+For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Then response body should contain "{\"test1\":1,\"test2\":2}"
+    ```
 - `response body should contain "..."."..."` - verify that the response body
 contains the property (provided in **"page"."element"** as a JSON object or as a
-string with a JSON object inside).
+string with a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Then response body should contain "my-test-api-page"."bodyTestString"
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        bodyTestString: '{"items":3,"item1":"nice","item2":true,"item3":[1,2,3]}',
+        // OR
+        bodyTestJson: { items: 3, item1: 'nice', item2: true, item3: [1, 2, 3,], },
+        // ...
+    };
+    ```
 - `response body should contain ... from ...` - verify that the response body
 contains the property (provided in **element** from **page** as a JSON object or
-as a string with a JSON object inside).
+as a string with a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Then response body should contain bodyTestJson from my-test-api-page
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        bodyTestString: '{"items":3,"item1":"nice","item2":true,"item3":[1,2,3]}',
+        // OR
+        bodyTestJson: { items: 3, item1: 'nice', item2: true, item3: [1, 2, 3,], },
+        // ...
+    };
+    ```
 28. `response headers should contain "..."` - verify that the response headers
-contain the property (provided in "" as a JSON object or as a string with a
-JSON object inside).
+contain the property (provided in "" as a string with a JSON object inside). For
+example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Then response headers should contain "{\"content-type\":\"application/json\"}"
+    ```
 - `response headers should contain "..."."..."` - verify that the response
 headers contain the property (provided in **"page"."element"** as a JSON object
-or as a string with a JSON object inside).
+or as a string with a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Then response headers should contain "my-test-api-page"."headersTestString"
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        headersTestString: '{"content-type":"application/json"}',
+        // OR
+        headersTestJson: { 'content-type': 'application/json', },
+        // ...
+    };
+    ```
 - `response headers should contain ... from ...` - verify that the response
 headers contain the property (provided in **element** from **page** as a JSON
-object or as a string with a JSON object inside).
+object or as a string with a JSON object inside). For example:
+    ```gherkin
+    # tests/features/my-test-api.feature
+
+    Then response headers should contain headersTestJson from my-test-api-page
+    ```
+    ```typescript
+    // tests/page-objects/my-test-api-page.ts
+
+    const myTestApiPage = {
+        // ...
+        headersTestString: '{"content-type":"application/json"}',
+        // OR
+        headersTestJson: { 'content-type': 'application/json', },
+        // ...
+    };
+    ```
 
 ## Requirements
 <table>
@@ -348,9 +634,9 @@ import { defineBddConfig } from 'playwright-bdd';
 const testDir = defineBddConfig({
     features: 'tests/features/*.feature',
     steps: [
-        'node_modules/playwright-cucumber-steps/index.js',
-        'node_modules/playwright-cucumber-steps/fixtures.js',
-        'tests/steps/*.ts'
+        'node_modules/playwright-cucumber-steps/dist/index.js',
+        'node_modules/playwright-cucumber-steps/dist/fixtures.js',
+        'tests/**/*.ts'
     ],
 });
 
