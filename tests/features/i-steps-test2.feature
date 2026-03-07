@@ -61,7 +61,7 @@ Feature: Test "I ..." steps - part 2
 
   Scenario: 'I send "POST" request' should return the content of the page, 'response body should contain' (headers, body provided in the step string)
     Given I send "POST" request to "http://localhost:8001/post" with headers "{ \"Content-Type\": \"application/json\", \"Authorization\": \"Bearer aBcD1234\" }" and body "{ \"test1\": 1, \"test2\": 2 }"
-   Then response body should contain "{\"test1\":1,\"test2\":2}"
+    Then response body should contain "{\"test1\":1,\"test2\":2}"
 
   Scenario: 'I send "POST" request' should return the content of the page, 'response body should contain' (empty headers, body provided in the step string)
     Given I send "POST" request to "http://localhost:8001/post" with headers "" and body "{ \"test1\": 1, \"test2\": 2 }"
