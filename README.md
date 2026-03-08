@@ -372,66 +372,435 @@ as a doc string with a JSON object inside). For example:
 
 ### When steps
 7. `I/user click(s) "..."."..."` - click on the element (provided in
-**"page"."element"** as CSS or XPath selector).
+**"page"."element"** as CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I click "my-page"."linkTest2Page"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 - `I/user click(s) ... from ...` - click on the element (provided in **element**
-from **page** as CSS or XPath selector).
+from **page** as CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I click linkTest2PageXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 8. `I/user right click(s) "..."."..."` - right click on the element (provided in
-**"page"."element"** as a CSS or XPath selector).
+**"page"."element"** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I right click "my-page"."linkTest2Page"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 - `I/user right click(s) ... from ...` - right click on the element (provided in
-**element** from **page** as a CSS or XPath selector).
+**element** from **page** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I right click linkTest2PageXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 9. `I/user double click(s) "..."."..."` - double click on the element (provided
-in **"page"."element"** as a CSS or XPath selector).
+in **"page"."element"** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I double click "my-page"."linkTest2Page"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 - `I/user double click(s) ... from ...` - double click on the element (provided
-in **element** from **page** as a CSS or XPath selector).
+in **element** from **page** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I double click linkTest2PageXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 10. `I/user click(s) "..."."..." if present` - click on the element (provided in
 **"page"."element"** as a CSS or XPath selector) only if it is present on the
-page.
+page. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I click "my-page"."linkTest2Page" if present
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 - `I/user click(s) ... from ... if present` - click on the element (provided in
 **element** from **page** as a CSS or XPath selector) only if it is present on
-the page.
+the page. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I click linkTest2PageXPath from my-page if present
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 11. `I/user type(s) "..." into "..."."..."` - type the text (provided in "" as a
 string) into the input field (provided in **"page"."object"** as a CSS or XPath
-selector).
+selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I type "Green" into "my-page"."inputColors"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
 - `I/user type(s) "..." into ... from ...` - type the text (provided in "" as a
 string) into the input field (provided in **object** from **page** as a CSS or
-XPath selector).
+XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I type "Green" into inputColorsXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
 - `I/user type(s) "..."."..." into "..."."..."` - type the text (provided in
 **"page1"."element1"** as a string) into the input field (provided in
-**"page2"."element2"** as a CSS or XPath selector).
+**"page2"."element2"** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I type "my-page"."textGold" into "my-page"."inputColors"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
 - `I/user type(s) ... from ... into ... from ...` - type the text (provided in
-**element1** from **page1** as a string) into the input field (provided in **element2** from **page2** as a CSS or XPath selector).
+**element1** from **page1** as a string) into the input field (provided in **element2** from **page2** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I type textGold from my-page into inputColorsXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
 12. `I/user clear(s) "..."."..." and type(s) "..."` - clear the input field
 (provided in **"page"."element"** as a CSS or XPath selector) and type the text
-(provided in "" as a string).
+(provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I clear "my-page"."inputColors" and type "Green"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
 - `I/user clear(s) ... from ... and type(s) "..."` - clear the input field
 (provided in **element** from **page** as a CSS or XPath selector) and type the
-text (provided in "" as a string).
+text (provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I clear inputColorsXPath from my-page and type "Green"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
 - `I/user clear(s) "..."."..." and type(s) "..."."..."` - clear the input field (provided in **"page1"."element1"** as a CSS or XPath selector) and type the
-text (provided in **"page2"."element2"** as a string).
+text (provided in **"page2"."element2"** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I clear "my-page"."inputColors" and type "my-page"."textGold"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
 - `I/user clear(s) ... from ... and type(s) ... from ...` - clear the input
 field (provided in **element1** from **page1** as a CSS or XPath selector) and
-type the text (provided in **element2** from **page2** as a string).
+type the text (provided in **element2** from **page2** as a string). For
+example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I clear inputColorsXPath from my-page and type textGold from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
 13. `I/user select(s) "..." in "..."."..."` - select the option (provided in ""
 as a string) in the dropdown (provided in **"page"."element"** as a CSS or XPath
-selector).
+selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I select "Green" in "my-page"."dropdownColors"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        dropdownColors: '#dropdown-colors',
+        // OR
+        dropdownColorsXPath: '//*[@id="dropdown-colors"]',
+        // ...
+    };
+    ```
 - `I/user select(s) "..." in ... from ...` - select the option (provided in ""
 as a string) in the dropdown (provided in **element** from **page** as a CSS or
-XPath selector).
+XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I select "Green" in dropdownColorsXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        dropdownColors: '#dropdown-colors',
+        // OR
+        dropdownColorsXPath: '//*[@id="dropdown-colors"]',
+        // ...
+    };
+    ```
 - `I/user select(s) "..."."..." in "..."."..."` - select the option (provided in
 **"page1"."element1"** as a string) in the dropdown (provided in
-**"page2"."element2"** as a CSS or XPath selector).
+**"page2"."element2"** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I select "my-page"."textGold" in "my-page"."dropdownColors"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        dropdownColors: '#dropdown-colors',
+        // OR
+        dropdownColorsXPath: '//*[@id="dropdown-colors"]',
+        // ...
+    };
+    ```
 - `I/user select(s) ... from ... in ... from ...` - select the option
 (provided in **element1** from **page1** as a string) in the dropdown (provided
-in **element2** from **page2** as a CSS or XPath selector).
+in **element2** from **page2** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I select textGold from my-page in dropdownColorsXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        dropdownColors: '#dropdown-colors',
+        // OR
+        dropdownColorsXPath: '//*[@id="dropdown-colors"]',
+        // ...
+    };
+    ```
 14. `I/user move(s) to "..."."..."` - move the mouse pointer over the element
 (hover with cursor an element provided in **"page"."object"** as CSS or XPath
-selector).
+selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I move to "my-page"."linkTest2Page"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 - `I/user move(s) to ... from ...` - move the mouse pointer over the element
 (hover with cursor an element provided in **object** from **page** as CSS or
-XPath selector).
-15. `I/user reload(s) the page` - reload current page.
+XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I move to linkTest2PageXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
+15. `I/user reload(s) the page` - reload the current page. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I reload the page
+    ```
 16. `I/user wait(s) for ... ms` - wait for a provided amount of time (in
-milliseconds).
+milliseconds). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I wait for 200 ms
+    ```
 
 ### Then steps
 17. `page title should be "..."` - verify that the title of the current browser
