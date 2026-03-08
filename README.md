@@ -435,60 +435,372 @@ milliseconds).
 
 ### Then steps
 17. `page title should be "..."` - verify that the title of the current browser
-window/tab equals to the text (provided in "" as a string).
+window/tab equals to the text (provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page title should be "My test account page"
+    ```
 18. `page title should contain "..."` - verify that the title of the current
-browser window/tab contains the text (provided in "" as a string).
+browser window/tab contains the text (provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page title should contain "test account"
+    ```
 19. `"..."."..." should be present` - verify that the element (provided in
-**"page"."element"** as a CSS or XPath selector) is present on the page.
+**"page"."element"** as a CSS or XPath selector) is present on the page. For
+example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."linkTest2Page" should be present
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 - `... from ... should be present` - verify that the element (provided in
 **element** from **page** as a CSS or XPath selector) is present on the page.
+For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then linkTest2PageXPath from my-page should be present
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 20. `... "..."."..." should be present` - verify that the number of the elements
 (provided in **"page"."element"** as a CSS or XPath selector) are present on the
-page.
+page. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then 4 "my-page"."input" should be present
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        input: 'input',
+        // OR
+        inputXPath: '//input',
+        // ...
+    };
+    ```
 - `... ... from ... should be present` - verify that the number of the elements
 (provided in **element** from **page** as a CSS or XPath selector) are present
-on the page.
+on the page. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then 4 inputXPath from my-page should be present
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        input: 'input',
+        // OR
+        inputXPath: '//input',
+        // ...
+    };
+    ```
 21. `"..."."..." should not be present` - verify that the element (provided in
-**"page"."element"** as a CSS or XPath selector) is not present on the page.
+**"page"."element"** as a CSS or XPath selector) is not present on the page. For
+example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."linkTest2Page" should not be present
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 - `... from ... should not be present` - verify that the element (provided in
 **element** from **page** as a CSS or XPath selector) is not present on the
-page.
+page. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then linkTest2PageXPath from my-page should not be present
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
 22. `"..."."..." text should be "..."` - verify that the text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
-(provided in "" as a string).
+(provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."blockInputColor" text should be "Green"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        blockInputColor: '#block-input-color',
+        // OR
+        blockInputColorXPath: '//*[@id="block-input-color"]',
+        // ...
+    };
+    ```
 - `... from ... text should be "..."` - verify that the text of the element
 (provided in **element** from **page** as a CSS or XPath selector) equals to the
-text (provided in "" as a string).
+text (provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then blockInputColor from my-page text should be "Green"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        blockInputColor: '#block-input-color',
+        // OR
+        blockInputColorXPath: '//*[@id="block-input-color"]',
+        // ...
+    };
+    ```
 - `"..."."..." text should be "..."."..."` - verify that the text of the element
 (provided in **"page1"."element1"** as a CSS or XPath selector) equals to the
-text (provided in **"page2"."element2"** as a string).
+text (provided in **"page2"."element2"** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."blockInputColor" text should be "my-page"."textGold"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        blockInputColor: '#block-input-color',
+        // OR
+        blockInputColorXPath: '//*[@id="block-input-color"]',
+        // ...
+    };
+    ```
 - `... from ... text should be ... from ...` - verify that the text of the
 element (provided in **element1** from **page1** as a CSS or XPath selector)
-equals to the text (provided in **element2** from **page2** as a string).
+equals to the text (provided in **element2** from **page2** as a string). For
+example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then blockInputColorXPath from my-page text should be textGold from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        blockInputColor: '#block-input-color',
+        // OR
+        blockInputColorXPath: '//*[@id="block-input-color"]',
+        // ...
+    };
+    ```
 23. `"..."."..." text should contain "..."` - verify that the text of the
 element (provided in **"page"."element"** as a CSS or XPath selector) contains
-the text (provided in "" as a string).
+the text (provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."blockMyProfile" text should contain "user profile"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        blockMyProfile: '#my-profile',
+        // OR
+        blockMyProfileXPath: '//*[@id="my-profile"]',
+        // ...
+    };
+    ```
 - `... from ... text should contain "..."` - verify that the text of the element
 (provided in **element** from **page** as a CSS or XPath selector) contains the
-text (provided in "" as a string).
+text (provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then blockMyProfileXPath from my-page text should contain "user profile"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        blockMyProfile: '#my-profile',
+        // OR
+        blockMyProfileXPath: '//*[@id="my-profile"]',
+        // ...
+    };
+    ```
 - `"..."."..." text should contain "..."."..."` - verify that the text of the
 element (provided in **"page1"."element1"** as a CSS or XPath selector) contains
-the text (provided in **"page2"."element2"** as a string).
+the text (provided in **"page2"."element2"** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."blockMyProfile" text should contain "my-page"."textUserProfile"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textUserProfile: 'user profile',
+        // ...
+        blockMyProfile: '#my-profile',
+        // OR
+        blockMyProfileXPath: '//*[@id="my-profile"]',
+        // ...
+    };
+    ```
 - `... from ... text should contain ... from ...` - verify that the text of the
 element (provided in **element1** from **page1** as a CSS or XPath selector)
-contains the text (provided in **element2** from **page2** as a string).
+contains the text (provided in **element2** from **page2** as a string). For
+example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then blockMyProfileXPath from my-page text should contain textUserProfile from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textUserProfile: 'user profile',
+        // ...
+        blockMyProfile: '#my-profile',
+        // OR
+        blockMyProfileXPath: '//*[@id="my-profile"]',
+        // ...
+    };
+    ```
 24. `page URL should be "..."` - verify that the URL of the current page equals
-to the text (provided in "" as a string).
+to the text (provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page URL should be "https://github.com/Marketionist"
+    ```
 - `page URL should be "..."."..."` - verify that the URL of the current page
-equals to the text (provided in **"page"."element"** as a string).
+equals to the text (provided in **"page"."element"** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page URL should be "my-page"."urlMyPage"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        urlMyPage: 'https://github.com/Marketionist',
+        // ...
+    };
+    ```
 - `page URL should be ... from ...` - verify that the URL of the current page
-equals to the text (provided in **element** from **page** as a string).
+equals to the text (provided in **element** from **page** as a string). For
+example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page URL should be urlMyPage from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        urlMyPage: 'https://github.com/Marketionist',
+        // ...
+    };
+    ```
 25. `page URL should contain "..."` - verify that the URL of the current page
-contains the text (provided in "" as a string).
+contains the text (provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page URL should contain "Marketionist"
+    ```
 - `page URL should contain "..."."..."` - verify that the URL of the current
-page contains the text (provided in **"page"."element"** as a string).
+page contains the text (provided in **"page"."element"** as a string). For
+example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page URL should contain "my-page"."username"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        username: 'Marketionist',
+        // ...
+    };
+    ```
 - `page URL should contain ... from ...` - verify that the URL of the current
-page contains the text (provided in **element** from **page** as a string).
+page contains the text (provided in **element** from **page** as a string). For
+example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page URL should contain username from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        username: 'Marketionist',
+        // ...
+    };
+    ```
 26. `response status code should be ...` - verify that the response status code
 equals to a provided number. For example:
     ```gherkin
