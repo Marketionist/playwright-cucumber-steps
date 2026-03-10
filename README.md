@@ -4,6 +4,7 @@ tests
 
 [![Actions Status](https://github.com/Marketionist/playwright-cucumber-steps/workflows/Build%20and%20Test/badge.svg)](https://github.com/Marketionist/playwright-cucumber-steps/actions)
 [![npm version](https://img.shields.io/npm/v/playwright-cucumber-steps.svg)](https://www.npmjs.com/package/playwright-cucumber-steps)
+[![npm downloads](https://img.shields.io/npm/dw/playwright-cucumber-steps)](https://www.npmjs.com/package/playwright-cucumber-steps)
 [![npm license](https://img.shields.io/npm/l/playwright-cucumber-steps.svg)](https://github.com/Marketionist/playwright-cucumber-steps/blob/main/LICENSE)
 
 ## List of predefined steps
