@@ -124,46 +124,46 @@ Feature: Test "I ..." steps - part 1
     When I type textGold from test2-page into inputColors from test2-page
     Then blockInputColor from test2-page text should be textGold from test2-page
 
-  Scenario: 'I clear and type' "Green" (string) text inside input should overwrite the text
+  Scenario: 'I clear and type' "Green" (string) text inside input should overwrite the text, 'input should be' should verify the input
     Given I go to "test2-page"."urlTest2"
     And I type "Yellow" into "test2-page"."inputColors"
     When I clear "test2-page"."inputColors" and type "Green"
-    Then "test2-page"."blockInputColor" text should be "Green"
+    Then "test2-page"."inputColors" input should be "Green"
 
-  Scenario: 'I clear and type' "Green" (string) text inside input should overwrite the text (text style step)
+  Scenario: 'I clear and type' "Green" (string) text inside input should overwrite the text (text style step), 'input should be' should verify the input (text style step)
     Given I go to "test2-page"."urlTest2"
     And I type "Yellow" into inputColors from test2-page
     When I clear inputColors from test2-page and type "Green"
-    Then blockInputColor from test2-page text should be "Green"
+    Then inputColors from test2-page input should be "Green"
 
-  Scenario: 'I clear and type' "Gold" (page object) text inside input should overwrite the text
+  Scenario: 'I clear and type' "Gold" (page object) text inside input should overwrite the text, 'input should be' should verify the input
     Given I go to "test2-page"."urlTest2"
     And I type "test2-page"."textIndigo" into "test2-page"."inputColors"
     When I clear "test2-page"."inputColors" and type "test2-page"."textGold"
-    Then "test2-page"."blockInputColor" text should be "test2-page"."textGold"
+    Then "test2-page"."inputColors" input should be "test2-page"."textGold"
 
-  Scenario: 'I clear and type' "Gold" (page object) text inside input should overwrite the text (text style step)
+  Scenario: 'I clear and type' "Gold" (page object) text inside input should overwrite the text (text style step), 'input should be' should verify the input (text style step)
     Given I go to "test2-page"."urlTest2"
     And I type textIndigo from test2-page into inputColors from test2-page
     When I clear inputColors from test2-page and type textGold from test2-page
-    Then blockInputColor from test2-page text should be textGold from test2-page
+    Then inputColors from test2-page input should be textGold from test2-page
 
-  Scenario: 'I select' "Green" (string) option text inside select dropdown should get this option selected, 'text should be' should verify the text
+  Scenario: 'I select' "Green" (string) option text inside select dropdown should get this option selected, 'input should contain' should verify the input
     Given I go to "test2-page"."urlTest2"
     When I select "Green" in "test2-page"."dropdownColors"
-    Then "test2-page"."blockDropdownColor" text should be "green"
+    Then "test2-page"."dropdownColors" input should contain "een"
 
-  Scenario: 'I select' "Green" (string) option text inside select dropdown should get this option selected, 'text should be' should verify the text (text style step)
+  Scenario: 'I select' "Green" (string) option text inside select dropdown should get this option selected, 'input should contain' should verify the input (text style step)
     Given I go to "test2-page"."urlTest2"
     When I select "Green" in dropdownColors from test2-page
-    Then blockDropdownColor from test2-page text should be "green"
+    Then dropdownColors from test2-page input should contain "een"
 
-  Scenario: 'I select' "Gold" (page object) option text inside select dropdown should get this option selected, 'text should be' should verify the text
+  Scenario: 'I select' "Gold" (page object) option text inside select dropdown should get this option selected, 'input should contain' should verify the input
     Given I go to "test2-page"."urlTest2"
     When I select "test2-page"."textGold" in "test2-page"."dropdownColors"
-    Then "test2-page"."blockDropdownColor" text should be "test2-page"."textGold"
+    Then "test2-page"."dropdownColors" input should contain "test2-page"."textPartGold"
 
-  Scenario: 'I select' "Gold" (page object) option text inside select dropdown should get this option selected, 'text should be' should verify the text (text style step)
+  Scenario: 'I select' "Gold" (page object) option text inside select dropdown should get this option selected, 'input should contain' should verify the input (text style step)
     Given I go to "test2-page"."urlTest2"
     When I select textGold from test2-page in dropdownColors from test2-page
-    Then blockDropdownColor from test2-page text should be textGold from test2-page
+    Then dropdownColors from test2-page input should contain textPartGold from test2-page

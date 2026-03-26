@@ -637,6 +637,90 @@ Then('{word} from {word}( page) text should contain {word} from {word}( page)', 
         .toContainText(pageObjects[pageObject2][element2]);
 });
 
+Then('{string}.{string} input should be {string}', async (
+    { page, }, pageObject: string, element: string, text: string
+) => {
+    const textareaElement = page.locator(pageObjects[pageObject][element]);
+
+    await expect(textareaElement).toHaveValue(text);
+});
+
+Then('{word} from {word}( page) input should be {string}', async (
+    { page, }, element: string, pageObject: string, text: string
+) => {
+    const textareaElement = page.locator(pageObjects[pageObject][element]);
+
+    await expect(textareaElement).toHaveValue(text);
+});
+
+Then('{string}.{string} input should be {string}.{string}', async (
+    { page, },
+    pageObject1: string,
+    element1: string,
+    pageObject2: string,
+    element2: string
+) => {
+    const textareaElement = page.locator(pageObjects[pageObject1][element1]);
+
+    await expect(textareaElement).toHaveValue(pageObjects[pageObject2][element2]);
+});
+
+Then('{word} from {word}( page) input should be {word} from {word}( page)', async (
+    { page, },
+    element1: string,
+    pageObject1: string,
+    element2: string,
+    pageObject2: string
+) => {
+    const textareaElement = page.locator(pageObjects[pageObject1][element1]);
+
+    await expect(textareaElement).toHaveValue(pageObjects[pageObject2][element2]);
+});
+
+Then('{string}.{string} input should contain {string}', async (
+    { page, }, pageObject: string, element: string, text: string
+) => {
+    const textareaElement = page.locator(pageObjects[pageObject][element]);
+    const textContent = await textareaElement.inputValue();
+
+    expect(textContent).toContain(text);
+});
+
+Then('{word} from {word}( page) input should contain {string}', async (
+    { page, }, element: string, pageObject: string, text: string
+) => {
+    const textareaElement = page.locator(pageObjects[pageObject][element]);
+    const textContent = await textareaElement.inputValue();
+
+    expect(textContent).toContain(text);
+});
+
+Then('{string}.{string} input should contain {string}.{string}', async (
+    { page, },
+    pageObject1: string,
+    element1: string,
+    pageObject2: string,
+    element2: string
+) => {
+    const textareaElement = page.locator(pageObjects[pageObject1][element1]);
+    const textContent = await textareaElement.inputValue();
+
+    expect(textContent).toContain(pageObjects[pageObject2][element2]);
+});
+
+Then('{word} from {word}( page) input should contain {word} from {word}( page)', async (
+    { page, },
+    element1: string,
+    pageObject1: string,
+    element2: string,
+    pageObject2: string
+) => {
+    const textareaElement = page.locator(pageObjects[pageObject1][element1]);
+    const textContent = await textareaElement.inputValue();
+
+    expect(textContent).toContain(pageObjects[pageObject2][element2]);
+});
+
 Then('page URL should be {string}', async ({ page, }, text: string) => {
     await expect(page).toHaveURL(text);
 });

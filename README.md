@@ -1090,7 +1090,164 @@ example:
         // ...
     };
     ```
-24. `page URL should be "..."` - verify that the URL of the current page equals
+24. `"..."."..." input should be "..."` - verify that the element (provided in
+**"page"."element"** as a CSS or XPath selector) has the given input value
+(provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."inputColors" input should be "Green"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `... from ... input should be "..."` - verify that the element (provided in **element** from **page** as a CSS or XPath selector) has the given input value
+(provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then inputColorsXPath from my-page input should be "Green"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `"..."."..." input should be "..."."..."` - verify that the element (provided
+in **"page1"."element1"** as a CSS or XPath selector) has the given input value
+(provided in **"page2"."element2"** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."inputColors" input should be "my-page"."textGold"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `... from ... input should be ... from ...` - verify that the element
+(provided in **element1** from **page1** as a CSS or XPath selector) has the
+given input value (provided in **element2** from **page2** as a string). For
+example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then inputColorsXPath from my-page input should be textGold from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+25. `"..."."..." input should contain "..."` - verify that the element (provided
+in **"page"."element"** as a CSS or XPath selector) contains the given input
+value (provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."inputColors" input should contain "een"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `... from ... input should contain "..."` - verify that the element (provided
+in **element** from **page** as a CSS or XPath selector) contains the given
+input value (provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then inputColorsXPath from my-page input should contain "een"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `"..."."..." input should contain "..."."..."` - verify that the element
+(provided in **"page1"."element1"** as a CSS or XPath selector) contains the
+given input value (provided in **"page2"."element2"** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."inputColors" input should contain "my-page"."textPartGold"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textPartGold: 'old',
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `... from ... input should contain ... from ...` - verify that the element
+(provided in **element1** from **page1** as a CSS or XPath selector) contains
+the given input value (provided in **element2** from **page2** as a string). For
+example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then inputColorsXPath from my-page input should contain textPartGold from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textPartGold: 'old',
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+26. `page URL should be "..."` - verify that the URL of the current page equals
 to the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1130,7 +1287,7 @@ example:
         // ...
     };
     ```
-25. `page URL should contain "..."` - verify that the URL of the current page
+27. `page URL should contain "..."` - verify that the URL of the current page
 contains the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1171,14 +1328,14 @@ example:
         // ...
     };
     ```
-26. `response status code should be ...` - verify that the response status code
+28. `response status code should be ...` - verify that the response status code
 equals to a provided number. For example:
     ```gherkin
     # tests/features/my-test-api.feature
 
     Then response status code should be 200
     ```
-27. `response body should contain "..."` - verify that the response body
+29. `response body should contain "..."` - verify that the response body
 contains the property (provided in "" as a string with a JSON object inside).
 For example:
     ```gherkin
@@ -1224,7 +1381,7 @@ as a string with a JSON object inside). For example:
         // ...
     };
     ```
-28. `response headers should contain "..."` - verify that the response headers
+30. `response headers should contain "..."` - verify that the response headers
 contain the property (provided in "" as a string with a JSON object inside). For
 example:
     ```gherkin

@@ -6,6 +6,7 @@ const test2Page: PageModel = {
 
     protocol: 'http://',
     textGold: 'Gold',
+    textPartGold: 'old',
     textIndigo: 'Indigo',
     dropdownColors: '#dropdown-colors',
     blockDropdownColor: '#block-dropdown-color',
