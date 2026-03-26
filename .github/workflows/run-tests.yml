@@ -52,9 +52,4 @@ jobs:
 
       - name: End-to-end tests
         run: |
-          if [[ ${{ matrix.os }} != 'windows-latest' ]]; then
-            npm test
-          else
-            echo "Running tests on Windows:"
-            node -e "process.env.PO_FOLDER_PATH='tests/page-objects'; require('child_process').execSync('npx bddgen && npx playwright test --grep \\\"@i-steps\\\"', {stdio: 'inherit'})"
-          fi
+          npm test

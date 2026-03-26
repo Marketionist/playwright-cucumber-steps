@@ -22,7 +22,7 @@
     "lint": "eslint \"src/**/*.{js,ts}\" \"tests/**/*.{js,ts}\"",
     "prepare": "husky",
     "start:test-server": "node ./tests/testing-server.ts",
-    "test": "PO_FOLDER_PATH=\"tests/page-objects\" npx bddgen && PO_FOLDER_PATH=\"tests/page-objects\" npx playwright test --grep \"@i-steps\"",
+    "test": "echo 'PO_FOLDER_PATH=tests/page-objects' >> .env && node --env-file=.env --eval \"require('child_process').execSync('npx bddgen && npx playwright test --grep \\\"@i-steps\\\"', {stdio: 'inherit'})\"",
     "tsc": "node ./node_modules/typescript/bin/tsc -p ./",
     "patch": "npm version patch -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",
     "minor": "npm version minor -m \"Bump up package version to %s\" && git push && git push origin --tags && npm publish",
