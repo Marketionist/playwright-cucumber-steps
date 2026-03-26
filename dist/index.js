@@ -361,6 +361,42 @@ const spacesToIndent = 4;
     await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1]))
         .toContainText(get_page_objects_1.pageObjects[pageObject2][element2]);
 });
+(0, fixtures_1.Then)('{string}.{string} input should be {string}', async ({ page, }, pageObject, element, text) => {
+    const textareaElement = page.locator(get_page_objects_1.pageObjects[pageObject][element]);
+    await (0, test_1.expect)(textareaElement).toHaveValue(text);
+});
+(0, fixtures_1.Then)('{word} from {word}( page) input should be {string}', async ({ page, }, element, pageObject, text) => {
+    const textareaElement = page.locator(get_page_objects_1.pageObjects[pageObject][element]);
+    await (0, test_1.expect)(textareaElement).toHaveValue(text);
+});
+(0, fixtures_1.Then)('{string}.{string} input should be {string}.{string}', async ({ page, }, pageObject1, element1, pageObject2, element2) => {
+    const textareaElement = page.locator(get_page_objects_1.pageObjects[pageObject1][element1]);
+    await (0, test_1.expect)(textareaElement).toHaveValue(get_page_objects_1.pageObjects[pageObject2][element2]);
+});
+(0, fixtures_1.Then)('{word} from {word}( page) input should be {word} from {word}( page)', async ({ page, }, element1, pageObject1, element2, pageObject2) => {
+    const textareaElement = page.locator(get_page_objects_1.pageObjects[pageObject1][element1]);
+    await (0, test_1.expect)(textareaElement).toHaveValue(get_page_objects_1.pageObjects[pageObject2][element2]);
+});
+(0, fixtures_1.Then)('{string}.{string} input should contain {string}', async ({ page, }, pageObject, element, text) => {
+    const textareaElement = page.locator(get_page_objects_1.pageObjects[pageObject][element]);
+    const textContent = await textareaElement.inputValue();
+    (0, test_1.expect)(textContent).toContain(text);
+});
+(0, fixtures_1.Then)('{word} from {word}( page) input should contain {string}', async ({ page, }, element, pageObject, text) => {
+    const textareaElement = page.locator(get_page_objects_1.pageObjects[pageObject][element]);
+    const textContent = await textareaElement.inputValue();
+    (0, test_1.expect)(textContent).toContain(text);
+});
+(0, fixtures_1.Then)('{string}.{string} input should contain {string}.{string}', async ({ page, }, pageObject1, element1, pageObject2, element2) => {
+    const textareaElement = page.locator(get_page_objects_1.pageObjects[pageObject1][element1]);
+    const textContent = await textareaElement.inputValue();
+    (0, test_1.expect)(textContent).toContain(get_page_objects_1.pageObjects[pageObject2][element2]);
+});
+(0, fixtures_1.Then)('{word} from {word}( page) input should contain {word} from {word}( page)', async ({ page, }, element1, pageObject1, element2, pageObject2) => {
+    const textareaElement = page.locator(get_page_objects_1.pageObjects[pageObject1][element1]);
+    const textContent = await textareaElement.inputValue();
+    (0, test_1.expect)(textContent).toContain(get_page_objects_1.pageObjects[pageObject2][element2]);
+});
 (0, fixtures_1.Then)('page URL should be {string}', async ({ page, }, text) => {
     await (0, test_1.expect)(page).toHaveURL(text);
 });
