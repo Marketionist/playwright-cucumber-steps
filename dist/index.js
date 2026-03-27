@@ -397,6 +397,16 @@ const spacesToIndent = 4;
     const textContent = await textareaElement.inputValue();
     (0, test_1.expect)(textContent).toContain(get_page_objects_1.pageObjects[pageObject2][element2]);
 });
+(0, fixtures_1.Then)('{string}.{string} input length should be {int}', async ({ page, }, pageObject, element, number) => {
+    const textareaElement = page.locator(get_page_objects_1.pageObjects[pageObject][element]);
+    const textContent = await textareaElement.inputValue();
+    (0, test_1.expect)(textContent.length).toBe(number);
+});
+(0, fixtures_1.Then)('{word} from {word}( page) input length should be {int}', async ({ page, }, element, pageObject, number) => {
+    const textareaElement = page.locator(get_page_objects_1.pageObjects[pageObject][element]);
+    const textContent = await textareaElement.inputValue();
+    (0, test_1.expect)(textContent.length).toBe(number);
+});
 (0, fixtures_1.Then)('page URL should be {string}', async ({ page, }, text) => {
     await (0, test_1.expect)(page).toHaveURL(text);
 });
