@@ -136,17 +136,19 @@ Feature: Test "I ..." steps - part 1
     When I clear inputColors from test2-page and type "Green"
     Then inputColors from test2-page input should be "Green"
 
-  Scenario: 'I clear and type' "Gold" (page object) text inside input should overwrite the text, 'input should be' should verify the input
+  Scenario: 'I clear and type' "Gold" (page object) text inside input should overwrite the text, 'input should be', 'input length should be' should verify the input
     Given I go to "test2-page"."urlTest2"
     And I type "test2-page"."textIndigo" into "test2-page"."inputColors"
     When I clear "test2-page"."inputColors" and type "test2-page"."textGold"
     Then "test2-page"."inputColors" input should be "test2-page"."textGold"
+    And "test2-page"."inputColors" input length should be 4
 
-  Scenario: 'I clear and type' "Gold" (page object) text inside input should overwrite the text (text style step), 'input should be' should verify the input (text style step)
+  Scenario: 'I clear and type' "Gold" (page object) text inside input should overwrite the text (text style step), 'input should be', 'input length should be' should verify the input (text style step)
     Given I go to "test2-page"."urlTest2"
     And I type textIndigo from test2-page into inputColors from test2-page
     When I clear inputColors from test2-page and type textGold from test2-page
     Then inputColors from test2-page input should be textGold from test2-page
+    And inputColors from test2-page input length should be 4
 
   Scenario: 'I select' "Green" (string) option text inside select dropdown should get this option selected, 'input should contain' should verify the input
     Given I go to "test2-page"."urlTest2"
