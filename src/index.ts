@@ -721,6 +721,30 @@ Then('{word} from {word}( page) input should contain {word} from {word}( page)',
     expect(textContent).toContain(pageObjects[pageObject2][element2]);
 });
 
+Then('{string}.{string} input length should be {int}', async (
+    { page, },
+    pageObject: string,
+    element: string,
+    number: number
+) => {
+    const textareaElement = page.locator(pageObjects[pageObject][element]);
+    const textContent = await textareaElement.inputValue();
+
+    expect(textContent.length).toBe(number);
+});
+
+Then('{word} from {word}( page) input length should be {int}', async (
+    { page, },
+    element: string,
+    pageObject: string,
+    number: number
+) => {
+    const textareaElement = page.locator(pageObjects[pageObject][element]);
+    const textContent = await textareaElement.inputValue();
+
+    expect(textContent.length).toBe(number);
+});
+
 Then('page URL should be {string}', async ({ page, }, text: string) => {
     await expect(page).toHaveURL(text);
 });
