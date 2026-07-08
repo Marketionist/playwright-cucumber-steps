@@ -30,17 +30,17 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest]
-        node-version: [24.x, 25.x]
+        node-version: [26.x]
     defaults:
       run:
         shell: bash
 
     steps:
       - name: Git checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
 
