@@ -11,7 +11,7 @@ const spacesToIndent = 4;
 const readdirP = promisify(readdir);
 const statP = promisify(stat);
 
-async function _readDirectory(
+async function _readDirectory (
     directory: string, allFiles?: string[]
 ): Promise<string[]> {
     const files = (await readdirP(directory)).map((filePath) => {
@@ -29,7 +29,7 @@ async function _readDirectory(
     return allFilesPaths;
 }
 
-async function readDirectories(directories: string[]): Promise<string[]> {
+async function readDirectories (directories: string[]): Promise<string[]> {
     const allFilesPaths: string[] = [];
 
     (await Promise.all(
@@ -80,7 +80,7 @@ if (isCalledExternallyPnpm) {
 type PageObject = Record<string, Record<string, string>>;
 const allPageObjects: PageObject = {};
 
-void (async function requirePageObjects(): Promise<PageObject> {
+void (async function requirePageObjects (): Promise<PageObject> {
     try {
         const allPageObjectFiles = await readDirectories(
             fullPageObjectsFolderPathes);

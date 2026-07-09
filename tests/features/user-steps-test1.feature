@@ -104,6 +104,26 @@ Feature: Test "user ..." steps - part 1
     And user waits for 200 ms
     Then page title should be "Test1 Page"
 
+  Scenario: 'user enters' "Green" (string) text inside input should get this text entered, 'text should be' should verify the text
+    Given user goes to "test2-page"."urlTest2"
+    When user enters "Green" into "test2-page"."inputColors"
+    Then "test2-page"."blockInputColor" text should be "Green"
+
+  Scenario: 'user enters' "Green" (string) text inside input should get this text entered, 'text should be' should verify the text (text style step)
+    Given user goes to "test2-page"."urlTest2"
+    When user enters "Green" into inputColors from test2-page
+    Then blockInputColor from test2-page text should be "Green"
+
+  Scenario: 'user enters' "Gold" (page object) text inside input should get this text entered, 'text should be' should verify the text
+    Given user goes to "test2-page"."urlTest2"
+    When user enters "test2-page"."textGold" into "test2-page"."inputColors"
+    Then "test2-page"."blockInputColor" text should be "test2-page"."textGold"
+
+  Scenario: 'user enters' "Gold" (page object) text inside input should get this text entered, 'text should be' should verify the text (text style step)
+    Given user goes to "test2-page"."urlTest2"
+    When user enters textGold from test2-page into inputColors from test2-page
+    Then blockInputColor from test2-page text should be textGold from test2-page
+
   Scenario: 'user types' "Green" (string) text inside input should get this text typed in, 'text should be' should verify the text
     Given user goes to "test2-page"."urlTest2"
     When user types "Green" into "test2-page"."inputColors"
