@@ -518,7 +518,84 @@ the page. For example:
         // ...
     };
     ```
-11. `I/user type(s) "..." into "..."."..."` - type the text (provided in "" as a
+11. `I/user enter(s) "..." into "..."."..."` - enter the text (provided in "" as a
+string) into the input field (provided in **"page"."object"** as a CSS or XPath
+selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I enter "Green" into "my-page"."inputColors"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `I/user enter(s) "..." into ... from ...` - enter the text (provided in "" as a
+string) into the input field (provided in **object** from **page** as a CSS or
+XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I enter "Green" into inputColorsXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `I/user enter(s) "..."."..." into "..."."..."` - enter the text (provided in
+**"page1"."element1"** as a string) into the input field (provided in
+**"page2"."element2"** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I enter "my-page"."textGold" into "my-page"."inputColors"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `I/user enter(s) ... from ... into ... from ...` - enter the text (provided in
+**element1** from **page1** as a string) into the input field (provided in **element2** from **page2** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I enter textGold from my-page into inputColorsXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        textGold: 'Gold',
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+12. `I/user type(s) "..." into "..."."..."` - type the text (provided in "" as a
 string) into the input field (provided in **"page"."object"** as a CSS or XPath
 selector). For example:
     ```gherkin
@@ -595,7 +672,7 @@ XPath selector). For example:
         // ...
     };
     ```
-12. `I/user clear(s) "..."."..." and type(s) "..."` - clear the input field
+13. `I/user clear(s) "..."."..." and type(s) "..."` - clear the input field
 (provided in **"page"."element"** as a CSS or XPath selector) and type the text
 (provided in "" as a string). For example:
     ```gherkin
@@ -673,7 +750,7 @@ example:
         // ...
     };
     ```
-13. `I/user select(s) "..." in "..."."..."` - select the option (provided in ""
+14. `I/user select(s) "..." in "..."."..."` - select the option (provided in ""
 as a string) in the dropdown (provided in **"page"."element"** as a CSS or XPath
 selector). For example:
     ```gherkin
@@ -751,7 +828,7 @@ in **element2** from **page2** as a CSS or XPath selector). For example:
         // ...
     };
     ```
-14. `I/user move(s) to "..."."..."` - move the mouse pointer over the element
+15. `I/user move(s) to "..."."..."` - move the mouse pointer over the element
 (hover with cursor an element provided in **"page"."object"** as CSS or XPath
 selector). For example:
     ```gherkin
@@ -789,13 +866,13 @@ XPath selector). For example:
         // ...
     };
     ```
-15. `I/user reload(s) the page` - reload the current page. For example:
+16. `I/user reload(s) the page` - reload the current page. For example:
     ```gherkin
     # tests/features/my-account.feature
 
     When I reload the page
     ```
-16. `I/user wait(s) for ... ms` - wait for a provided amount of time (in
+17. `I/user wait(s) for ... ms` - wait for a provided amount of time (in
 milliseconds). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -804,21 +881,21 @@ milliseconds). For example:
     ```
 
 ### Then steps
-17. `page title should be "..."` - verify that the title of the current browser
+18. `page title should be "..."` - verify that the title of the current browser
 window/tab equals to the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
 
     Then page title should be "My test account page"
     ```
-18. `page title should contain "..."` - verify that the title of the current
+19. `page title should contain "..."` - verify that the title of the current
 browser window/tab contains the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
 
     Then page title should contain "test account"
     ```
-19. `"..."."..." should be present` - verify that the element (provided in
+20. `"..."."..." should be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is present on the page. For
 example:
     ```gherkin
@@ -856,7 +933,7 @@ For example:
         // ...
     };
     ```
-20. `... "..."."..." should be present` - verify that the number of the elements
+21. `... "..."."..." should be present` - verify that the number of the elements
 (provided in **"page"."element"** as a CSS or XPath selector) are present on the
 page. For example:
     ```gherkin
@@ -894,7 +971,7 @@ on the page. For example:
         // ...
     };
     ```
-21. `"..."."..." should not be present` - verify that the element (provided in
+22. `"..."."..." should not be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is not present on the page. For
 example:
     ```gherkin
@@ -932,7 +1009,7 @@ page. For example:
         // ...
     };
     ```
-22. `"..."."..." text should be "..."` - verify that the text of the element
+23. `"..."."..." text should be "..."` - verify that the text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string). For example:
     ```gherkin
@@ -1011,7 +1088,7 @@ example:
         // ...
     };
     ```
-23. `"..."."..." text should contain "..."` - verify that the text of the
+24. `"..."."..." text should contain "..."` - verify that the text of the
 element (provided in **"page"."element"** as a CSS or XPath selector) contains
 the text (provided in "" as a string). For example:
     ```gherkin
@@ -1090,7 +1167,7 @@ example:
         // ...
     };
     ```
-24. `"..."."..." input should be "..."` - verify that the element (provided in
+25. `"..."."..." input should be "..."` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) has the given input value
 (provided in "" as a string). For example:
     ```gherkin
@@ -1168,7 +1245,7 @@ example:
         // ...
     };
     ```
-25. `"..."."..." input should contain "..."` - verify that the element (provided
+26. `"..."."..." input should contain "..."` - verify that the element (provided
 in **"page"."element"** as a CSS or XPath selector) contains the given input
 value (provided in "" as a string). For example:
     ```gherkin
@@ -1247,7 +1324,7 @@ example:
         // ...
     };
     ```
-26. `"..."."..." input length should be ...` - verify that the element (provided
+27. `"..."."..." input length should be ...` - verify that the element (provided
 in **"page"."element"** as a CSS or XPath selector) contains the input of the
 given length (provided as a number). For example:
     ```gherkin
@@ -1285,7 +1362,7 @@ the given length (provided as a number). For example:
         // ...
     };
     ```
-27. `page URL should be "..."` - verify that the URL of the current page equals
+28. `page URL should be "..."` - verify that the URL of the current page equals
 to the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1325,7 +1402,7 @@ example:
         // ...
     };
     ```
-28. `page URL should contain "..."` - verify that the URL of the current page
+29. `page URL should contain "..."` - verify that the URL of the current page
 contains the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1366,14 +1443,14 @@ example:
         // ...
     };
     ```
-29. `response status code should be ...` - verify that the response status code
+30. `response status code should be ...` - verify that the response status code
 equals to a provided number. For example:
     ```gherkin
     # tests/features/my-test-api.feature
 
     Then response status code should be 200
     ```
-30. `response body should contain "..."` - verify that the response body
+31. `response body should contain "..."` - verify that the response body
 contains the property (provided in "" as a string with a JSON object inside).
 For example:
     ```gherkin
@@ -1419,7 +1496,7 @@ as a string with a JSON object inside). For example:
         // ...
     };
     ```
-31. `response headers should contain "..."` - verify that the response headers
+32. `response headers should contain "..."` - verify that the response headers
 contain the property (provided in "" as a string with a JSON object inside). For
 example:
     ```gherkin
@@ -1498,7 +1575,7 @@ npm init --init-type=module --yes
 2. To install the playwright-cucumber-steps package and its peerDependencies and
 to save it to your `package.json` just run:
 ```bash
-npm install @playwright/test@1.57.0 --save-exact --save-dev && npm install playwright-bdd playwright-cucumber-steps --save-dev
+npm install @playwright/test@1.61.1 playwright-bdd@9.2.0 --save-exact --save-dev && npm install playwright-cucumber-steps --save-dev
 ```
 
 3. Specify the pathes to all step definitions inside the array in the `steps`
