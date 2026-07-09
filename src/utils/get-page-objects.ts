@@ -96,11 +96,11 @@ void (async function requirePageObjects (): Promise<PageObject> {
                 let fileContent: any;
 
                 try {
+                    fileContent = require(file);
+                } catch {
                     const { pathToFileURL, } = await import('node:url');
 
                     fileContent = await import(pathToFileURL(file).href);
-                } catch {
-                    fileContent = require(file);
                 }
 
                 allPageObjects[fileName] = fileContent.default ?? fileContent;

@@ -238,37 +238,67 @@ const spacesToIndent = 4;
         await elementOnPage.click();
     }
 });
-(0, fixtures_1.When)('I/user type(s) {string} into {string}.{string}', async ({ page, }, text, pageObject, element) => {
+(0, fixtures_1.When)('I/user enter(s) {string} into {string}.{string}', async ({ page, }, text, pageObject, element) => {
     await page.locator(get_page_objects_1.pageObjects[pageObject][element]).fill(text);
+});
+(0, fixtures_1.When)('I/user enter(s) {string} into {word} from {word}( page)', async ({ page, }, text, element, pageObject) => {
+    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).fill(text);
+});
+(0, fixtures_1.When)('I/user enter(s) {string}.{string} into {string}.{string}', async ({ page, }, pageObject1, element1, pageObject2, element2) => {
+    await page.locator(get_page_objects_1.pageObjects[pageObject2][element2])
+        .fill(get_page_objects_1.pageObjects[pageObject1][element1]);
+});
+(0, fixtures_1.When)('I/user enter(s) {word} from {word}( page) into {word} from {word}( page)', async ({ page, }, element1, pageObject1, element2, pageObject2) => {
+    await page.locator(get_page_objects_1.pageObjects[pageObject2][element2])
+        .fill(get_page_objects_1.pageObjects[pageObject1][element1]);
+});
+(0, fixtures_1.When)('I/user type(s) {string} into {string}.{string}', async ({ page, }, text, pageObject, element) => {
+    const elementOnPage = await page.locator(get_page_objects_1.pageObjects[pageObject][element]);
+    await elementOnPage.click();
+    await elementOnPage.pressSequentially(text);
 });
 (0, fixtures_1.When)('I/user type(s) {string} into {word} from {word}( page)', async ({ page, }, text, element, pageObject) => {
-    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).fill(text);
+    const elementOnPage = await page.locator(get_page_objects_1.pageObjects[pageObject][element]);
+    await elementOnPage.click();
+    await elementOnPage.pressSequentially(text);
 });
 (0, fixtures_1.When)('I/user type(s) {string}.{string} into {string}.{string}', async ({ page, }, pageObject1, element1, pageObject2, element2) => {
-    await page.locator(get_page_objects_1.pageObjects[pageObject2][element2])
-        .fill(get_page_objects_1.pageObjects[pageObject1][element1]);
+    const elementOnPage = await page.locator(get_page_objects_1.pageObjects[pageObject2][element2]);
+    await elementOnPage.click();
+    await elementOnPage.pressSequentially(get_page_objects_1.pageObjects[pageObject1][element1]);
 });
 (0, fixtures_1.When)('I/user type(s) {word} from {word}( page) into {word} from {word}( page)', async ({ page, }, element1, pageObject1, element2, pageObject2) => {
-    await page.locator(get_page_objects_1.pageObjects[pageObject2][element2])
-        .fill(get_page_objects_1.pageObjects[pageObject1][element1]);
+    const elementOnPage = await page.locator(get_page_objects_1.pageObjects[pageObject2][element2]);
+    await elementOnPage.click();
+    await elementOnPage.pressSequentially(get_page_objects_1.pageObjects[pageObject1][element1]);
 });
 (0, fixtures_1.When)('I/user clear(s) {string}.{string} and type(s) {string}', async ({ page, }, pageObject, element, text) => {
-    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).fill('');
-    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).fill(text);
+    const elementOnPage = await page.locator(get_page_objects_1.pageObjects[pageObject][element]);
+    // Clear the input cleanly in a single action
+    await elementOnPage.clear();
+    await elementOnPage.click();
+    await elementOnPage.pressSequentially(text);
 });
 (0, fixtures_1.When)('I/user clear(s) {word} from {word}( page) and type(s) {string}', async ({ page, }, element, pageObject, text) => {
-    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).fill('');
-    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).fill(text);
+    const elementOnPage = await page.locator(get_page_objects_1.pageObjects[pageObject][element]);
+    // Clear the input cleanly in a single action
+    await elementOnPage.clear();
+    await elementOnPage.click();
+    await elementOnPage.pressSequentially(text);
 });
 (0, fixtures_1.When)('I/user clear(s) {string}.{string} and type(s) {string}.{string}', async ({ page, }, pageObject1, element1, pageObject2, element2) => {
-    await page.locator(get_page_objects_1.pageObjects[pageObject1][element1]).fill('');
-    await page.locator(get_page_objects_1.pageObjects[pageObject1][element1])
-        .fill(get_page_objects_1.pageObjects[pageObject2][element2]);
+    const elementOnPage = await page.locator(get_page_objects_1.pageObjects[pageObject1][element1]);
+    // Clear the input cleanly in a single action
+    await elementOnPage.clear();
+    await elementOnPage.click();
+    await elementOnPage.pressSequentially(get_page_objects_1.pageObjects[pageObject2][element2]);
 });
 (0, fixtures_1.When)('I/user clear(s) {word} from {word}( page) and type(s) {word} from {word}( page)', async ({ page, }, element1, pageObject1, element2, pageObject2) => {
-    await page.locator(get_page_objects_1.pageObjects[pageObject1][element1]).fill('');
-    await page.locator(get_page_objects_1.pageObjects[pageObject1][element1])
-        .fill(get_page_objects_1.pageObjects[pageObject2][element2]);
+    const elementOnPage = await page.locator(get_page_objects_1.pageObjects[pageObject1][element1]);
+    // Clear the input cleanly in a single action
+    await elementOnPage.clear();
+    await elementOnPage.click();
+    await elementOnPage.pressSequentially(get_page_objects_1.pageObjects[pageObject2][element2]);
 });
 (0, fixtures_1.When)('I/user select(s) {string} in {string}.{string}', async ({ page, }, text, pageObject, element) => {
     await page.locator(get_page_objects_1.pageObjects[pageObject][element])
