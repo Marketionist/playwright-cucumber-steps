@@ -333,8 +333,22 @@ const spacesToIndent = 4;
 (0, fixtures_1.Then)('page title should be {string}', async ({ page, }, text) => {
     await (0, test_1.expect)(page).toHaveTitle(text);
 });
+(0, fixtures_1.Then)('page title should be {string}.{string}', async ({ page, }, pageObject, element) => {
+    await (0, test_1.expect)(page).toHaveTitle(get_page_objects_1.pageObjects[pageObject][element]);
+});
+(0, fixtures_1.Then)('page title should be {word} from {word}( page)', async ({ page, }, element, pageObject) => {
+    await (0, test_1.expect)(page).toHaveTitle(get_page_objects_1.pageObjects[pageObject][element]);
+});
 (0, fixtures_1.Then)('page title should contain {string}', async ({ page, }, text) => {
     const regularExpression = new RegExp(`^.*${text}.*$`, 'g');
+    await (0, test_1.expect)(page).toHaveTitle(regularExpression);
+});
+(0, fixtures_1.Then)('page title should contain {string}.{string}', async ({ page, }, pageObject, element) => {
+    const regularExpression = new RegExp(`^.*${get_page_objects_1.pageObjects[pageObject][element]}.*$`, 'g');
+    await (0, test_1.expect)(page).toHaveTitle(regularExpression);
+});
+(0, fixtures_1.Then)('page title should contain {word} from {word}( page)', async ({ page, }, element, pageObject) => {
+    const regularExpression = new RegExp(`^.*${get_page_objects_1.pageObjects[pageObject][element]}.*$`, 'g');
     await (0, test_1.expect)(page).toHaveTitle(regularExpression);
 });
 (0, fixtures_1.Then)('{string}.{string} should be present', async ({ page, }, pageObject, element) => {
