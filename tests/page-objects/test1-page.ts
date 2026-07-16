@@ -5,6 +5,8 @@ import { PageModel } from './PageModelInterface';
 const test1Page: PageModel = {
 
     urlTest1: 'http://localhost:8001/test1.html',
+    textTest1Page: 'Test1 Page',
+    textTest1PagePartial: 'st1 Pa',
     linkTest2Page: '#link-test2-page',
     linkTest2PageXPath: '//*[@id="link-test2-page"]',
     buttonMenuRightClick: '#button-menu-right-click',

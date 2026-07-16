@@ -581,8 +581,40 @@ Then('page title should be {string}', async ({ page, }, text: string) => {
     await expect(page).toHaveTitle(text);
 });
 
+Then('page title should be {string}.{string}', async (
+    { page, }, pageObject: string, element: string
+) => {
+    await expect(page).toHaveTitle(pageObjects[pageObject][element]);
+});
+
+Then('page title should be {word} from {word}( page)', async (
+    { page, }, element: string, pageObject: string
+) => {
+    await expect(page).toHaveTitle(pageObjects[pageObject][element]);
+});
+
 Then('page title should contain {string}', async ({ page, }, text: string) => {
     const regularExpression = new RegExp(`^.*${text}.*$`, 'g');
+
+    await expect(page).toHaveTitle(regularExpression);
+});
+
+Then('page title should contain {string}.{string}', async (
+    { page, }, pageObject: string, element: string
+) => {
+    const regularExpression = new RegExp(
+        `^.*${pageObjects[pageObject][element]}.*$`, 'g'
+    );
+
+    await expect(page).toHaveTitle(regularExpression);
+});
+
+Then('page title should contain {word} from {word}( page)', async (
+    { page, }, element: string, pageObject: string
+) => {
+    const regularExpression = new RegExp(
+        `^.*${pageObjects[pageObject][element]}.*$`, 'g'
+    );
 
     await expect(page).toHaveTitle(regularExpression);
 });

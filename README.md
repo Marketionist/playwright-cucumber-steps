@@ -518,9 +518,9 @@ the page. For example:
         // ...
     };
     ```
-11. `I/user enter(s) "..." into "..."."..."` - enter the text (provided in "" as a
-string) into the input field (provided in **"page"."object"** as a CSS or XPath
-selector). For example:
+11. `I/user enter(s) "..." into "..."."..."` - enter the text (provided in "" as
+a string) into the input field (provided in **"page"."object"** as a CSS or
+XPath selector). For example:
     ```gherkin
     # tests/features/my-account.feature
 
@@ -537,11 +537,12 @@ selector). For example:
         // ...
     };
     ```
-> Note: `enter` uses Playwright's `fill` method (faster than `type` but does not
-> trigger per-key events). It acts as if the text was pasted into the field all
-> at once, firing only an input and a change event at the end of the operation.
-- `I/user enter(s) "..." into ... from ...` - enter the text (provided in "" as a
-string) into the input field (provided in **object** from **page** as a CSS or
+> Note: `enter` steps use Playwright's `fill` method (faster than `type` steps
+> but does not trigger per-key events). It acts as if the text was pasted into
+> the field all at once, firing only an input and a change event at the end of
+> the operation.
+- `I/user enter(s) "..." into ... from ...` - enter the text (provided in "" as
+a string) into the input field (provided in **object** from **page** as a CSS or
 XPath selector). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -580,7 +581,8 @@ XPath selector). For example:
     };
     ```
 - `I/user enter(s) ... from ... into ... from ...` - enter the text (provided in
-**element1** from **page1** as a string) into the input field (provided in **element2** from **page2** as a CSS or XPath selector). For example:
+**element1** from **page1** as a string) into the input field (provided
+in **element2** from **page2** as a CSS or XPath selector). For example:
     ```gherkin
     # tests/features/my-account.feature
 
@@ -617,11 +619,11 @@ selector). For example:
         // ...
     };
     ```
-> Note: `type` uses Playwright's `pressSequentially` method (slower than `enter`
-> but triggers per-key events like keydown, keypress/input, and keyup for each
-> character in the text). In most cases, you should use `enter` instead. You
-> only need to press keys one by one if there is special keyboard handling on
-> the page.
+> Note: `type` steps use Playwright's `pressSequentially` method (slower than
+> `enter` steps but triggers per-key events like keydown, keypress/input, and
+> keyup for each character in the text). In most cases, you should use `enter`
+> steps instead. You only need to press keys one by one if there is special
+> keyboard handling on the page.
 - `I/user type(s) "..." into ... from ...` - type the text (provided in "" as a
 string) into the input field (provided in **object** from **page** as a CSS or
 XPath selector). For example:
@@ -662,7 +664,8 @@ XPath selector). For example:
     };
     ```
 - `I/user type(s) ... from ... into ... from ...` - type the text (provided in
-**element1** from **page1** as a string) into the input field (provided in **element2** from **page2** as a CSS or XPath selector). For example:
+**element1** from **page1** as a string) into the input field (provided
+in **element2** from **page2** as a CSS or XPath selector). For example:
     ```gherkin
     # tests/features/my-account.feature
 
@@ -718,7 +721,8 @@ text (provided in "" as a string). For example:
         // ...
     };
     ```
-- `I/user clear(s) "..."."..." and type(s) "..."."..."` - clear the input field (provided in **"page1"."element1"** as a CSS or XPath selector) and type the
+- `I/user clear(s) "..."."..." and type(s) "..."."..."` - clear the input field
+(provided in **"page1"."element1"** as a CSS or XPath selector) and type the
 text (provided in **"page2"."element2"** as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -894,14 +898,82 @@ window/tab equals to the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
 
-    Then page title should be "My test account page"
+    Then page title should be "Test1 Page"
+    ```
+- `page title should be "..."."..."` - verify that the title of the current
+browser window/tab equals to the text (provided in **"page"."element"** as a
+string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page title should be "my-page"."textTest1Page"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        textTest1Page: 'Test1 Page',
+        // ...
+    };
+    ```
+- `page title should be ... from ...` - verify that the title of the current
+browser window/tab equals to the text (provided in **element** from **page** as
+a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page title should be textTest1Page from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        textTest1Page: 'Test1 Page',
+        // ...
+    };
     ```
 19. `page title should contain "..."` - verify that the title of the current
 browser window/tab contains the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
 
-    Then page title should contain "test account"
+    Then page title should contain "st1 Pa"
+    ```
+- `page title should contain "..."."..."` - verify that the title of the current
+browser window/tab contains the text (provided in **"page"."element"** as a
+string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page title should contain "my-page"."textTest1PagePartial"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        textTest1PagePartial: 'st1 Pa',
+        // ...
+    };
+    ```
+- `page title should contain ... from ...` - verify that the title of the
+current browser window/tab contains the text (provided in **element** from
+**page** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then page title should contain textTest1PagePartial from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        textTest1PagePartial: 'st1 Pa',
+        // ...
+    };
     ```
 20. `"..."."..." should be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is present on the page. For
@@ -1194,7 +1266,8 @@ example:
         // ...
     };
     ```
-- `... from ... input should be "..."` - verify that the element (provided in **element** from **page** as a CSS or XPath selector) has the given input value
+- `... from ... input should be "..."` - verify that the element (provided in
+**element** from **page** as a CSS or XPath selector) has the given input value
 (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
