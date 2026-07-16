@@ -537,6 +537,9 @@ selector). For example:
         // ...
     };
     ```
+> Note: `enter` uses Playwright's `fill` method (faster than `type` but does not
+> trigger per-key events). It acts as if the text was pasted into the field all
+> at once, firing only an input and a change event at the end of the operation.
 - `I/user enter(s) "..." into ... from ...` - enter the text (provided in "" as a
 string) into the input field (provided in **object** from **page** as a CSS or
 XPath selector). For example:
@@ -614,6 +617,11 @@ selector). For example:
         // ...
     };
     ```
+> Note: `type` uses Playwright's `pressSequentially` method (slower than `enter`
+> but triggers per-key events like keydown, keypress/input, and keyup for each
+> character in the text). In most cases, you should use `enter` instead. You
+> only need to press keys one by one if there is special keyboard handling on
+> the page.
 - `I/user type(s) "..." into ... from ...` - type the text (provided in "" as a
 string) into the input field (provided in **object** from **page** as a CSS or
 XPath selector). For example:
