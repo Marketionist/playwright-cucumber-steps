@@ -10,13 +10,15 @@ Feature: Test "user ..." steps - part 1
     Then page title should be "Swag Labs"
     And page title should contain "ag Lab"
 
-  Scenario: 'user goes to page' should open corresponding page
+  Scenario: 'user goes to page' should open corresponding page, 'page title should contain' should verify the title
     Given user goes to "test1-page"."urlTest1"
-    Then page title should be "Test1 Page"
+    Then page title should be "test1-page"."textTest1Page"
+    And page title should contain "test1-page"."textTest1PagePartial"
 
-  Scenario: 'user goes to page' should open corresponding page (text style step)
+  Scenario: 'user goes to page' should open corresponding page (text style step), 'page title should contain' should verify the title
     Given user goes to urlTest1 from test1-page
-    Then page title should be "Test1 Page"
+    Then page title should be textTest1Page from test1-page
+    And page title should contain textTest1PagePartial from test1-page
 
   Scenario: 'user reloads the page' should refresh the page, 'should be present' should verify the element
     Given user goes to "test1-page"."urlTest1"
