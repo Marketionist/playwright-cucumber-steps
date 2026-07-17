@@ -151,3 +151,19 @@ Feature: Test "I ..." steps - part 2
     }
     """
     Then response headers should contain headersTestJson from test2-page
+
+  Scenario: 'attribute should contain' should verify attribute contains string
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."linkTest2Page" attribute "href" should contain "test2.html"
+
+  Scenario: 'attribute should contain' should verify attribute contains string (text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then linkTest2Page from test1-page attribute "href" should contain "test2.html"
+
+  Scenario: 'attribute should contain' should verify attribute contains string (Page Object style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."linkTest2Page" attribute "href" should contain "test2-page"."urlTest2"
+
+  Scenario: 'attribute should contain' should verify attribute contains string (full text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then linkTest2Page from test1-page attribute "href" should contain urlTest2 from test2-page

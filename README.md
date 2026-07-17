@@ -537,7 +537,7 @@ XPath selector). For example:
         // ...
     };
     ```
-> Note: `enter` steps use Playwright's `fill` method (faster than `type` steps
+> Note: `enter` steps use Playwright's `fill` method (faster than `type` steps,
 > but does not trigger per-key events). It acts as if the text was pasted into
 > the field all at once, firing only an input and a change event at the end of
 > the operation.
@@ -620,7 +620,7 @@ selector). For example:
     };
     ```
 > Note: `type` steps use Playwright's `pressSequentially` method (slower than
-> `enter` steps but triggers per-key events like keydown, keypress/input, and
+> `enter` steps, but triggers per-key events like keydown, keypress/input, and
 > keyup for each character in the text). In most cases, you should use `enter`
 > steps instead. You only need to press keys one by one if there is special
 > keyboard handling on the page.
@@ -1524,14 +1524,93 @@ example:
         // ...
     };
     ```
-30. `response status code should be ...` - verify that the response status code
+30. `"..."."..." attribute "..." should contain "..."` - verify that the element (provided
+in **"page"."element"** as a CSS or XPath selector) contains the given attribute
+value (attribute provided in "" as a string, value provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."linkTest2Page" attribute "href" should contain "test2.html"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
+- `... from ... attribute "..." should contain "..."` - verify that the element (provided
+in **element** from **page** as a CSS or XPath selector) contains the given attribute
+value (attribute provided in "" as a string, value provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then linkTest2PageXPath from my-page attribute "href" should contain "test2.html"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
+- `"..."."..." attribute "..." should contain "..."."..."` - verify that the element
+(provided in **"page1"."element1"** as a CSS or XPath selector) contains the
+given attribute value (attribute provided in "" as a string, value provided in **"page2"."element2"** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."linkTest2Page" attribute "href" should contain "my-page"."urlTest2"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        urlTest2: 'http://localhost:8001/test2.html',
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
+- `... from ... attribute "..." should contain ... from ...` - verify that the element
+(provided in **element1** from **page1** as a CSS or XPath selector) contains
+the given attribute value (attribute provided in "" as a string, value provided in **element2** from **page2** as a string). For
+example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then linkTest2PageXPath from my-page attribute "href" should contain urlTest2 from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        urlTest2: 'http://localhost:8001/test2.html',
+        // ...
+        linkTest2Page: '#link-test2-page',
+        // OR
+        linkTest2PageXPath: '//*[@id="link-test2-page"]',
+        // ...
+    };
+    ```
+31. `response status code should be ...` - verify that the response status code
 equals to a provided number. For example:
     ```gherkin
     # tests/features/my-test-api.feature
 
     Then response status code should be 200
     ```
-31. `response body should contain "..."` - verify that the response body
+32. `response body should contain "..."` - verify that the response body
 contains the property (provided in "" as a string with a JSON object inside).
 For example:
     ```gherkin
@@ -1577,7 +1656,7 @@ as a string with a JSON object inside). For example:
         // ...
     };
     ```
-32. `response headers should contain "..."` - verify that the response headers
+33. `response headers should contain "..."` - verify that the response headers
 contain the property (provided in "" as a string with a JSON object inside). For
 example:
     ```gherkin
