@@ -9,8 +9,8 @@ nodeTestingServer.config = {
     port: 8001,
     logsEnabled: 0,
     pages: {
-        '/test1.html': `<title>Test1 Page</title><a id="link-test2-page" href="
-            http://localhost:8001/test2.html">Test2 page</a>
+        '/test1.html': `<title>Test1 Page</title>
+            <a id="link-test2-page" href="http://localhost:8001/test2.html">Test2 page</a>
             <style>
                 #block-menu {
                     width: 20%;
