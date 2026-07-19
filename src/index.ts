@@ -927,6 +927,56 @@ Then('{word} from {word}( page) attribute {string} should contain {word} from {w
         .toHaveAttribute(attribute, regularExpression);
 });
 
+Then('{string}.{string} attribute {string} should not contain {string}', async (
+    { page, }, pageObject: string, element: string, attribute: string, text: string
+) => {
+    const regularExpression = new RegExp(`^.*${text}.*$`, 'g');
+
+    await expect(page.locator(pageObjects[pageObject][element]))
+        .not.toHaveAttribute(attribute, regularExpression);
+});
+
+Then('{word} from {word}( page) attribute {string} should not contain {string}', async (
+    { page, }, element: string, pageObject: string, attribute: string, text: string
+) => {
+    const regularExpression = new RegExp(`^.*${text}.*$`, 'g');
+
+    await expect(page.locator(pageObjects[pageObject][element]))
+        .not.toHaveAttribute(attribute, regularExpression);
+});
+
+Then('{string}.{string} attribute {string} should not contain {string}.{string}', async (
+    { page, },
+    pageObject1: string,
+    element1: string,
+    attribute: string,
+    pageObject2: string,
+    element2: string
+) => {
+    const regularExpression = new RegExp(
+        `^.*${pageObjects[pageObject2][element2]}.*$`, 'g'
+    );
+
+    await expect(page.locator(pageObjects[pageObject1][element1]))
+        .not.toHaveAttribute(attribute, regularExpression);
+});
+
+Then('{word} from {word}( page) attribute {string} should not contain {word} from {word}( page)', async (
+    { page, },
+    element1: string,
+    pageObject1: string,
+    attribute: string,
+    element2: string,
+    pageObject2: string
+) => {
+    const regularExpression = new RegExp(
+        `^.*${pageObjects[pageObject2][element2]}.*$`, 'g'
+    );
+
+    await expect(page.locator(pageObjects[pageObject1][element1]))
+        .not.toHaveAttribute(attribute, regularExpression);
+});
+
 Then('response status code should be {int}', async (
     { ctx, }, resStatusCode: number
 ) => {
