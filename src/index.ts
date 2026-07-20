@@ -927,6 +927,44 @@ Then('{word} from {word}( page) attribute {string} should contain {word} from {w
         .toHaveAttribute(attribute, regularExpression);
 });
 
+Then('{string}.{string} CSS property {string} should contain {string}', async (
+    { page, }, pageObject: string, element: string, cssProperty: string, value: string
+) => {
+    const regularExpression = new RegExp(`^.*${value}.*$`, 'g');
+    await expect(page.locator(pageObjects[pageObject][element])).toHaveCSS(cssProperty, regularExpression);
+});
+
+Then('{word} from {word}( page) CSS property {string} should contain {string}', async (
+    { page, }, element: string, pageObject: string, cssProperty: string, value: string
+) => {
+    const regularExpression = new RegExp(`^.*${value}.*$`, 'g');
+    await expect(page.locator(pageObjects[pageObject][element])).toHaveCSS(cssProperty, regularExpression);
+});
+
+Then('{string}.{string} CSS property {string} should contain {string}.{string}', async (
+    { page, },
+    pageObject1: string,
+    element1: string,
+    cssProperty: string,
+    pageObject2: string,
+    element2: string
+) => {
+    const regularExpression = new RegExp(`^.*${pageObjects[pageObject2][element2]}.*$`, 'g');
+    await expect(page.locator(pageObjects[pageObject1][element1])).toHaveCSS(cssProperty, regularExpression);
+});
+
+Then('{word} from {word}( page) CSS property {string} should contain {word} from {word}( page)', async (
+    { page, },
+    element1: string,
+    pageObject1: string,
+    cssProperty: string,
+    element2: string,
+    pageObject2: string
+) => {
+    const regularExpression = new RegExp(`^.*${pageObjects[pageObject2][element2]}.*$`, 'g');
+    await expect(page.locator(pageObjects[pageObject1][element1])).toHaveCSS(cssProperty, regularExpression);
+});
+
 Then('{string}.{string} attribute {string} should not contain {string}', async (
     { page, }, pageObject: string, element: string, attribute: string, text: string
 ) => {
