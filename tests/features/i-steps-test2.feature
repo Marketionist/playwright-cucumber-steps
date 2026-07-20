@@ -39,6 +39,38 @@ Feature: Test "I ..." steps - part 2
     Given I go to URL "http://localhost:8001/test1.html"
     Then page URL should contain pathTest1 from test2-page
 
+  Scenario: 'attribute should contain' should verify attribute contains string
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."linkTest2Page" attribute "href" should contain "test2.html"
+
+  Scenario: 'attribute should contain' should verify attribute contains string (text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then linkTest2Page from test1-page attribute "href" should contain "test2.html"
+
+  Scenario: 'attribute should contain' should verify attribute contains string (Page Object style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."linkTest2Page" attribute "href" should contain "test2-page"."urlTest2"
+
+  Scenario: 'attribute should contain' should verify attribute contains string (full text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then linkTest2Page from test1-page attribute "href" should contain urlTest2 from test2-page
+
+  Scenario: 'attribute should not contain' should verify attribute does not contain string
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."linkTest2Page" attribute "href" should not contain "test3.html"
+
+  Scenario: 'attribute should not contain' should verify attribute does not contain string (text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then linkTest2Page from test1-page attribute "href" should not contain "test3.html"
+
+  Scenario: 'attribute should not contain' should verify attribute does not contain string (Page Object style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."linkTest2Page" attribute "href" should not contain "test2-page"."urlTest1"
+
+  Scenario: 'attribute should not contain' should verify attribute does not contain string (full text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then linkTest2Page from test1-page attribute "href" should not contain urlTest1 from test2-page
+
   Scenario: 'I send "POST" request' should return the content of the page, 'response status code should be' (body provided in the step string)
     Given I send "POST" request to "http://localhost:8001/post" with body "{ \"test1\": 1, \"test2\": 2 }"
     Then response status code should be 200
@@ -151,19 +183,3 @@ Feature: Test "I ..." steps - part 2
     }
     """
     Then response headers should contain headersTestJson from test2-page
-
-  Scenario: 'attribute should contain' should verify attribute contains string
-    Given I go to URL "http://localhost:8001/test1.html"
-    Then "test1-page"."linkTest2Page" attribute "href" should contain "test2.html"
-
-  Scenario: 'attribute should contain' should verify attribute contains string (text style step)
-    Given I go to URL "http://localhost:8001/test1.html"
-    Then linkTest2Page from test1-page attribute "href" should contain "test2.html"
-
-  Scenario: 'attribute should contain' should verify attribute contains string (Page Object style step)
-    Given I go to URL "http://localhost:8001/test1.html"
-    Then "test1-page"."linkTest2Page" attribute "href" should contain "test2-page"."urlTest2"
-
-  Scenario: 'attribute should contain' should verify attribute contains string (full text style step)
-    Given I go to URL "http://localhost:8001/test1.html"
-    Then linkTest2Page from test1-page attribute "href" should contain urlTest2 from test2-page
