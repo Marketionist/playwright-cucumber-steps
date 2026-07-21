@@ -71,6 +71,22 @@ Feature: Test "I ..." steps - part 2
     Given I go to URL "http://localhost:8001/test1.html"
     Then linkTest2Page from test1-page attribute "href" should not contain urlTest1 from test2-page
 
+  Scenario: 'CSS property should contain' should verify CSS property contains string
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."titleTest1" CSS property "display" should contain "block"
+
+  Scenario: 'CSS property should contain' should verify CSS property contains string (text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then titleTest1 from test1-page CSS property "display" should contain "block"
+
+  Scenario: 'CSS property should contain' should verify CSS property contains string (Page Object style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."titleTest1" CSS property "display" should contain "test1-page"."cssValueBlock"
+
+  Scenario: 'CSS property should contain' should verify CSS property contains string (full text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then titleTest1 from test1-page CSS property "display" should contain cssValueBlock from test1-page
+
   Scenario: 'I send "POST" request' should return the content of the page, 'response status code should be' (body provided in the step string)
     Given I send "POST" request to "http://localhost:8001/post" with body "{ \"test1\": 1, \"test2\": 2 }"
     Then response status code should be 200

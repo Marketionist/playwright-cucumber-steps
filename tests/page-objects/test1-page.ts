@@ -20,6 +20,7 @@ const test1Page: PageModel = {
     blockTextTest: '#text-test',
     txtTest1: 'Test 1 sample',
     txtTest2: 'Test2',
+    cssValueBlock: 'block',
 
 };
 
