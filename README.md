@@ -1682,14 +1682,96 @@ example:
         // ...
     };
     ```
-32. `response status code should be ...` - verify that the response status code
+32. `"..."."..." CSS property "..." should contain "..."` - verify that the element
+(provided in **"page"."element"** as a CSS or XPath selector) has the given CSS
+property value (property provided in "" as a string, value provided in "" as a
+string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."titleTest1" CSS property "display" should contain "block"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        titleTest1: 'h1',
+        // OR
+        titleTest1XPath: '//h1',
+        // ...
+    };
+    ```
+- `... from ... CSS property "..." should contain "..."` - verify that the element
+(provided in **element** from **page** as a CSS or XPath selector) has the given
+CSS property value (property provided in "" as a string, value provided in ""
+as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then titleTest1 from my-page CSS property "display" should contain "block"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        titleTest1: 'h1',
+        // OR
+        titleTest1XPath: '//h1',
+        // ...
+    };
+    ```
+- `"..."."..." CSS property "..." should contain "..."."..."` - verify that the
+element (provided in **"page1"."element1"** as a CSS or XPath selector) has the
+given CSS property value (property provided in "" as a string, value provided in
+**"page2"."element2"** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."titleTest1" CSS property "display" should contain "my-page"."cssValueBlock"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        cssValueBlock: 'block',
+        // ...
+        titleTest1: 'h1',
+        // OR
+        titleTest1XPath: '//h1',
+        // ...
+    };
+    ```
+- `... from ... CSS property "..." should contain ... from ...` - verify that the
+element (provided in **element1** from **page1** as a CSS or XPath selector) has
+the given CSS property value (property provided in "" as a string, value provided
+in **element2** from **page2** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then titleTest1 from my-page CSS property "display" should contain cssValueBlock from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        cssValueBlock: 'block',
+        // ...
+        titleTest1: 'h1',
+        // OR
+        titleTest1XPath: '//h1',
+        // ...
+    };
+    ```
+33. `response status code should be ...` - verify that the response status code
 equals to a provided number. For example:
     ```gherkin
     # tests/features/my-test-api.feature
 
     Then response status code should be 200
     ```
-33. `response body should contain "..."` - verify that the response body
+34. `response body should contain "..."` - verify that the response body
 contains the property (provided in "" as a string with a JSON object inside).
 For example:
     ```gherkin
@@ -1735,7 +1817,7 @@ as a string with a JSON object inside). For example:
         // ...
     };
     ```
-34. `response headers should contain "..."` - verify that the response headers
+35. `response headers should contain "..."` - verify that the response headers
 contain the property (provided in "" as a string with a JSON object inside). For
 example:
     ```gherkin
