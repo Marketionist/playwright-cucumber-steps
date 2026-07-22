@@ -1764,7 +1764,89 @@ in **element2** from **page2** as a string). For example:
         // ...
     };
     ```
-33. `response status code should be ...` - verify that the response status code
+33. `"..."."..." CSS property "..." should not contain "..."` - verify that the
+element (provided in **"page"."element"** as a CSS or XPath selector) does not
+have the given CSS property value (property provided in "" as a string, value
+provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."titleTest1" CSS property "display" should not contain "inline"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        titleTest1: 'h1',
+        // OR
+        titleTest1XPath: '//h1',
+        // ...
+    };
+    ```
+- `... from ... CSS property "..." should not contain "..."` - verify that the
+element (provided in **element** from **page** as a CSS or XPath selector) does
+not have the given CSS property value (property provided in "" as a string, value
+provided in "" as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then titleTest1 from my-page CSS property "display" should not contain "inline"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        titleTest1: 'h1',
+        // OR
+        titleTest1XPath: '//h1',
+        // ...
+    };
+    ```
+- `"..."."..." CSS property "..." should not contain "..."."..."` - verify that
+the element (provided in **"page1"."element1"** as a CSS or XPath selector) does
+not have the given CSS property value (property provided in "" as a string, value
+provided in **"page2"."element2"** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."titleTest1" CSS property "display" should not contain "my-page"."cssValueInline"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        cssValueInline: 'inline',
+        // ...
+        titleTest1: 'h1',
+        // OR
+        titleTest1XPath: '//h1',
+        // ...
+    };
+    ```
+- `... from ... CSS property "..." should not contain ... from ...` - verify that
+the element (provided in **element1** from **page1** as a CSS or XPath selector)
+does not have the given CSS property value (property provided in "" as a string,
+value provided in **element2** from **page2** as a string). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then titleTest1 from my-page CSS property "display" should not contain cssValueInline from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        cssValueInline: 'inline',
+        // ...
+        titleTest1: 'h1',
+        // OR
+        titleTest1XPath: '//h1',
+        // ...
+    };
+    ```
+34. `response status code should be ...` - verify that the response status code
 equals to a provided number. For example:
     ```gherkin
     # tests/features/my-test-api.feature
