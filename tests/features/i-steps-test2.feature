@@ -87,6 +87,22 @@ Feature: Test "I ..." steps - part 2
     Given I go to URL "http://localhost:8001/test1.html"
     Then titleTest1 from test1-page CSS property "display" should contain cssValueBlock from test1-page
 
+  Scenario: 'CSS property should not contain' should verify CSS property does not contain string
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."titleTest1" CSS property "display" should not contain "inline"
+
+  Scenario: 'CSS property should not contain' should verify CSS property does not contain string (text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then titleTest1 from test1-page CSS property "display" should not contain "inline"
+
+  Scenario: 'CSS property should not contain' should verify CSS property does not contain string (Page Object style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."titleTest1" CSS property "display" should not contain "test1-page"."cssValueInline"
+
+  Scenario: 'CSS property should not contain' should verify CSS property does not contain string (full text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then titleTest1 from test1-page CSS property "display" should not contain cssValueInline from test1-page
+
   Scenario: 'I send "POST" request' should return the content of the page, 'response status code should be' (body provided in the step string)
     Given I send "POST" request to "http://localhost:8001/post" with body "{ \"test1\": 1, \"test2\": 2 }"
     Then response status code should be 200
