@@ -86,7 +86,9 @@ void (async function requirePageObjects (): Promise<PageObject> {
             fullPageObjectsFolderPathes);
         const allRequiredPageObjects = allPageObjectFiles.filter(
             (value) => {
-                return value.includes('page.ts');
+                const pattern = new RegExp('^.*-page.ts$', 'g');
+
+                return pattern.test(value);
             }
         );
 

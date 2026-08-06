@@ -61,7 +61,8 @@ void (async function requirePageObjects() {
     try {
         const allPageObjectFiles = await readDirectories(fullPageObjectsFolderPathes);
         const allRequiredPageObjects = allPageObjectFiles.filter((value) => {
-            return value.includes('page.ts');
+            const pattern = new RegExp('^.*-page.ts$', 'g');
+            return pattern.test(value);
         });
         await Promise.all(allRequiredPageObjects.map(async (file) => {
             const fileName = node_path_1.default.basename(file, '.ts');
