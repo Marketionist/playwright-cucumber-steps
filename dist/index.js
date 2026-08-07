@@ -325,6 +325,9 @@ const spacesToIndent = 4;
 (0, fixtures_1.When)('I/user reload(s) the page', async ({ page, }) => {
     await page.reload();
 });
+(0, fixtures_1.When)('I/user resize(s) the page to {int}x{int} px', async ({ page, }, width, height) => {
+    await page.setViewportSize({ width, height, });
+});
 (0, fixtures_1.When)('I/user wait(s) for {int} ms', async ({ page, }, timeToWait) => {
     // Timeout to wait for in milliseconds
     await page.waitForTimeout(timeToWait);

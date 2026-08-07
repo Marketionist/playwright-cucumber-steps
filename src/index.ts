@@ -570,6 +570,12 @@ When('I/user reload(s) the page', async ({ page, }) => {
     await page.reload();
 });
 
+When('I/user resize(s) the page to {int}x{int} px', async (
+    { page, }, width: number, height: number
+) => {
+    await page.setViewportSize({ width, height, });
+});
+
 When('I/user wait(s) for {int} ms', async ({ page, }, timeToWait: number) => {
     // Timeout to wait for in milliseconds
     await page.waitForTimeout(timeToWait);
