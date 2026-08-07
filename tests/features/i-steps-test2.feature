@@ -39,6 +39,22 @@ Feature: Test "I ..." steps - part 2
     Given I go to URL "http://localhost:8001/test1.html"
     Then page URL should contain pathTest1 from test2-page
 
+  Scenario: 'attribute should be' should verify attribute equals string
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."linkTest2Page" attribute "href" should be "http://localhost:8001/test2.html"
+
+  Scenario: 'attribute should be' should verify attribute equals string (text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then linkTest2Page from test1-page attribute "href" should be "http://localhost:8001/test2.html"
+
+  Scenario: 'attribute should be' should verify attribute equals string (Page Object style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."linkTest2Page" attribute "href" should be "test2-page"."urlTest2"
+
+  Scenario: 'attribute should be' should verify attribute equals string (full text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then linkTest2Page from test1-page attribute "href" should be urlTest2 from test2-page
+
   Scenario: 'attribute should contain' should verify attribute contains string
     Given I go to URL "http://localhost:8001/test1.html"
     Then "test1-page"."linkTest2Page" attribute "href" should contain "test2.html"
