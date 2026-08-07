@@ -30,6 +30,11 @@ Feature: Test "I ..." steps - part 1
     And I reload the page
     Then linkTest2Page from test1-page should be present
 
+  Scenario: 'I resize the page' should resize the page viewport, 'should be present' should verify the element
+    Given I go to "test1-page"."urlTest1"
+    When I resize the page to 1280x720 px
+    Then "test1-page"."linkTest2Page" should be present
+
   Scenario: 'number should be present' should verify the number of elements
     Given I go to "test2-page"."urlTest2"
     Then 4 "test2-page"."input" should be present
