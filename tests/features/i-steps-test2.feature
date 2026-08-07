@@ -87,6 +87,22 @@ Feature: Test "I ..." steps - part 2
     Given I go to URL "http://localhost:8001/test1.html"
     Then linkTest2Page from test1-page attribute "href" should not contain urlTest1 from test2-page
 
+  Scenario: 'CSS property should be' should verify CSS property equals string
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."titleTest1" CSS property "display" should be "block"
+
+  Scenario: 'CSS property should be' should verify CSS property equals string (text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then titleTest1 from test1-page CSS property "display" should be "block"
+
+  Scenario: 'CSS property should be' should verify CSS property equals string (Page Object style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then "test1-page"."titleTest1" CSS property "display" should be "test1-page"."cssValueBlock"
+
+  Scenario: 'CSS property should be' should verify CSS property equals string (full text style step)
+    Given I go to URL "http://localhost:8001/test1.html"
+    Then titleTest1 from test1-page CSS property "display" should be cssValueBlock from test1-page
+
   Scenario: 'CSS property should contain' should verify CSS property contains string
     Given I go to URL "http://localhost:8001/test1.html"
     Then "test1-page"."titleTest1" CSS property "display" should contain "block"

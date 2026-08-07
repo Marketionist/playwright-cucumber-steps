@@ -532,6 +532,22 @@ const spacesToIndent = 4;
     await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1]))
         .not.toHaveAttribute(attribute, regularExpression);
 });
+(0, fixtures_1.Then)('{string}.{string} CSS property {string} should be {string}', async ({ page, }, pageObject, element, cssProperty, value) => {
+    const regularExpression = new RegExp(`^${value}$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element])).toHaveCSS(cssProperty, regularExpression);
+});
+(0, fixtures_1.Then)('{word} from {word}( page) CSS property {string} should be {string}', async ({ page, }, element, pageObject, cssProperty, value) => {
+    const regularExpression = new RegExp(`^${value}$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element])).toHaveCSS(cssProperty, regularExpression);
+});
+(0, fixtures_1.Then)('{string}.{string} CSS property {string} should be {string}.{string}', async ({ page, }, pageObject1, element1, cssProperty, pageObject2, element2) => {
+    const regularExpression = new RegExp(`^${get_page_objects_1.pageObjects[pageObject2][element2]}$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1])).toHaveCSS(cssProperty, regularExpression);
+});
+(0, fixtures_1.Then)('{word} from {word}( page) CSS property {string} should be {word} from {word}( page)', async ({ page, }, element1, pageObject1, cssProperty, element2, pageObject2) => {
+    const regularExpression = new RegExp(`^${get_page_objects_1.pageObjects[pageObject2][element2]}$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1])).toHaveCSS(cssProperty, regularExpression);
+});
 (0, fixtures_1.Then)('{string}.{string} CSS property {string} should contain {string}', async ({ page, }, pageObject, element, cssProperty, value) => {
     const regularExpression = new RegExp(`^.*${value}.*$`, 'g');
     await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element])).toHaveCSS(cssProperty, regularExpression);
