@@ -472,6 +472,26 @@ const spacesToIndent = 4;
     const currentUrl = page.url();
     (0, test_1.expect)(currentUrl).toContain(get_page_objects_1.pageObjects[pageObject][element]);
 });
+(0, fixtures_1.Then)('{string}.{string} attribute {string} should be {string}', async ({ page, }, pageObject, element, attribute, text) => {
+    const regularExpression = new RegExp(`^${text}$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element]))
+        .toHaveAttribute(attribute, regularExpression);
+});
+(0, fixtures_1.Then)('{word} from {word}( page) attribute {string} should be {string}', async ({ page, }, element, pageObject, attribute, text) => {
+    const regularExpression = new RegExp(`^${text}$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element]))
+        .toHaveAttribute(attribute, regularExpression);
+});
+(0, fixtures_1.Then)('{string}.{string} attribute {string} should be {string}.{string}', async ({ page, }, pageObject1, element1, attribute, pageObject2, element2) => {
+    const regularExpression = new RegExp(`^${get_page_objects_1.pageObjects[pageObject2][element2]}$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1]))
+        .toHaveAttribute(attribute, regularExpression);
+});
+(0, fixtures_1.Then)('{word} from {word}( page) attribute {string} should be {word} from {word}( page)', async ({ page, }, element1, pageObject1, attribute, element2, pageObject2) => {
+    const regularExpression = new RegExp(`^${get_page_objects_1.pageObjects[pageObject2][element2]}$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1]))
+        .toHaveAttribute(attribute, regularExpression);
+});
 (0, fixtures_1.Then)('{string}.{string} attribute {string} should contain {string}', async ({ page, }, pageObject, element, attribute, text) => {
     const regularExpression = new RegExp(`^.*${text}.*$`, 'g');
     await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element]))
@@ -491,6 +511,26 @@ const spacesToIndent = 4;
     const regularExpression = new RegExp(`^.*${get_page_objects_1.pageObjects[pageObject2][element2]}.*$`, 'g');
     await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1]))
         .toHaveAttribute(attribute, regularExpression);
+});
+(0, fixtures_1.Then)('{string}.{string} attribute {string} should not contain {string}', async ({ page, }, pageObject, element, attribute, text) => {
+    const regularExpression = new RegExp(`^.*${text}.*$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element]))
+        .not.toHaveAttribute(attribute, regularExpression);
+});
+(0, fixtures_1.Then)('{word} from {word}( page) attribute {string} should not contain {string}', async ({ page, }, element, pageObject, attribute, text) => {
+    const regularExpression = new RegExp(`^.*${text}.*$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element]))
+        .not.toHaveAttribute(attribute, regularExpression);
+});
+(0, fixtures_1.Then)('{string}.{string} attribute {string} should not contain {string}.{string}', async ({ page, }, pageObject1, element1, attribute, pageObject2, element2) => {
+    const regularExpression = new RegExp(`^.*${get_page_objects_1.pageObjects[pageObject2][element2]}.*$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1]))
+        .not.toHaveAttribute(attribute, regularExpression);
+});
+(0, fixtures_1.Then)('{word} from {word}( page) attribute {string} should not contain {word} from {word}( page)', async ({ page, }, element1, pageObject1, attribute, element2, pageObject2) => {
+    const regularExpression = new RegExp(`^.*${get_page_objects_1.pageObjects[pageObject2][element2]}.*$`, 'g');
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1]))
+        .not.toHaveAttribute(attribute, regularExpression);
 });
 (0, fixtures_1.Then)('{string}.{string} CSS property {string} should contain {string}', async ({ page, }, pageObject, element, cssProperty, value) => {
     const regularExpression = new RegExp(`^.*${value}.*$`, 'g');
@@ -523,26 +563,6 @@ const spacesToIndent = 4;
 (0, fixtures_1.Then)('{word} from {word}( page) CSS property {string} should not contain {word} from {word}( page)', async ({ page, }, element1, pageObject1, cssProperty, element2, pageObject2) => {
     const regularExpression = new RegExp(`^.*${get_page_objects_1.pageObjects[pageObject2][element2]}.*$`, 'g');
     await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1])).not.toHaveCSS(cssProperty, regularExpression);
-});
-(0, fixtures_1.Then)('{string}.{string} attribute {string} should not contain {string}', async ({ page, }, pageObject, element, attribute, text) => {
-    const regularExpression = new RegExp(`^.*${text}.*$`, 'g');
-    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element]))
-        .not.toHaveAttribute(attribute, regularExpression);
-});
-(0, fixtures_1.Then)('{word} from {word}( page) attribute {string} should not contain {string}', async ({ page, }, element, pageObject, attribute, text) => {
-    const regularExpression = new RegExp(`^.*${text}.*$`, 'g');
-    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element]))
-        .not.toHaveAttribute(attribute, regularExpression);
-});
-(0, fixtures_1.Then)('{string}.{string} attribute {string} should not contain {string}.{string}', async ({ page, }, pageObject1, element1, attribute, pageObject2, element2) => {
-    const regularExpression = new RegExp(`^.*${get_page_objects_1.pageObjects[pageObject2][element2]}.*$`, 'g');
-    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1]))
-        .not.toHaveAttribute(attribute, regularExpression);
-});
-(0, fixtures_1.Then)('{word} from {word}( page) attribute {string} should not contain {word} from {word}( page)', async ({ page, }, element1, pageObject1, attribute, element2, pageObject2) => {
-    const regularExpression = new RegExp(`^.*${get_page_objects_1.pageObjects[pageObject2][element2]}.*$`, 'g');
-    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1]))
-        .not.toHaveAttribute(attribute, regularExpression);
 });
 (0, fixtures_1.Then)('response status code should be {int}', async ({ ctx, }, resStatusCode) => {
     await (0, verify_api_1.verifyResponseStatus)(ctx, resStatusCode);
