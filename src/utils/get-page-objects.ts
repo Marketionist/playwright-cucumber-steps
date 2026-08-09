@@ -2,19 +2,15 @@
 
 // #############################################################################
 
-import { readdir, stat } from 'node:fs';
-import { promisify } from 'node:util';
+import { readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 const spacesToIndent = 4;
 
-const readdirP = promisify(readdir);
-const statP = promisify(stat);
-
 async function _readDirectory (
     directory: string, allFiles?: string[]
 ): Promise<string[]> {
-    const files = (await readdirP(directory)).map((filePath) => {
+    const files = (await readdir(directory)).map((filePath) => {
         return path.join(directory, filePath);
     });
     const allFilesPaths = allFiles ?? [];
@@ -22,7 +18,7 @@ async function _readDirectory (
     allFilesPaths.push(...files);
     await Promise.all(
         files.map(async (f) => {
-            return (await statP(f)).isDirectory() && _readDirectory(f, allFilesPaths);
+            return (await stat(f)).isDirectory() && _readDirectory(f, allFilesPaths);
         })
     );
 
@@ -80,7 +76,7 @@ if (isCalledExternallyPnpm) {
 type PageObject = Record<string, Record<string, string>>;
 const allPageObjects: PageObject = {};
 
-void (async function requirePageObjects (): Promise<PageObject> {
+export const pageObjectsPromise = (async function requirePageObjects (): Promise<PageObject> {
     try {
         const allPageObjectFiles = await readDirectories(
             fullPageObjectsFolderPathes);
@@ -106,8 +102,6 @@ void (async function requirePageObjects (): Promise<PageObject> {
                 }
 
                 allPageObjects[fileName] = fileContent.default ?? fileContent;
-
-                return file;
             })
         );
 

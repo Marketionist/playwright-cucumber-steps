@@ -6,8 +6,8 @@
 import { expect } from '@playwright/test';
 import { Given, When, Then } from './fixtures';
 export { Given, When, Then } from './fixtures';
-import { pageObjects } from './utils/get-page-objects';
-export { pageObjects } from './utils/get-page-objects';
+import { pageObjects, pageObjectsPromise } from './utils/get-page-objects';
+export { pageObjects, pageObjectsPromise } from './utils/get-page-objects';
 import errors from './utils/errors';
 import {
     sendRequest,
