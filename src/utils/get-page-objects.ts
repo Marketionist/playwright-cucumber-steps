@@ -82,7 +82,7 @@ export const pageObjectsPromise = (async function requirePageObjects (): Promise
             fullPageObjectsFolderPathes);
         const allRequiredPageObjects = allPageObjectFiles.filter(
             (value) => {
-                const pattern = new RegExp('^.*-page.ts$', 'g');
+                const pattern = new RegExp('^.*-page\\.(ts|js)$', 'g');
 
                 return pattern.test(value);
             }
@@ -90,7 +90,7 @@ export const pageObjectsPromise = (async function requirePageObjects (): Promise
 
         await Promise.all(
             allRequiredPageObjects.map(async (file) => {
-                const fileName = path.basename(file, '.ts');
+                const fileName = path.basename(file, path.extname(file));
                 let fileContent: any;
 
                 try {
