@@ -7,12 +7,16 @@ import { test as base, createBdd } from 'playwright-bdd';
 import { pageObjectsPromise } from './utils/get-page-objects';
 
 interface Fixtures {
-    ctx: Record<string, any>
+    pageObjectsInit: void;
+    ctx: Record<string, any>;
 }
 
 export const test = base.extend<Fixtures>({
-    ctx: async ({}, use) => {
+    pageObjectsInit: [async ({}, use) => {
         await pageObjectsPromise;
+        await use();
+    }, { auto: true, },],
+    ctx: async ({}, use) => {
         const ctx = {};
 
         await use(ctx);
