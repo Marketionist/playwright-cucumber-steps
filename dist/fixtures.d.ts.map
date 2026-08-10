@@ -1,1 +1,1 @@
-{"version":3,"file":"fixtures.d.ts","sourceRoot":"","sources":["../src/fixtures.ts"],"names":[],"mappings":"AAQA,UAAU,QAAQ;IACd,GAAG,EAAE,MAAM,CAAC,MAAM,EAAE,GAAG,CAAC,CAAA;CAC3B;AAED,eAAO,MAAM,IAAI,2UAOf,CAAC;AAEH,eAAO,MAAQ,KAAK,2YAAE,IAAI,2YAAE,IAAI,yYAAqB,CAAC"}
+{"version":3,"file":"fixtures.d.ts","sourceRoot":"","sources":["../src/fixtures.ts"],"names":[],"mappings":"AAQA,UAAU,QAAQ;IACd,eAAe,EAAE,IAAI,CAAC;IACtB,GAAG,EAAE,MAAM,CAAC,MAAM,EAAE,GAAG,CAAC,CAAC;CAC5B;AAED,eAAO,MAAM,IAAI,2UAUf,CAAC;AAEH,eAAO,MAAQ,KAAK,2YAAE,IAAI,2YAAE,IAAI,yYAAqB,CAAC"}
