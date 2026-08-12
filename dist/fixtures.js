@@ -6,12 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Then = exports.When = exports.Given = exports.test = void 0;
 // #############################################################################
 const playwright_bdd_1 = require("playwright-bdd");
-const get_page_objects_1 = require("./utils/get-page-objects");
 exports.test = playwright_bdd_1.test.extend({
-    pageObjectsInit: [async ({}, use) => {
-            await get_page_objects_1.pageObjectsPromise;
-            await use();
-        }, { auto: true, },],
     ctx: async ({}, use) => {
         const ctx = {};
         await use(ctx);

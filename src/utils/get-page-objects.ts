@@ -2,15 +2,19 @@
 
 // #############################################################################
 
-import { readdir, stat } from 'node:fs/promises';
+import { readdir, stat } from 'node:fs';
+import { promisify } from 'node:util';
 import path from 'node:path';
 
 const spacesToIndent = 4;
 
+const readdirP = promisify(readdir);
+const statP = promisify(stat);
+
 async function _readDirectory (
     directory: string, allFiles?: string[]
 ): Promise<string[]> {
-    const files = (await readdir(directory)).map((filePath) => {
+    const files = (await readdirP(directory)).map((filePath) => {
         return path.join(directory, filePath);
     });
     const allFilesPaths = allFiles ?? [];
@@ -18,7 +22,7 @@ async function _readDirectory (
     allFilesPaths.push(...files);
     await Promise.all(
         files.map(async (f) => {
-            return (await stat(f)).isDirectory() && _readDirectory(f, allFilesPaths);
+            return (await statP(f)).isDirectory() && _readDirectory(f, allFilesPaths);
         })
     );
 
@@ -76,13 +80,13 @@ if (isCalledExternallyPnpm) {
 type PageObject = Record<string, Record<string, string>>;
 const allPageObjects: PageObject = {};
 
-export const pageObjectsPromise = (async function requirePageObjects (): Promise<PageObject> {
+void (async function requirePageObjects (): Promise<PageObject> {
     try {
         const allPageObjectFiles = await readDirectories(
             fullPageObjectsFolderPathes);
         const allRequiredPageObjects = allPageObjectFiles.filter(
             (value) => {
-                const pattern = new RegExp('^.*-page\\.(ts|js)$', 'g');
+                const pattern = new RegExp('^.*-page.ts$', 'g');
 
                 return pattern.test(value);
             }
@@ -90,7 +94,7 @@ export const pageObjectsPromise = (async function requirePageObjects (): Promise
 
         await Promise.all(
             allRequiredPageObjects.map(async (file) => {
-                const fileName = path.basename(file, path.extname(file));
+                const fileName = path.basename(file, '.ts');
                 let fileContent: any;
 
                 try {
@@ -102,6 +106,8 @@ export const pageObjectsPromise = (async function requirePageObjects (): Promise
                 }
 
                 allPageObjects[fileName] = fileContent.default ?? fileContent;
+
+                return file;
             })
         );
 

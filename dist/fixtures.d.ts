@@ -1,5 +1,4 @@
 interface Fixtures {
-    pageObjectsInit: void;
     ctx: Record<string, any>;
 }
 export declare const test: import("playwright/test").TestType<import("playwright/test").PlaywrightTestArgs & import("playwright/test").PlaywrightTestOptions & import("playwright-bdd").BddTestFixtures & Fixtures, import("playwright/test").PlaywrightWorkerArgs & import("playwright/test").PlaywrightWorkerOptions & import("playwright-bdd").BddWorkerFixtures>;

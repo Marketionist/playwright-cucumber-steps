@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pageObjectsPromise = exports.pageObjects = exports.Then = exports.When = exports.Given = void 0;
+exports.pageObjects = exports.Then = exports.When = exports.Given = void 0;
 // #############################################################################
 const test_1 = require("@playwright/test");
 const fixtures_1 = require("./fixtures");
@@ -16,7 +16,6 @@ Object.defineProperty(exports, "Then", { enumerable: true, get: function () { re
 const get_page_objects_1 = require("./utils/get-page-objects");
 var get_page_objects_2 = require("./utils/get-page-objects");
 Object.defineProperty(exports, "pageObjects", { enumerable: true, get: function () { return get_page_objects_2.pageObjects; } });
-Object.defineProperty(exports, "pageObjectsPromise", { enumerable: true, get: function () { return get_page_objects_2.pageObjectsPromise; } });
 const errors_1 = __importDefault(require("./utils/errors"));
 const verify_api_1 = require("./utils/verify-api");
 const spacesToIndent = 4;
