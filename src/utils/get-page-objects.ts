@@ -76,7 +76,7 @@ if (isCalledExternallyPnpm) {
 type PageObject = Record<string, Record<string, string>>;
 const allPageObjects: PageObject = {};
 
-void (async function requirePageObjects (): Promise<PageObject> {
+export const pageObjectsPromise = (async function requirePageObjects (): Promise<PageObject> {
     try {
         const allPageObjectFiles = await readDirectories(
             fullPageObjectsFolderPathes);
@@ -102,8 +102,6 @@ void (async function requirePageObjects (): Promise<PageObject> {
                 }
 
                 allPageObjects[fileName] = fileContent.default ?? fileContent;
-
-                return file;
             })
         );
 

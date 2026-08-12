@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pageObjects = void 0;
+exports.pageObjects = exports.pageObjectsPromise = void 0;
 // #############################################################################
 const promises_1 = require("node:fs/promises");
 const node_path_1 = __importDefault(require("node:path"));
@@ -54,7 +54,7 @@ else {
     });
 }
 const allPageObjects = {};
-void (async function requirePageObjects() {
+exports.pageObjectsPromise = (async function requirePageObjects() {
     try {
         const allPageObjectFiles = await readDirectories(fullPageObjectsFolderPathes);
         const allRequiredPageObjects = allPageObjectFiles.filter((value) => {
@@ -72,7 +72,6 @@ void (async function requirePageObjects() {
                 fileContent = await import(pathToFileURL(file).href);
             }
             allPageObjects[fileName] = fileContent.default ?? fileContent;
-            return file;
         }));
         if (process.env.PRINT_PO !== undefined) {
             console.log('\nPage Objects from PO_FOLDER_PATH:', `\n${JSON.stringify(allPageObjects, null, spacesToIndent)}\n\n`);
