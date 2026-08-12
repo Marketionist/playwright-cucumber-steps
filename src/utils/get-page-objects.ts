@@ -2,19 +2,15 @@
 
 // #############################################################################
 
-import { readdir, stat } from 'node:fs';
-import { promisify } from 'node:util';
+import { readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 const spacesToIndent = 4;
 
-const readdirP = promisify(readdir);
-const statP = promisify(stat);
-
 async function _readDirectory (
     directory: string, allFiles?: string[]
 ): Promise<string[]> {
-    const files = (await readdirP(directory)).map((filePath) => {
+    const files = (await readdir(directory)).map((filePath) => {
         return path.join(directory, filePath);
     });
     const allFilesPaths = allFiles ?? [];
@@ -22,7 +18,7 @@ async function _readDirectory (
     allFilesPaths.push(...files);
     await Promise.all(
         files.map(async (f) => {
-            return (await statP(f)).isDirectory() && _readDirectory(f, allFilesPaths);
+            return (await stat(f)).isDirectory() && _readDirectory(f, allFilesPaths);
         })
     );
 
@@ -86,7 +82,7 @@ void (async function requirePageObjects (): Promise<PageObject> {
             fullPageObjectsFolderPathes);
         const allRequiredPageObjects = allPageObjectFiles.filter(
             (value) => {
-                const pattern = new RegExp('^.*-page.ts$', 'g');
+                const pattern = new RegExp('^.*-page\\.(ts|js)$', 'g');
 
                 return pattern.test(value);
             }
@@ -94,7 +90,7 @@ void (async function requirePageObjects (): Promise<PageObject> {
 
         await Promise.all(
             allRequiredPageObjects.map(async (file) => {
-                const fileName = path.basename(file, '.ts');
+                const fileName = path.basename(file, path.extname(file));
                 let fileContent: any;
 
                 try {
