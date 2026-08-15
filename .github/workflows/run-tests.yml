@@ -21,8 +21,12 @@ on:
   pull_request:
     branches:
       - main
-    paths-ignore:
-      - '**/media/**'
+    paths:
+      - '**.ts'
+      - '**.js'
+      - '**.mjs'
+      - '**.json'
+      - '!**.md'
 
 jobs:
   build-and-test:
