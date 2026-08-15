@@ -196,3 +196,14 @@ Feature: Test "I ..." steps - part 1
     Given I go to "test2-page"."urlTest2"
     When I select textGold from test2-page in dropdownColors from test2-page
     Then dropdownColors from test2-page input should contain textPartGold from test2-page
+
+  Scenario: 'I press' should press a key on the keyboard, 'input should be' should verify the input
+    Given I go to "test2-page"."urlTest2"
+    And I click "test2-page"."inputColors"
+    When I press "G"
+    And I press "r"
+    And I press "e"
+    And I press "e"
+    And I press "n"
+    Then "test2-page"."inputColors" input should be "Green"
+

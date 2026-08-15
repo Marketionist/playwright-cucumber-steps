@@ -566,6 +566,10 @@ When('I/user move(s) to {word} from {word}( page)', async (
     await page.locator(pageObjects[pageObject][element]).hover();
 });
 
+When('I/user press(es) {string}', async ({ page, }, key: string) => {
+    await page.keyboard.press(key);
+});
+
 When('I/user reload(s) the page', async ({ page, }) => {
     await page.reload();
 });
