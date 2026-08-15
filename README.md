@@ -905,7 +905,42 @@ milliseconds). For example:
     When I press "Enter"
     ```
 > Note: see the
-[list of supported keys and key combinations](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values)).
+[list of supported keys and key combinations](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values).
+- `I/user press(es) "..." in "..."."..."` - press a key (provided in "" as a string) in the element (provided in **"page"."element"** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I press "Enter" in "my-page"."inputColors"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `I/user press(es) "..." in ... from ...` - press a key (provided in "" as a string) in the element (provided in **element** from **page** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I press "Enter" in inputColorsXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+
 
 
 ### Then steps
