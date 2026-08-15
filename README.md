@@ -943,8 +943,43 @@ milliseconds). For example:
 
 
 
+20. `I/user focus(es) "..."."..."` - focus on the element (provided in **"page"."element"** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I focus "my-page"."inputColors"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `I/user focus(es) ... from ...` - focus on the element (provided in **element** from **page** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I focus inputColorsXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+
 ### Then steps
-20. `page title should be "..."` - verify that the title of the current browser
+21. `page title should be "..."` - verify that the title of the current browser
 window/tab equals to the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -985,7 +1020,7 @@ a string). For example:
         // ...
     };
     ```
-21. `page title should contain "..."` - verify that the title of the current
+22. `page title should contain "..."` - verify that the title of the current
 browser window/tab contains the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1026,7 +1061,7 @@ current browser window/tab contains the text (provided in **element** from
         // ...
     };
     ```
-22. `"..."."..." should be present` - verify that the element (provided in
+23. `"..."."..." should be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is present on the page. For
 example:
     ```gherkin
@@ -1064,7 +1099,7 @@ For example:
         // ...
     };
     ```
-23. `... "..."."..." should be present` - verify that the number of the elements
+24. `... "..."."..." should be present` - verify that the number of the elements
 (provided in **"page"."element"** as a CSS or XPath selector) are present on the
 page. For example:
     ```gherkin
@@ -1102,7 +1137,7 @@ on the page. For example:
         // ...
     };
     ```
-24. `"..."."..." should not be present` - verify that the element (provided in
+25. `"..."."..." should not be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is not present on the page. For
 example:
     ```gherkin
@@ -1140,7 +1175,43 @@ page. For example:
         // ...
     };
     ```
-25. `"..."."..." text should be "..."` - verify that the text of the element
+26. `"..."."..." should be focused` - verify that the element (provided in
+**"page"."element"** as a CSS or XPath selector) is focused. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."inputColors" should be focused
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+- `... from ... should be focused` - verify that the element (provided in
+**element** from **page** as a CSS or XPath selector) is focused. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then inputColorsXPath from my-page should be focused
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputColors: '#input-colors',
+        // OR
+        inputColorsXPath: '//*[@id="input-colors"]',
+        // ...
+    };
+    ```
+27. `"..."."..." text should be "..."` - verify that the text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string). For example:
     ```gherkin
@@ -1219,7 +1290,7 @@ example:
         // ...
     };
     ```
-26. `"..."."..." text should contain "..."` - verify that the text of the
+28. `"..."."..." text should contain "..."` - verify that the text of the
 element (provided in **"page"."element"** as a CSS or XPath selector) contains
 the text (provided in "" as a string). For example:
     ```gherkin
@@ -1298,7 +1369,7 @@ example:
         // ...
     };
     ```
-27. `"..."."..." input should be "..."` - verify that the element (provided in
+29. `"..."."..." input should be "..."` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) has the given input value
 (provided in "" as a string). For example:
     ```gherkin
@@ -1377,7 +1448,7 @@ example:
         // ...
     };
     ```
-28. `"..."."..." input should contain "..."` - verify that the element (provided
+30. `"..."."..." input should contain "..."` - verify that the element (provided
 in **"page"."element"** as a CSS or XPath selector) contains the given input
 value (provided in "" as a string). For example:
     ```gherkin
@@ -1456,7 +1527,7 @@ example:
         // ...
     };
     ```
-29. `"..."."..." input length should be ...`` - verify that the element (provided
+31. `"..."."..." input length should be ...`` - verify that the element (provided
 in **"page"."element"** as a CSS or XPath selector) contains the input of the
 given length (provided as a number). For example:
     ```gherkin
@@ -1494,7 +1565,7 @@ the given length (provided as a number). For example:
         // ...
     };
     ```
-30. `page URL should be "..."` - verify that the URL of the current page equals
+32. `page URL should be "..."` - verify that the URL of the current page equals
 to the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1534,7 +1605,7 @@ example:
         // ...
     };
     ```
-31. `page URL should contain "..."` - verify that the URL of the current page
+33. `page URL should contain "..."` - verify that the URL of the current page
 contains the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1575,7 +1646,7 @@ example:
         // ...
     };
     ```
-32. `"..."."..." attribute "..." should be "..."` - verify that the element
+34. `"..."."..." attribute "..." should be "..."` - verify that the element
 (provided in **"page"."element"** as a CSS or XPath selector) has exactly the
 given attribute value (attribute provided in "" as a string, value provided in
 "" as a string). For example:
@@ -1657,7 +1728,7 @@ in **element2** from **page2** as a string). For example:
         // ...
     };
     ```
-33. `"..."."..." attribute "..." should contain "..."` - verify that the element (provided
+35. `"..."."..." attribute "..." should contain "..."` - verify that the element (provided
 in **"page"."element"** as a CSS or XPath selector) contains the given attribute
 value (attribute provided in "" as a string, value provided in "" as a string). For example:
     ```gherkin
@@ -1736,7 +1807,7 @@ example:
         // ...
     };
     ```
-34. `"..."."..." attribute "..." should not contain "..."` - verify that the element (provided
+36. `"..."."..." attribute "..." should not contain "..."` - verify that the element (provided
 in **"page"."element"** as a CSS or XPath selector) does not contain the given attribute
 value (attribute provided in "" as a string, value provided in "" as a string). For example:
     ```gherkin
@@ -1815,7 +1886,7 @@ example:
         // ...
     };
     ```
-35. `"..."."..." CSS property "..." should be "..."` - verify that the element
+37. `"..."."..." CSS property "..." should be "..."` - verify that the element
 (provided in **"page"."element"** as a CSS or XPath selector) has exactly the
 given CSS property value (property provided in "" as a string, value provided in
 "" as a string). For example:
@@ -1897,7 +1968,7 @@ provided in **element2** from **page2** as a string). For example:
         // ...
     };
     ```
-36. `"..."."..." CSS property "..." should contain "..."` - verify that the element
+38. `"..."."..." CSS property "..." should contain "..."` - verify that the element
 (provided in **"page"."element"** as a CSS or XPath selector) has the given CSS
 property value (property provided in "" as a string, value provided in "" as a
 string). For example:
@@ -1979,7 +2050,7 @@ in **element2** from **page2** as a string). For example:
         // ...
     };
     ```
-37. `"..."."..." CSS property "..." should not contain "..."` - verify that the
+39. `"..."."..." CSS property "..." should not contain "..."` - verify that the
 element (provided in **"page"."element"** as a CSS or XPath selector) does not
 have the given CSS property value (property provided in "" as a string, value
 provided in "" as a string). For example:
@@ -2061,14 +2132,14 @@ value provided in **element2** from **page2** as a string). For example:
         // ...
     };
     ```
-38. `response status code should be ...` - verify that the response status code
+40. `response status code should be ...` - verify that the response status code
 equals to a provided number. For example:
     ```gherkin
     # tests/features/my-test-api.feature
 
     Then response status code should be 200
     ```
-39. `response body should contain "..."` - verify that the response body
+41. `response body should contain "..."` - verify that the response body
 contains the property (provided in "" as a string with a JSON object inside).
 For example:
     ```gherkin
@@ -2114,7 +2185,7 @@ as a string with a JSON object inside). For example:
         // ...
     };
     ```
-40. `response headers should contain "..."` - verify that the response headers
+42. `response headers should contain "..."` - verify that the response headers
 contain the property (provided in "" as a string with a JSON object inside). For
 example:
     ```gherkin

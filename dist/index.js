@@ -322,6 +322,12 @@ const spacesToIndent = 4;
 (0, fixtures_1.When)('I/user move(s) to {word} from {word}( page)', async ({ page, }, element, pageObject) => {
     await page.locator(get_page_objects_1.pageObjects[pageObject][element]).hover();
 });
+(0, fixtures_1.When)('I/user focus(es) {string}.{string}', async ({ page, }, pageObject, element) => {
+    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).focus();
+});
+(0, fixtures_1.When)('I/user focus(es) {word} from {word}( page)', async ({ page, }, element, pageObject) => {
+    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).focus();
+});
 (0, fixtures_1.When)('I/user press(es) {string}', async ({ page, }, key) => {
     await page.keyboard.press(key);
 });
@@ -591,6 +597,12 @@ const spacesToIndent = 4;
 (0, fixtures_1.Then)('{word} from {word}( page) CSS property {string} should not contain {word} from {word}( page)', async ({ page, }, element1, pageObject1, cssProperty, element2, pageObject2) => {
     const regularExpression = new RegExp(`^.*${get_page_objects_1.pageObjects[pageObject2][element2]}.*$`, 'g');
     await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject1][element1])).not.toHaveCSS(cssProperty, regularExpression);
+});
+(0, fixtures_1.Then)('{string}.{string} should be focused', async ({ page, }, pageObject, element) => {
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element])).toBeFocused();
+});
+(0, fixtures_1.Then)('{word} from {word}( page) should be focused', async ({ page, }, element, pageObject) => {
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element])).toBeFocused();
 });
 (0, fixtures_1.Then)('response status code should be {int}', async ({ ctx, }, resStatusCode) => {
     await (0, verify_api_1.verifyResponseStatus)(ctx, resStatusCode);
