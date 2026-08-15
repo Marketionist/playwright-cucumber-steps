@@ -207,3 +207,22 @@ Feature: Test "I ..." steps - part 1
     And I press "n"
     Then "test2-page"."inputColors" input should be "Green"
 
+  Scenario: 'I press in' should press a key in the element, 'input should be' should verify the input
+    Given I go to "test2-page"."urlTest2"
+    When I press "G" in "test2-page"."inputColors"
+    And I press "r" in "test2-page"."inputColors"
+    And I press "e" in "test2-page"."inputColors"
+    And I press "e" in "test2-page"."inputColors"
+    And I press "n" in "test2-page"."inputColors"
+    Then "test2-page"."inputColors" input should be "Green"
+
+  Scenario: 'I press in' should press a key in the element, 'input should be' should verify the input (text style step)
+    Given I go to "test2-page"."urlTest2"
+    When I press "G" in inputColors from test2-page
+    And I press "r" in inputColors from test2-page
+    And I press "e" in inputColors from test2-page
+    And I press "e" in inputColors from test2-page
+    And I press "n" in inputColors from test2-page
+    Then inputColors from test2-page input should be "Green"
+
+
