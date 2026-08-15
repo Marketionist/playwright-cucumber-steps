@@ -325,6 +325,12 @@ const spacesToIndent = 4;
 (0, fixtures_1.When)('I/user press(es) {string}', async ({ page, }, key) => {
     await page.keyboard.press(key);
 });
+(0, fixtures_1.When)('I/user press(es) {string} in {string}.{string}', async ({ page, }, key, pageObject, element) => {
+    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).press(key);
+});
+(0, fixtures_1.When)('I/user press(es) {string} in {word} from {word}( page)', async ({ page, }, key, element, pageObject) => {
+    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).press(key);
+});
 (0, fixtures_1.When)('I/user reload(s) the page', async ({ page, }) => {
     await page.reload();
 });

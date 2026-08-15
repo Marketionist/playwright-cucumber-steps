@@ -570,6 +570,18 @@ When('I/user press(es) {string}', async ({ page, }, key: string) => {
     await page.keyboard.press(key);
 });
 
+When('I/user press(es) {string} in {string}.{string}', async (
+    { page, }, key: string, pageObject: string, element: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).press(key);
+});
+
+When('I/user press(es) {string} in {word} from {word}( page)', async (
+    { page, }, key: string, element: string, pageObject: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).press(key);
+});
+
 When('I/user reload(s) the page', async ({ page, }) => {
     await page.reload();
 });
