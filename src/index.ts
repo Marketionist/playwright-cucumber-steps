@@ -566,6 +566,18 @@ When('I/user move(s) to {word} from {word}( page)', async (
     await page.locator(pageObjects[pageObject][element]).hover();
 });
 
+When('I/user focus(es) {string}.{string}', async (
+    { page, }, pageObject: string, element: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).focus();
+});
+
+When('I/user focus(es) {word} from {word}( page)', async (
+    { page, }, element: string, pageObject: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).focus();
+});
+
 When('I/user press(es) {string}', async ({ page, }, key: string) => {
     await page.keyboard.press(key);
 });
@@ -1173,6 +1185,18 @@ Then('{word} from {word}( page) CSS property {string} should not contain {word} 
     const regularExpression = new RegExp(`^.*${pageObjects[pageObject2][element2]}.*$`, 'g');
 
     await expect(page.locator(pageObjects[pageObject1][element1])).not.toHaveCSS(cssProperty, regularExpression);
+});
+
+Then('{string}.{string} should be focused', async (
+    { page, }, pageObject: string, element: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element])).toBeFocused();
+});
+
+Then('{word} from {word}( page) should be focused', async (
+    { page, }, element: string, pageObject: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element])).toBeFocused();
 });
 
 Then('response status code should be {int}', async (
