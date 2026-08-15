@@ -247,3 +247,14 @@ Feature: Test "I ..." steps - part 2
     }
     """
     Then response headers should contain headersTestJson from test2-page
+
+  Scenario: 'I focus' and 'should be focused' should focus the element and verify it is focused
+    Given I go to "test2-page"."urlTest2"
+    When I focus "test2-page"."inputColors"
+    Then "test2-page"."inputColors" should be focused
+
+  Scenario: 'I focus' and 'should be focused' should focus the element and verify it is focused (text style step)
+    Given I go to "test2-page"."urlTest2"
+    When I focus inputColors from test2-page
+    Then inputColors from test2-page should be focused
+
