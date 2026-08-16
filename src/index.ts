@@ -8,6 +8,11 @@ import { Given, When, Then } from './fixtures';
 export { Given, When, Then } from './fixtures';
 import { pageObjects } from './utils/get-page-objects';
 export { pageObjects } from './utils/get-page-objects';
+import {
+    capturedEventsKey,
+    captureEvents,
+    getLatestEvent
+} from './utils/events';
 import errors from './utils/errors';
 import {
     sendRequest,
@@ -609,6 +614,38 @@ When('I/user wait(s) for {int} ms', async ({ page, }, timeToWait: number) => {
     await page.waitForTimeout(timeToWait);
 });
 
+When('I/user listen(s) for {string} event on {string}.{string}', async (
+    { page, }, eventName: string, pageObject: string, element: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).evaluate(
+        (node, [name, key,]) => {
+            const store = (window as any)[key] = (window as any)[key] ?? {};
+
+            store[name] = store[name] ?? [];
+            node.addEventListener(name, (event: Event) => {
+                store[name].push((event as CustomEvent).detail ?? null);
+            });
+        },
+        [eventName, capturedEventsKey,]
+    );
+});
+
+When('I/user listen(s) for {string} event on {word} from {word}( page)', async (
+    { page, }, eventName: string, element: string, pageObject: string
+) => {
+    await page.locator(pageObjects[pageObject][element]).evaluate(
+        (node, [name, key,]) => {
+            const store = (window as any)[key] = (window as any)[key] ?? {};
+
+            store[name] = store[name] ?? [];
+            node.addEventListener(name, (event: Event) => {
+                store[name].push((event as CustomEvent).detail ?? null);
+            });
+        },
+        [eventName, capturedEventsKey,]
+    );
+});
+
 // #### Then steps #############################################################
 
 Then('page title should be {string}', async ({ page, }, text: string) => {
@@ -1197,6 +1234,34 @@ Then('{word} from {word}( page) should be focused', async (
     { page, }, element: string, pageObject: string
 ) => {
     await expect(page.locator(pageObjects[pageObject][element])).toBeFocused();
+});
+
+Then('{string} event should have been emitted', async (
+    { page, }, eventName: string
+) => {
+    await expect.poll(async () => {
+        return (await captureEvents(page, eventName)).length;
+    }).toBeGreaterThan(0);
+});
+
+Then('{string} event detail should have property {string}', async (
+    { page, }, eventName: string, property: string
+) => {
+    await expect.poll(async () => {
+        const latestEvent = await getLatestEvent(page, eventName);
+
+        return latestEvent !== undefined && latestEvent[property] !== undefined;
+    }).toBe(true);
+});
+
+Then('{string} event detail {string} should be {string}', async (
+    { page, }, eventName: string, property: string, value: string
+) => {
+    await expect.poll(async () => {
+        const latestEvent = await getLatestEvent(page, eventName);
+
+        return latestEvent === undefined ? undefined : String(latestEvent[property]);
+    }).toBe(value);
 });
 
 Then('response status code should be {int}', async (

@@ -16,6 +16,7 @@ Object.defineProperty(exports, "Then", { enumerable: true, get: function () { re
 const get_page_objects_1 = require("./utils/get-page-objects");
 var get_page_objects_2 = require("./utils/get-page-objects");
 Object.defineProperty(exports, "pageObjects", { enumerable: true, get: function () { return get_page_objects_2.pageObjects; } });
+const events_1 = require("./utils/events");
 const errors_1 = __importDefault(require("./utils/errors"));
 const verify_api_1 = require("./utils/verify-api");
 const spacesToIndent = 4;
@@ -347,6 +348,24 @@ const spacesToIndent = 4;
     // Timeout to wait for in milliseconds
     await page.waitForTimeout(timeToWait);
 });
+(0, fixtures_1.When)('I/user listen(s) for {string} event on {string}.{string}', async ({ page, }, eventName, pageObject, element) => {
+    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).evaluate((node, [name, key,]) => {
+        const store = window[key] = window[key] ?? {};
+        store[name] = store[name] ?? [];
+        node.addEventListener(name, (event) => {
+            store[name].push(event.detail ?? null);
+        });
+    }, [eventName, events_1.capturedEventsKey,]);
+});
+(0, fixtures_1.When)('I/user listen(s) for {string} event on {word} from {word}( page)', async ({ page, }, eventName, element, pageObject) => {
+    await page.locator(get_page_objects_1.pageObjects[pageObject][element]).evaluate((node, [name, key,]) => {
+        const store = window[key] = window[key] ?? {};
+        store[name] = store[name] ?? [];
+        node.addEventListener(name, (event) => {
+            store[name].push(event.detail ?? null);
+        });
+    }, [eventName, events_1.capturedEventsKey,]);
+});
 // #### Then steps #############################################################
 (0, fixtures_1.Then)('page title should be {string}', async ({ page, }, text) => {
     await (0, test_1.expect)(page).toHaveTitle(text);
@@ -603,6 +622,23 @@ const spacesToIndent = 4;
 });
 (0, fixtures_1.Then)('{word} from {word}( page) should be focused', async ({ page, }, element, pageObject) => {
     await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element])).toBeFocused();
+});
+(0, fixtures_1.Then)('{string} event should have been emitted', async ({ page, }, eventName) => {
+    await test_1.expect.poll(async () => {
+        return (await (0, events_1.captureEvents)(page, eventName)).length;
+    }).toBeGreaterThan(0);
+});
+(0, fixtures_1.Then)('{string} event detail should have property {string}', async ({ page, }, eventName, property) => {
+    await test_1.expect.poll(async () => {
+        const latestEvent = await (0, events_1.getLatestEvent)(page, eventName);
+        return latestEvent !== undefined && latestEvent[property] !== undefined;
+    }).toBe(true);
+});
+(0, fixtures_1.Then)('{string} event detail {string} should be {string}', async ({ page, }, eventName, property, value) => {
+    await test_1.expect.poll(async () => {
+        const latestEvent = await (0, events_1.getLatestEvent)(page, eventName);
+        return latestEvent === undefined ? undefined : String(latestEvent[property]);
+    }).toBe(value);
 });
 (0, fixtures_1.Then)('response status code should be {int}', async ({ ctx, }, resStatusCode) => {
     await (0, verify_api_1.verifyResponseStatus)(ctx, resStatusCode);

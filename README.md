@@ -977,9 +977,50 @@ milliseconds). For example:
         // ...
     };
     ```
+21. `I/user listen(s) for "..." event on "..."."..."` - start listening for a
+custom DOM event (provided in "" as a string) on the element (provided in
+**"page"."element"** as a CSS or XPath selector). Use together with
+`event should have been emitted`, `event detail should have property`, and
+`event detail "..." should be "..."` steps to verify events after triggering
+an action. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I listen for "my-custom-event" event on "my-page"."buttonEmitEvent"
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        buttonEmitEvent: '#button-emit-event',
+        // OR
+        buttonEmitEventXPath: '//*[@id="button-emit-event"]',
+        // ...
+    };
+    ```
+- `I/user listen(s) for "..." event on ... from ...` - start listening for a
+custom DOM event (provided in "" as a string) on the element (provided in
+**element** from **page** as a CSS or XPath selector). For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    When I listen for "my-custom-event" event on buttonEmitEventXPath from my-page
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        buttonEmitEvent: '#button-emit-event',
+        // OR
+        buttonEmitEventXPath: '//*[@id="button-emit-event"]',
+        // ...
+    };
+    ```
 
 ### Then steps
-21. `page title should be "..."` - verify that the title of the current browser
+22. `page title should be "..."` - verify that the title of the current browser
 window/tab equals to the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1020,7 +1061,7 @@ a string). For example:
         // ...
     };
     ```
-22. `page title should contain "..."` - verify that the title of the current
+23. `page title should contain "..."` - verify that the title of the current
 browser window/tab contains the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1061,7 +1102,7 @@ current browser window/tab contains the text (provided in **element** from
         // ...
     };
     ```
-23. `"..."."..." should be present` - verify that the element (provided in
+24. `"..."."..." should be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is present on the page. For
 example:
     ```gherkin
@@ -1099,7 +1140,7 @@ For example:
         // ...
     };
     ```
-24. `... "..."."..." should be present` - verify that the number of the elements
+25. `... "..."."..." should be present` - verify that the number of the elements
 (provided in **"page"."element"** as a CSS or XPath selector) are present on the
 page. For example:
     ```gherkin
@@ -1137,7 +1178,7 @@ on the page. For example:
         // ...
     };
     ```
-25. `"..."."..." should not be present` - verify that the element (provided in
+26. `"..."."..." should not be present` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is not present on the page. For
 example:
     ```gherkin
@@ -1175,7 +1216,7 @@ page. For example:
         // ...
     };
     ```
-26. `"..."."..." should be focused` - verify that the element (provided in
+27. `"..."."..." should be focused` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) is focused. For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1211,7 +1252,7 @@ page. For example:
         // ...
     };
     ```
-27. `"..."."..." text should be "..."` - verify that the text of the element
+29. `"..."."..." text should be "..."` - verify that the text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string). For example:
     ```gherkin
@@ -1290,7 +1331,7 @@ example:
         // ...
     };
     ```
-28. `"..."."..." text should contain "..."` - verify that the text of the
+30. `"..."."..." text should contain "..."` - verify that the text of the
 element (provided in **"page"."element"** as a CSS or XPath selector) contains
 the text (provided in "" as a string). For example:
     ```gherkin
@@ -1369,7 +1410,7 @@ example:
         // ...
     };
     ```
-29. `"..."."..." input should be "..."` - verify that the element (provided in
+31. `"..."."..." input should be "..."` - verify that the element (provided in
 **"page"."element"** as a CSS or XPath selector) has the given input value
 (provided in "" as a string). For example:
     ```gherkin
@@ -1448,7 +1489,7 @@ example:
         // ...
     };
     ```
-30. `"..."."..." input should contain "..."` - verify that the element (provided
+32. `"..."."..." input should contain "..."` - verify that the element (provided
 in **"page"."element"** as a CSS or XPath selector) contains the given input
 value (provided in "" as a string). For example:
     ```gherkin
@@ -1527,7 +1568,7 @@ example:
         // ...
     };
     ```
-31. `"..."."..." input length should be ...`` - verify that the element (provided
+33. `"..."."..." input length should be ...`` - verify that the element (provided
 in **"page"."element"** as a CSS or XPath selector) contains the input of the
 given length (provided as a number). For example:
     ```gherkin
@@ -1565,7 +1606,7 @@ the given length (provided as a number). For example:
         // ...
     };
     ```
-32. `page URL should be "..."` - verify that the URL of the current page equals
+34. `page URL should be "..."` - verify that the URL of the current page equals
 to the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1605,7 +1646,7 @@ example:
         // ...
     };
     ```
-33. `page URL should contain "..."` - verify that the URL of the current page
+35. `page URL should contain "..."` - verify that the URL of the current page
 contains the text (provided in "" as a string). For example:
     ```gherkin
     # tests/features/my-account.feature
@@ -1646,7 +1687,7 @@ example:
         // ...
     };
     ```
-34. `"..."."..." attribute "..." should be "..."` - verify that the element
+36. `"..."."..." attribute "..." should be "..."` - verify that the element
 (provided in **"page"."element"** as a CSS or XPath selector) has exactly the
 given attribute value (attribute provided in "" as a string, value provided in
 "" as a string). For example:
@@ -1728,7 +1769,7 @@ in **element2** from **page2** as a string). For example:
         // ...
     };
     ```
-35. `"..."."..." attribute "..." should contain "..."` - verify that the element (provided
+37. `"..."."..." attribute "..." should contain "..."` - verify that the element (provided
 in **"page"."element"** as a CSS or XPath selector) contains the given attribute
 value (attribute provided in "" as a string, value provided in "" as a string). For example:
     ```gherkin
@@ -1807,7 +1848,7 @@ example:
         // ...
     };
     ```
-36. `"..."."..." attribute "..." should not contain "..."` - verify that the element (provided
+38. `"..."."..." attribute "..." should not contain "..."` - verify that the element (provided
 in **"page"."element"** as a CSS or XPath selector) does not contain the given attribute
 value (attribute provided in "" as a string, value provided in "" as a string). For example:
     ```gherkin
@@ -1886,7 +1927,7 @@ example:
         // ...
     };
     ```
-37. `"..."."..." CSS property "..." should be "..."` - verify that the element
+39. `"..."."..." CSS property "..." should be "..."` - verify that the element
 (provided in **"page"."element"** as a CSS or XPath selector) has exactly the
 given CSS property value (property provided in "" as a string, value provided in
 "" as a string). For example:
@@ -1968,7 +2009,7 @@ provided in **element2** from **page2** as a string). For example:
         // ...
     };
     ```
-38. `"..."."..." CSS property "..." should contain "..."` - verify that the element
+40. `"..."."..." CSS property "..." should contain "..."` - verify that the element
 (provided in **"page"."element"** as a CSS or XPath selector) has the given CSS
 property value (property provided in "" as a string, value provided in "" as a
 string). For example:
@@ -2050,7 +2091,7 @@ in **element2** from **page2** as a string). For example:
         // ...
     };
     ```
-39. `"..."."..." CSS property "..." should not contain "..."` - verify that the
+41. `"..."."..." CSS property "..." should not contain "..."` - verify that the
 element (provided in **"page"."element"** as a CSS or XPath selector) does not
 have the given CSS property value (property provided in "" as a string, value
 provided in "" as a string). For example:
@@ -2132,14 +2173,14 @@ value provided in **element2** from **page2** as a string). For example:
         // ...
     };
     ```
-40. `response status code should be ...` - verify that the response status code
+42. `response status code should be ...` - verify that the response status code
 equals to a provided number. For example:
     ```gherkin
     # tests/features/my-test-api.feature
 
     Then response status code should be 200
     ```
-41. `response body should contain "..."` - verify that the response body
+43. `response body should contain "..."` - verify that the response body
 contains the property (provided in "" as a string with a JSON object inside).
 For example:
     ```gherkin
@@ -2185,7 +2226,7 @@ as a string with a JSON object inside). For example:
         // ...
     };
     ```
-42. `response headers should contain "..."` - verify that the response headers
+44. `response headers should contain "..."` - verify that the response headers
 contain the property (provided in "" as a string with a JSON object inside). For
 example:
     ```gherkin
@@ -2230,6 +2271,33 @@ object or as a string with a JSON object inside). For example:
         headersTestJson: { 'content-type': 'application/json', },
         // ...
     };
+    ```
+45. `"..." event should have been emitted` - verify that a custom DOM event
+(provided in "" as a string) has been emitted at least once. Must be preceded
+by an `I listen for "..." event on ...` step. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-custom-event" event should have been emitted
+    ```
+46. `"..." event detail should have property "..."` - verify that the detail of
+the latest emitted custom DOM event (event name provided in "" as a string)
+has a property (provided in "" as a string). Must be preceded by an
+`I listen for "..." event on ...` step. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-custom-event" event detail should have property "status"
+    ```
+47. `"..." event detail "..." should be "..."` - verify that a property
+(provided in the second "" as a string) of the latest emitted custom DOM event
+detail (event name provided in the first "" as a string) equals the expected
+value (provided in the third "" as a string). Must be preceded by an
+`I listen for "..." event on ...` step. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-custom-event" event detail "status" should be "emitted"
     ```
 
 ## Requirements
