@@ -1252,6 +1252,42 @@ page. For example:
         // ...
     };
     ```
+28. `"..."."..." should be disabled` - verify that the element (provided in
+**"page"."element"** as a CSS or XPath selector) is disabled. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then "my-page"."inputDisabled" should be disabled
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputDisabled: '#input-disabled',
+        // OR
+        inputDisabledXPath: '//*[@id="input-disabled"]',
+        // ...
+    };
+    ```
+- `... from ... should be disabled` - verify that the element (provided in
+**element** from **page** as a CSS or XPath selector) is disabled. For example:
+    ```gherkin
+    # tests/features/my-account.feature
+
+    Then inputDisabledXPath from my-page should be disabled
+    ```
+    ```typescript
+    // tests/page-objects/my-page.ts
+
+    const myPage = {
+        // ...
+        inputDisabled: '#input-disabled',
+        // OR
+        inputDisabledXPath: '//*[@id="input-disabled"]',
+        // ...
+    };
+    ```
 29. `"..."."..." text should be "..."` - verify that the text of the element
 (provided in **"page"."element"** as a CSS or XPath selector) equals to the text
 (provided in "" as a string). For example:
