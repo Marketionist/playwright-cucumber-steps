@@ -12,6 +12,7 @@ const test2Page: PageModel = {
     blockDropdownColor: '#block-dropdown-color',
     inputColors: '#input-colors',
     blockInputColor: '#block-input-color',
+    inputDisabled: '#input-disabled',
     buttonEmitEvent: '#button-emit-event',
     myCustomEvent: 'my-custom-event',
     eventDetailStatus: 'status',
