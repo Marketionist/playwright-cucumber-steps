@@ -97,7 +97,20 @@ nodeTestingServer.config = {
                 <option value="yellow">Yellow</option>
                 <option value="Gold">Gold</option>
                 <option value="orange">Orange</option>
-            </select>`,
+            </select>
+            <p>
+                <button id="button-emit-event">Emit custom event</button>
+            </p>
+            <script>
+                document.getElementById("button-emit-event").addEventListener("click", function () {
+                    document.getElementById("button-emit-event").dispatchEvent(
+                        new CustomEvent("my-custom-event", {
+                            bubbles: true,
+                            detail: { status: "emitted", value: 42 }
+                        })
+                    );
+                });
+            </script>`,
         '/test-iframe.html': `<title>Test Page with iframe</title>
             <h1>Test page with iframe</h1>
             <iframe src="test1.html" id="iframe-test1" name="test iframe" width="400" height="300" align="left">

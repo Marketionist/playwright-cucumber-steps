@@ -258,3 +258,27 @@ Feature: Test "I ..." steps - part 2
     When I focus inputColors from test2-page
     Then inputColors from test2-page should be focused
 
+  Scenario: 'I listen for event' and 'event should have been emitted' should listen for event and verify it was emitted (Page Object style step)
+    Given I go to "test2-page"."urlTest2"
+    When I listen for "my-custom-event" event on "test2-page"."buttonEmitEvent"
+    And I click "test2-page"."buttonEmitEvent"
+    Then "my-custom-event" event should have been emitted
+
+  Scenario: 'I listen for event' and 'event should have been emitted' should listen for event and verify it was emitted (text style step)
+    Given I go to "test2-page"."urlTest2"
+    When I listen for "my-custom-event" event on buttonEmitEvent from test2-page
+    And I click "test2-page"."buttonEmitEvent"
+    Then "my-custom-event" event should have been emitted
+
+  Scenario: 'event detail should have property' should verify that event detail has a given property (Page Object style step)
+    Given I go to "test2-page"."urlTest2"
+    When I listen for "my-custom-event" event on "test2-page"."buttonEmitEvent"
+    And I click "test2-page"."buttonEmitEvent"
+    Then "my-custom-event" event detail should have property "status"
+
+  Scenario: 'event detail should be' should verify that event detail property equals a string (Page Object style step)
+    Given I go to "test2-page"."urlTest2"
+    When I listen for "my-custom-event" event on "test2-page"."buttonEmitEvent"
+    And I click "test2-page"."buttonEmitEvent"
+    Then "my-custom-event" event detail "status" should be "emitted"
+
