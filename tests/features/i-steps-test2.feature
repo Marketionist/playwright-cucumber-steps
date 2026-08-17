@@ -258,6 +258,14 @@ Feature: Test "I ..." steps - part 2
     When I focus inputColors from test2-page
     Then inputColors from test2-page should be focused
 
+  Scenario: 'should be disabled' should verify that element is disabled (Page Object style step)
+    Given I go to "test2-page"."urlTest2"
+    Then "test2-page"."inputDisabled" should be disabled
+
+  Scenario: 'should be disabled' should verify that element is disabled (text style step)
+    Given I go to "test2-page"."urlTest2"
+    Then inputDisabled from test2-page should be disabled
+
   Scenario: 'I listen for event' and 'event should have been emitted' should listen for event and verify it was emitted (Page Object style step)
     Given I go to "test2-page"."urlTest2"
     When I listen for "my-custom-event" event on "test2-page"."buttonEmitEvent"

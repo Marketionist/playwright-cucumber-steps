@@ -623,6 +623,12 @@ const spacesToIndent = 4;
 (0, fixtures_1.Then)('{word} from {word}( page) should be focused', async ({ page, }, element, pageObject) => {
     await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element])).toBeFocused();
 });
+(0, fixtures_1.Then)('{string}.{string} should be disabled', async ({ page, }, pageObject, element) => {
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element])).toBeDisabled();
+});
+(0, fixtures_1.Then)('{word} from {word}( page) should be disabled', async ({ page, }, element, pageObject) => {
+    await (0, test_1.expect)(page.locator(get_page_objects_1.pageObjects[pageObject][element])).toBeDisabled();
+});
 (0, fixtures_1.Then)('{string} event should have been emitted', async ({ page, }, eventName) => {
     await test_1.expect.poll(async () => {
         return (await (0, events_1.captureEvents)(page, eventName)).length;

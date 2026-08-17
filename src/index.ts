@@ -1236,6 +1236,18 @@ Then('{word} from {word}( page) should be focused', async (
     await expect(page.locator(pageObjects[pageObject][element])).toBeFocused();
 });
 
+Then('{string}.{string} should be disabled', async (
+    { page, }, pageObject: string, element: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element])).toBeDisabled();
+});
+
+Then('{word} from {word}( page) should be disabled', async (
+    { page, }, element: string, pageObject: string
+) => {
+    await expect(page.locator(pageObjects[pageObject][element])).toBeDisabled();
+});
+
 Then('{string} event should have been emitted', async (
     { page, }, eventName: string
 ) => {

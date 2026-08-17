@@ -99,6 +99,10 @@ nodeTestingServer.config = {
                 <option value="orange">Orange</option>
             </select>
             <p>
+                Disabled input:
+                <input id="input-disabled" type="text" disabled value="">
+            </p>
+            <p>
                 <button id="button-emit-event">Emit custom event</button>
             </p>
             <script>
