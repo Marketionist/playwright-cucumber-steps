@@ -32,11 +32,11 @@ Feature: Test "user ..." steps - part 1
 
   Scenario: 'number should be present' should verify the number of elements
     Given user goes to "test2-page"."urlTest2"
-    Then 4 "test2-page"."input" should be present
+    Then 5 "test2-page"."input" should be present
 
   Scenario: 'number should be present' should verify the number of elements (text style step)
     Given user goes to "test2-page"."urlTest2"
-    Then 4 input from test2-page should be present
+    Then 5 input from test2-page should be present
 
   Scenario: 'should not be present': link on Page1 test page should not be present, 'user waits for' should wait for 200 ms
     Given user goes to "test1-page"."urlTest1"
